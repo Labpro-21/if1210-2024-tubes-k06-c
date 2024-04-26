@@ -6,8 +6,8 @@
 # Contributors
 Tugas besar ini dibuat oleh mahasiswa STEI angkatan 2023 kelas K-06 kelompok C.
 
-| Nama                        | NIM      |
-| --------------------------- | -------- |
+| **Nama**                    | **NIM**  |
+| :-------------------------: | :------: |
 | Z. Nayaka Athadiansyah      | 19623116 |
 | M. Ra'if Alkautsar          | 19623296 |
 | Daniel A.W. Sipayung        | 19623076 |
