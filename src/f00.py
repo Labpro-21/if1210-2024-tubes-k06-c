@@ -19,7 +19,7 @@ def rng(start: int, stop: int, x_0: int = 0) -> int:
 
     # ALGORITMA
     # Inisiasi awal variabel lokal fungsi
-    a = 694420177013
+    a = 69420177013
     c = 1945
     m = 2 ** 21
     x_n = x_0
