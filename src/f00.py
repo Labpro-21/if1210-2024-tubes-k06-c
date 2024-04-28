@@ -31,10 +31,7 @@ def rng(start: int, stop: int, x_0: int = 0) -> int:
         
         if rand_num < stop:
             return rand_num
-    return
 
-
-print(rng(2, 1000, rng(5, 10, 4)))
 
 """
 DESKRIPSI
