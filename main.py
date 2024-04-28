@@ -16,3 +16,8 @@ INSTITUT TEKNOLOGI BANDUNG
 # Mengimpor library yang dibutuhkan
 import os, sys, math, time, argparse, datetime
 
+# Mengimpor fungsi-fungsi yang sudah dibuat
+for namafile in os.listdir(os.path.abspath("src")):
+    if namafile[3] == ".":
+        namamodule = "src." + namafile[:-3]
+        __import__(namamodule)
