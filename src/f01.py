@@ -1,9 +1,19 @@
 """
 F01 - Register
-NIM NAMA
+19623116 Nayaka
 """
 
-# Kode di sini
+def register():
+    print("<=============>")
+    print("  O. W. C. A.  ")
+    print("   We serve.   ")
+    print("<=============>")
+
+    username = input("Username: ")
+    password = input("Password: ")
+    
+    
+register()
 
 """
 DESKRIPSI
