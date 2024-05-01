@@ -71,4 +71,3 @@ def csv_parser(path: str) -> list[dict]:
                 row_dict[headers[i]] = entries[i]
             data.append(row_dict)
     return data
-print(csv_parser("data/user.csv"))
