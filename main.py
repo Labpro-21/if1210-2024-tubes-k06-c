@@ -17,7 +17,7 @@ INSTITUT TEKNOLOGI BANDUNG
 import os, sys, math, time, argparse, datetime
 
 # Mengimpor fungsi-fungsi yang sudah dibuat
-for namafile in os.listdir(os.path.abspath("src")):
-    if namafile[-3:] == ".py":
-        namamodule = "src." + namafile[:-3]
-        __import__(namamodule)
+for filename in os.listdir(os.path.abspath("src")):
+    if filename[-3:] == ".py":
+        modulename = "src." + filename[:-3]
+        __import__(modulename)
