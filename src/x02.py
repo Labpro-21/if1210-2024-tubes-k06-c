@@ -34,8 +34,11 @@ def csv_parser(path: str, identifier: str) -> list[dict]:
     # Menambahkan data pada tiap kolom satu per satu
     for line in file:
         entries = split_str(strip_str(line))
+        # Error ketika ada panjang baris yang tidak sama dengan header
         if len(entries) != len(headers):
             raise ValueError("Ada data yang kosong atau melebihi kolom header!")
+        # Memproses data csv untuk baris-baris setelah header
+        ## Mengambil identitas dari identifier yang ditentukan
         if entries != headers:
             identifier_key = entries[identifier_idx]
             for i in range(len(headers)):
