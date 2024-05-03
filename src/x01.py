@@ -1,5 +1,5 @@
 """
-X01 - Fungsi-fungsi Pembantu
+X01 - Fungsi-fungsi Pembantu 1
 19623116 Nayaka
 """
 def is_in(e, arr) -> bool:
@@ -50,24 +50,3 @@ def strip_str(line: str) -> str:
         stripped_line = f"{stripped_line}{line[i]}"
     
     return stripped_line
-
-def read_header(path: str) -> str:
-    file =  open(path, 'r')
-    for line in file:
-        return line.strip()
-
-def csv_parser(path: str) -> list[dict]:
-    data = []
-    file = open(path, 'r+')
-    headers = split_str(read_header(path))
-    for line in file:
-        entries = split_str(strip_str(line))
-        if len(entries) != len(headers):
-            raise ValueError("Ada data yang kosong atau melebihi kolom header!")
-        
-        if entries != headers:
-            row_dict = {}
-            for i in range(len(headers)):
-                row_dict[headers[i]] = entries[i]
-            data.append(row_dict)
-    return data
