@@ -42,7 +42,6 @@ def csv_parser(path: str, identifier: str) -> list[dict]:
                 data[header][identifier_key] = entries[i]
     return data
 
-print(csv_parser("data/user.csv", "username"))
 
 def get_val(db: list[dict], val, src, tget) -> int:
     for i in range(len(db)):
