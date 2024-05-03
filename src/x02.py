@@ -23,6 +23,7 @@ def csv_parser(path: str, identifier: str) -> list[dict]:
     headers = split_str(read_header(path))
     data = {header : {} for header in headers}
     
+    # Mencari indeks dari identifier
     identifier_idx = -1
     for i in range(len(headers)):
         if headers[i] == identifier:
