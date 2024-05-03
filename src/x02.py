@@ -42,7 +42,6 @@ def csv_parser(path: str, identifier: str) -> list[dict]:
                 data[header][identifier_key] = entries[i]
     return data
 
-
 def get_val(db: list[dict], val, src, tget) -> int:
     for i in range(len(db)):
         if db[i][src] == val:
