@@ -2,12 +2,45 @@
 X01 - Fungsi-fungsi Pembantu 1
 19623116 Nayaka
 """
+import sys
+def maxi(a: int, b: int) -> int:
+    if a >= b:
+        return a
+    return b
+
+def mini(a: int, b: int) -> int:
+    if a >= b:
+        return b
+    return a
+
 def is_in(e, arr) -> bool:
-    # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str
-    for i in range(len(arr)):
-        if e == arr[i]:
-            return True
+    # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str, 
+    # serta arr untuk array of integer, string, ataupun sebuah dictionary
+    if (type(arr) == list) or (type(arr) == str):
+        for i in range(len(arr)):
+            if e == arr[i]:
+                return True
+    elif (type(arr) == dict):
+        for key in arr.keys():
+            if e == key:
+                return True
     return False    
+
+def all_is_in(arr1, arr2) -> bool:
+    # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str
+    if len(arr1) > len(arr2):
+        return False
+    for i in range(len(arr1)):
+        if not is_in(arr1[i], arr2):
+            return False
+    return True
+
+def remove_nth_line(n: int):
+    # Bergerak ke baris di atasnya
+    for i in range(n):
+        sys.stdout.write('\x1b[1A')
+    # Menghapus baris (clear)
+    sys.stdout.write('\x1b[2K')
 
 def is_space(char: str) -> bool:
     return True if char == " " or char == "\t" or char =="\n" else False
