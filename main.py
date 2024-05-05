@@ -16,8 +16,22 @@ INSTITUT TEKNOLOGI BANDUNG
 # Mengimpor library yang dibutuhkan
 import os, sys, math, time, argparse, datetime
 
-# Mengimpor fungsi-fungsi yang sudah dibuat
-for filename in os.listdir(os.path.abspath("src")):
-    if filename[-3:] == ".py":
-        modulename = "src." + filename[:-3]
-        __import__(modulename)
+# Mengimpor fungsi-fungsi yang sudah dibuat dengan penuh jerih payah
+src_path = os.path.join(os.path.dirname(__file__), 'src')
+data_path = os.path.join(os.path.dirname(__file__), 'data')
+sys.path.append(src_path)
+sys.path.append(data_path)
+
+from x01 import *
+from x02 import *
+
+print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
+time.sleep(3)
+for i in range(5):
+    remove_nth_line(1)
+    print(f"Memulai program dalam {5-i} detik...")
+    time.sleep(1)
+remove_nth_line(1)
+print("Selesai!")
+time.sleep(2)
+remove_nth_line(1)
