@@ -5,9 +5,7 @@ X01 - Fungsi-fungsi Pembantu 2
 import os, sys
 # Mengimpor fungsi-fungsi yang sudah dibuat dengan penuh jerih payah
 src_path = os.path.join(os.path.dirname(__file__), 'src')
-data_path = os.path.join(os.path.dirname(__file__), 'data')
 sys.path.append(src_path)
-sys.path.append(data_path)
 
 from x01 import *
 # Jika ingin menjalankan file ini secara independen
