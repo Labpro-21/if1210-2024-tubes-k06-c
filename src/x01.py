@@ -83,3 +83,15 @@ def strip_str(line: str) -> str:
         stripped_line = f"{stripped_line}{line[i]}"
     
     return stripped_line
+
+def remove_ele(index: int, arr: list) -> list:
+    newArr = []
+    for i in range(len(arr)):
+        if i != index:
+            newArr.append(arr[i])
+    return newArr
+
+def printText(file_path: str):
+    with open(file_path, 'r') as file:
+        for line in file:
+            print(line, end='')
