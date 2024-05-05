@@ -19,14 +19,15 @@ def input_username():
     valid_char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
     username = input("Username: ")
 
-    valid = all_is_in(username, valid_char)
-    while not valid:
+    valid1 = subset(username, valid_char)
+    valid2 = is_in(username, )
+    while not valid1:
         remove_nth_line(1)
         print("Username hanya boleh berisi alfabet, angka, tanda hubung bawah (_), dan tanda strip (-)!")
         username = input("Username: ")
         remove_nth_line(1)
-        valid = all_is_in(username, valid_char)
-        if valid:
+        valid1 = subset(username, valid_char)
+        if valid1:
             remove_nth_line(1)
     return username
 
