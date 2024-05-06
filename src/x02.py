@@ -17,7 +17,7 @@ def read_header(path: str) -> str:
         return line.strip()
 
 def csv_parser(path: str, identifier: str) -> list[dict]:
-    file = open(path, 'r+')
+    file = open(path, 'r')
     headers = split_str(read_header(path))
     data = {header : {} for header in headers}
     
