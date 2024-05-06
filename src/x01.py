@@ -1,6 +1,7 @@
 """
 X01 - Fungsi-fungsi Pembantu 1
 19623116 Nayaka
+19623296 Ra'if
 """
 import sys
 def maxi(a: int, b: int) -> int:
@@ -26,7 +27,7 @@ def is_in(e, arr) -> bool:
                 return True
     return False    
 
-def all_is_in(arr1, arr2) -> bool:
+def subset(arr1, arr2) -> bool:
     # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str
     if len(arr1) > len(arr2):
         return False
