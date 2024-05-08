@@ -19,24 +19,24 @@ Tugas besar ini dibuat oleh mahasiswa STEI angkatan 2023 kelas K-06 kelompok C.
 
 Program ini memuat beberapa _module_ yang terdiri atas banyak fungsi. Rincian _module_ adalah sebagai berikut.
 
-| **_Module_** | **Deskripsi** |
-| :----------: | :-----------: |
-| F00          | Pembangkit bilangan acak semu (_pseudo random number generator_, PRNG) dengan algoritma _linear congruential generator_. |
-| F01 | |
-| F02 | |
-| F03 | |
-| F04 | |
-| F05 | |
-| F06 | |
-| F07 | |
-| F08 | |
-| F09 | |
-| F10 | |
-| F11 | |
-| F12 | |
-| F13 | |
-| F14 | |
-| F15 | |
-| F16 | |
+| **_Module_** | **Nama Fungsi** | **Deskripsi** |
+| :----------: | :-------------: | :-----------: |
+| F00 | Random Number Generator  | Pembangkit bilangan acak semu (_pseudo random number generator_, PRNG) dengan algoritma _linear congruential generator_. |
+| F01 | Register |
+| F02 | Login |
+| F03 | Logout |
+| F04 | Menu & Help |
+| F05 | Monster |
+| F06 | Potion |
+| F07 | Inventory |
+| F08 | Battle |
+| F09 | Arena |
+| F10 | Shop & Currency |
+| F11 | Laboratory |
+| F12 | Shop Management |
+| F13 | Monster Management |
+| F14 | Load |
+| F15 | Save |
+| F16 | Exit |
 
 # How to Run
