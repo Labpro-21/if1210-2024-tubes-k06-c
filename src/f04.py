@@ -50,7 +50,6 @@ def help(id):
         print("Footnote:")
         print("   1. Untuk menggunakan aplikasi, silahkan masukkan nama fungsi yang terdaftar.")
         print("   2. Jangan lupa untuk memasukkan input yang valid.")
-  
 
 """""
 DESKRIPSI
