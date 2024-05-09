@@ -1,11 +1,12 @@
 """
-X01 - Fungsi-fungsi Pembantu 2
+X02 - Fungsi-fungsi Pembantu 2
 19623116 Nayaka
 """
 import os, sys
-# Mengimpor fungsi-fungsi yang sudah dibuat dengan penuh jerih payah
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
+data_path = os.path.join(os.path.dirname(__file__), 'data')
+sys.path.append(data_path)
 
 from x01 import *
 # Jika ingin menjalankan file ini secara independen
@@ -16,18 +17,10 @@ def read_header(path: str) -> str:
     for line in file:
         return line.strip()
 
-def csv_parser(path: str, identifier: str) -> list[dict]:
+def csv_parser(path: str) -> dict:
     file = open(path, 'r')
     headers = split_str(read_header(path))
-    data = {header : {} for header in headers}
-    
-    # Mencari indeks dari identifier
-    identifier_idx = -1
-    for i in range(len(headers)):
-        if headers[i] == identifier:
-            identifier_idx = i
-    if identifier_idx == -1:
-        raise ValueError("Identifier tidak ditemukan!")
+    data = {header : [] for header in headers}
 
     # Menambahkan data pada tiap kolom satu per satu
     for line in file:
@@ -38,31 +31,38 @@ def csv_parser(path: str, identifier: str) -> list[dict]:
         # Memproses data csv untuk baris-baris setelah header
         ## Mengambil identitas dari identifier yang ditentukan
         if entries != headers:
-            identifier_key = entries[identifier_idx]
             for i in range(len(headers)):
-                header = headers[i]
-                data[header][identifier_key] = entries[i]
+                header, entry = headers[i], entries[i]
+                data[header].append(entry)
     return data
 
-# fungsi alternatif untuk csv parser tanpa identifier
-def csv_parser_noid(path: str) -> list[dict]:
-    data = []
-    file = open(path, 'r+')
-    headers = split_str(read_header(path))
-    for line in file:
-        entries = split_str(strip_str(line))
-        if len(entries) != len(headers):
-            raise ValueError("Ada data yang kosong atau melebihi kolom header!")
-        if entries != headers:
-            row_dict = {}
-            for i in range(len(headers)):
-                row_dict[headers[i]] = entries[i]
-            data.append(row_dict)
-    return data
+def database_to_csv(db: dict, path: str):
+    csv = open(path, "w")
+    db_width = len(db)
+    headers = []
+    headers_row = ""
 
-# user_id;monster_id;level
-# 2;1;1
-# 3;2;2
-# 3;3;1
-# 4;4;1
-# 5;5;5
+    i = 0
+    for header in db.keys():
+        headers.append(header)
+
+        if i != db_width - 1:
+            headers_row = f"{headers_row}{header};"
+        else:
+            headers_row = f"{headers_row}{header}"
+
+        i += 1
+
+    print(headers_row)
+
+    db_length = len(db[headers[0]])
+    for i in range(db_length):
+        row = ""
+        for j in range(db_width):
+            if j != db_width - 1:
+                row = f"{row}{db[headers[j]][i]};"
+            else:
+                row = f"{row}{db[headers[j]][i]}"
+        print(row)
+        csv.write(row)
+        csv.write("\n")
