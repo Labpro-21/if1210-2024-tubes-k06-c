@@ -33,6 +33,12 @@ def exit():
 
 """
 DESKRIPSI
-
+Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
+Ketika pengguna ingin keluar dari program, pengguna diberi pilihan untuk menyimpan
+progresnya atau tidak. Jika pengguna berkenan, seluruh database dalam program yang
+tersimpan dalam bentuk dictionary akan di-parsing ulang menjadi baris-baris yang dipisahkan
+dengan semikolon (;) lalu file .csv tujuan akan ditimpa baris per baris dengan data yang baru.
+Jika input yang diterima (terkait kesediaan pengguna untuk menyimpan data) tidak valid, yakni selain Y/N
+(case insensitive), pengguna terus diminta untuk memberikan input hingga valid.
 
 """
