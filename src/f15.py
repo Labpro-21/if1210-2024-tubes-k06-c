@@ -2,6 +2,10 @@
 F15 - Save
 19623116 Nayaka
 """
+src_path = os.path.join(os.path.dirname(__file__), 'src')
+sys.path.append(src_path)
+data_path = os.path.join(os.path.dirname(__file__), 'data')
+sys.path.append(data_path)
 
 def save(db: dict, path: str):
     csv = open(path, "w")
