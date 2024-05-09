@@ -22,10 +22,10 @@ Program ini memuat beberapa _module_ yang terdiri atas banyak fungsi. Rincian _m
 | **_Module_** | **Nama Fungsi** | **Deskripsi** |
 | :----------: | :-------------: | :-----------: |
 | F00 | Random Number Generator  | Pembangkit bilangan acak semu (_pseudo random number generator_, PRNG) dengan algoritma _linear congruential generator_. |
-| F01 | Register |
-| F02 | Login |
-| F03 | Logout |
-| F04 | Menu & Help |
+| F01 | Register | Mendaftarkan username dan password untuk pengguna baru |
+| F02 | Login | Masuk untuk pengguna yang sudah terdaftar di user.csv |
+| F03 | Logout | Keluar dari akun yang sudah login |
+| F04 | Menu & Help | Menu dan bantuan untuk program ini |
 | F05 | Monster |
 | F06 | Potion |
 | F07 | Inventory |
