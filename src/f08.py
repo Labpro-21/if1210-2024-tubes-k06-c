@@ -19,8 +19,8 @@ def battle():
     enemyList = csv_parser("data/monster.csv")
     enemyMonster = enemyList[rng(0, len(enemyList))]
     print(f"Monster {enemyMonster["type"]} mendekat!")
-    # Kita memilih monster melalui pilihan. (user_id;monster_id;level)
     
+    # Kita memilih monster melalui pilihan. (user_id;monster_id;level)
     # Fungsi untuk pemilihan monster masih dipertimbangkan, jadi akan digunakan sampel terlebih dahulu.
     yourList = [{'id':1, 'type':'Pikachow', 'atk_power':125, 'def_power':10, 'hp':600}] # SAMPEL
     yourMonster = yourList[0] # SAMPEL
