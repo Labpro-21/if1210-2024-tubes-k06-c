@@ -5,13 +5,12 @@ F01 - Register
 
 # Membuka path ke folder 'data'
 import sys, os
-data_path = os.path.join(os.path.dirname(__file__), 'data')
+parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+data_path = os.path.join(parent_path, 'data')
+sys.path.append(parent_path)
 sys.path.append(data_path)
-
 # Memuat file .csv yang diperlukan
-from x02 import *
-user_db = csv_parser("data/user.csv", "username")
-monster_db = csv_parser("data/monster.csv", "type")
+from global_var import *
 
 # FUNGSI input_username()
 def input_username():
@@ -20,7 +19,6 @@ def input_username():
     username = input("Username: ")
 
     valid1 = subset(username, valid_char)
-    valid2 = is_in(username, )
     while not valid1:
         remove_nth_line(1)
         print("Username hanya boleh berisi alfabet, angka, tanda hubung bawah (_), dan tanda strip (-)!")
@@ -28,6 +26,16 @@ def input_username():
         remove_nth_line(1)
         valid1 = subset(username, valid_char)
         if valid1:
+            remove_nth_line(1)
+    
+    valid2 = is_in(username, user_db["username"])
+    while not valid2:
+        remove_nth_line(1)
+        print("Username tidak terdaftar. ")
+        username = input("Username: ")
+        valid2 = is_in(username, user_db["username"])
+        remove_nth_line(1)
+        if valid2:
             remove_nth_line(1)
     return username
 
