@@ -10,7 +10,7 @@ id = user[username][id]
 
 # Kode di sini
 def help(id):
-    if id True
+    if id == True:
         if role == "admin":
             print("=========== HELP ===========")
             print("                                                                               ")
@@ -19,7 +19,7 @@ def help(id):
             print("   1. Logout            : Keluar dari akun yang sedang digunakan.")
             print("   2. Shop              : Melakukan manajemen pada SHOP sebagai tempat jual beli peralatan Agent.")
             print("   3. Monster Management: Menambahkan monster baru ke dalam database.") 
-            print("                                                                               ")                                                                                                                                                          ")
+            print()
             print("Footnote:")
             print("   1. Untuk menggunakan aplikasi, silahkan masukkan nama fungsi yang terdaftar.")
             print("   2. Jangan lupa untuk memasukkan input yang valid.")
@@ -35,7 +35,7 @@ def help(id):
             print("   4. Battle    : Melakukan pertarungan melawan monster.") 
             print("   5. Arena     : Melatih monster dan mendapat koin oc saat menang .") 
             print("   6. Laboratory: Mengupgrade monster yang ada di invetory dengan koin oc.") 
-            print("                                                                               ")                                                                                                                                                ")
+            print("                                                                               ")
             print("Footnote:")
             print("   1. Untuk menggunakan aplikasi, silahkan masukkan nama fungsi yang terdaftar.")
             print("   2. Jangan lupa untuk memasukkan input yang valid.")  
