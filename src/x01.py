@@ -27,6 +27,14 @@ def is_in(e, arr) -> bool:
                 return True
     return False    
 
+def get_idx(e, arr) -> bool:
+    idx = 0
+    for i in range(len(arr)):
+        if arr[i] == e:
+            return idx
+        idx += 1
+    return -1
+
 def subset(arr1, arr2) -> bool:
     # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str
     if len(arr1) > len(arr2):
