@@ -43,3 +43,26 @@ def csv_parser(path: str, identifier: str) -> list[dict]:
                 header = headers[i]
                 data[header][identifier_key] = entries[i]
     return data
+
+# fungsi alternatif untuk csv parser tanpa identifier
+def csv_parser_noid(path: str) -> list[dict]:
+    data = []
+    file = open(path, 'r+')
+    headers = split_str(read_header(path))
+    for line in file:
+        entries = split_str(strip_str(line))
+        if len(entries) != len(headers):
+            raise ValueError("Ada data yang kosong atau melebihi kolom header!")
+        if entries != headers:
+            row_dict = {}
+            for i in range(len(headers)):
+                row_dict[headers[i]] = entries[i]
+            data.append(row_dict)
+    return data
+
+# user_id;monster_id;level
+# 2;1;1
+# 3;2;2
+# 3;3;1
+# 4;4;1
+# 5;5;5
