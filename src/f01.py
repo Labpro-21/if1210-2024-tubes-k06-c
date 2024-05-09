@@ -42,13 +42,21 @@ def input_username():
 # FUNGSI input_password()
 def input_password(username: str):
     global user_db
+    user_idx = get_idx(username, user_db["username"])
+
     password = input("Password: ")
-    if user_db["password"][username] == password:
+    valid = user_db["password"][user_idx] == password
+    if valid:
             return password
     else:
-        while user_db["password"][username] != password:
-            print("negro!")
+        while not valid:
+            remove_nth_line(1)
+            print("Password salah!")
             password = input("Password: ")
+            valid = user_db["password"][user_idx] == password
+            remove_nth_line(1)
+            if valid:
+                remove_nth_line(1)
 
 # FUNGSI register()
 def register():
