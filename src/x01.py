@@ -100,7 +100,7 @@ def remove_ele(index: int, arr: list) -> list:
             new_arr.append(arr[i])
     return new_arr
 
-def printText(file_path: str):
+def print_text(file_path: str):
     with open(file_path, 'r') as file:
         for line in file:
             print(line, end='')
