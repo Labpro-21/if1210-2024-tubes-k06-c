@@ -94,11 +94,11 @@ def strip_str(line: str) -> str:
     return stripped_line
 
 def remove_ele(index: int, arr: list) -> list:
-    newArr = []
+    new_arr = []
     for i in range(len(arr)):
         if i != index:
-            newArr.append(arr[i])
-    return newArr
+            new_arr.append(arr[i])
+    return new_arr
 
 def printText(file_path: str):
     with open(file_path, 'r') as file:
