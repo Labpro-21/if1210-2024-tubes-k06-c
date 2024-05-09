@@ -27,7 +27,7 @@ def is_in(e, arr) -> bool:
                 return True
     return False    
 
-def get_idx(e, arr) -> bool:
+def get_idx(e, arr) -> int:
     idx = 0
     for i in range(len(arr)):
         if arr[i] == e:
