@@ -5,11 +5,16 @@ F05 - Monster
 
 # Kode di sini
 from f00 import rng
-from x01 import csv_parser
-csv_parser('C:\\Users\\Lenovo\\OneDrive - Institut Teknologi Bandung\Documents\\if1210-2024-tubes-k06-c\\data\\monster.csv')
+import sys, os
+parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+data_path = os.path.join(parent_path, 'data')
+sys.path.append(parent_path)
+sys.path.append(data_path)
+# Memuat file .csv yang diperlukan
+from global_var import monster_db
 
 def attribute_monster (monster_id: int, monster_level: int):
-    a = csv_parser('C:\\Users\\Lenovo\\OneDrive - Institut Teknologi Bandung\\Documents\\if1210-2024-tubes-k06-c\\data\\monster.csv')
+    a = monster_db
     a[monster_id-1]['atk_power'] = int(int(a[monster_id-1]['atk_power']))+(((monster_level-1)* 0.1)*int(a[monster_id-1]['atk_power']))
     a[monster_id-1]['def_power'] = int(int(a[monster_id-1]['def_power']))+(((monster_level-1)* 0.1)*int(a[monster_id-1]['def_power']))
     a[monster_id-1]['hp'] = int(int(a[monster_id-1]['hp']))+(((monster_level-1)* 0.1)*int(a[monster_id-1]['hp']))
@@ -27,11 +32,6 @@ def atk_result (select_monster, atk_select_monster, defend_monster, def_defend_m
     if x <0:
         x=0
     return x
-
-
-
-
-   
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.

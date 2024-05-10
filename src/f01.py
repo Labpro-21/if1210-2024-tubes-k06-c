@@ -3,14 +3,73 @@ F01 - Register
 19623116 Nayaka
 """
 
+# Membuka path ke folder 'data'
+import sys, os
+parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+data_path = os.path.join(parent_path, 'data')
+sys.path.append(parent_path)
+sys.path.append(data_path)
+# Memuat file .csv yang diperlukan
+from global_var import *
+
+# FUNGSI input_username()
+def input_username():
+    global user_db
+    valid_char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
+    username = input("Username: ")
+
+    valid1 = subset(username, valid_char)
+    while not valid1:
+        remove_nth_line(1)
+        print("Username hanya boleh berisi alfabet, angka, tanda hubung bawah (_), dan tanda strip (-)!")
+        username = input("Username: ")
+        remove_nth_line(1)
+        valid1 = subset(username, valid_char)
+        if valid1:
+            remove_nth_line(1)
+    
+    valid2 = is_in(username, user_db["username"])
+    while not valid2:
+        remove_nth_line(1)
+        print("Username tidak terdaftar. ")
+        username = input("Username: ")
+        valid2 = is_in(username, user_db["username"])
+        remove_nth_line(1)
+        if valid2:
+            remove_nth_line(1)
+    return username
+
+# FUNGSI input_password()
+def input_password(username: str):
+    global user_db
+    user_idx = get_idx(username, user_db["username"])
+
+    password = input("Password: ")
+    valid = user_db["password"][user_idx] == password
+    if valid:
+            return password
+    else:
+        while not valid:
+            remove_nth_line(1)
+            print("Password salah!")
+            password = input("Password: ")
+            valid = user_db["password"][user_idx] == password
+            remove_nth_line(1)
+            if valid:
+                remove_nth_line(1)
+
+# FUNGSI register()
 def register():
+
+    # Ra'if ini ntar tolong dicakepin yah itunya
     print("<=============>")
     print("  O. W. C. A.  ")
     print("   We serve.   ")
     print("<=============>")
 
-    username = input("Username: ")
-    password = input("Password: ")
+    # Bagian utama fungsi
+    username = input_username()
+    password = input_password(username)
     
     
 register()

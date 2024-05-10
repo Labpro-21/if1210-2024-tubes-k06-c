@@ -1,13 +1,55 @@
 """
-X01 - Fungsi-fungsi Pembantu
+X01 - Fungsi-fungsi Pembantu 1
 19623116 Nayaka
+19623296 Ra'if
 """
+import sys
+def maxi(a: int, b: int) -> int:
+    if a >= b:
+        return a
+    return b
+
+def mini(a: int, b: int) -> int:
+    if a >= b:
+        return b
+    return a
+
 def is_in(e, arr) -> bool:
-    # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str
-    for i in range(len(arr)):
-        if e == arr[i]:
-            return True
+    # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str, 
+    # serta arr untuk array of integer, string, ataupun sebuah dictionary
+    if (type(arr) == list) or (type(arr) == str):
+        for i in range(len(arr)):
+            if e == arr[i]:
+                return True
+    elif (type(arr) == dict):
+        for key in arr.keys():
+            if e == key:
+                return True
     return False    
+
+def get_idx(e, arr) -> int:
+    idx = 0
+    for i in range(len(arr)):
+        if arr[i] == e:
+            return idx
+        idx += 1
+    return -1
+
+def subset(arr1, arr2) -> bool:
+    # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str
+    if len(arr1) > len(arr2):
+        return False
+    for i in range(len(arr1)):
+        if not is_in(arr1[i], arr2):
+            return False
+    return True
+
+def remove_nth_line(n: int):
+    # Bergerak ke baris di atasnya
+    for i in range(n):
+        sys.stdout.write('\x1b[1A')
+    # Menghapus baris (clear)
+    sys.stdout.write('\x1b[2K')
 
 def is_space(char: str) -> bool:
     return True if char == " " or char == "\t" or char =="\n" else False
@@ -51,23 +93,14 @@ def strip_str(line: str) -> str:
     
     return stripped_line
 
-def read_header(path: str) -> str:
-    file =  open(path, 'r')
-    for line in file:
-        return line.strip()
+def remove_ele(index: int, arr: list) -> list:
+    new_arr = []
+    for i in range(len(arr)):
+        if i != index:
+            new_arr.append(arr[i])
+    return new_arr
 
-def csv_parser(path: str) -> list[dict]:
-    data = []
-    file = open(path, 'r+')
-    headers = split_str(read_header(path))
-    for line in file:
-        entries = split_str(strip_str(line))
-        if len(entries) != len(headers):
-            raise ValueError("Ada data yang kosong atau melebihi kolom header!")
-        
-        if entries != headers:
-            row_dict = {}
-            for i in range(len(headers)):
-                row_dict[headers[i]] = entries[i]
-            data.append(row_dict)
-    return data
+def print_text(file_path: str):
+    with open(file_path, 'r') as file:
+        for line in file:
+            print(line, end='')

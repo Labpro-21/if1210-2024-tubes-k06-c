@@ -3,6 +3,9 @@ F00 - Random Number Generator
 19623116 Nayaka
 """
 
+import time
+working_time = time.time()
+
 # FUNGSI lcg(a, c, m, x_0)
 def lcg(a: int, c: int, m: int, x_0: int) -> int:
     # Mengembalikan (a * x_0 + c) % m seperti pada rumus LCG
@@ -25,13 +28,9 @@ def rng(start: int, stop: int, x_0: int = 0) -> int:
     x_n = x_0
 
     # Menciptakan bilangan acak
-    while True:
-        x_n = lcg(a, c, m, x_n)
-        rand_num = x_n % (stop - start) + start # Memastikan bilangan acak ada di selang [start, stop]
-        
-        if rand_num < stop:
-            return rand_num
-
+    x_n = lcg(a, c, m, x_n)
+    rand_num = x_n % (stop - start) + start # Memastikan bilangan acak ada di selang [start, stop]
+    return rand_num
 
 """
 DESKRIPSI
@@ -58,7 +57,7 @@ Pemilihan m ini efisien karena komputer bekerja dengan sistem bilangan biner. Ag
 pangkat 2 yang besar, misalnya 2 ** (11 + 10) karena saya lahir di tanggal 11 Oktober. Selanjutnya, dipilih c = 1945 
 agar terdengar nasionalis serta a = 69420177013 yang dipilih secara acak tanpa alasan.
 
-Supaya simpel, kita pilih nilai default seed-nya 0.
+Supaya sederhana, kita pilih nilai default seed-nya 0.
 
 DAFTAR PUSTAKA
 [1] Hull, T.E. dan Dobell, A.R. (1962). "Random Number Generators." SIAM Review 4(3): 230-254. Diakses 26 April 2024 
