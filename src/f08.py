@@ -7,12 +7,18 @@ F08 - Battle
 
 from x01 import *
 from f00 import *
+from f14 import *
 from colorama import *
-
+from b03 import *
 
 def attack(attacker : int, defender : int) -> int:
     defender["hp"] -= attacker["atk_power"]
     return(defender["hp"])
+
+enemyMonster = {"lv" : 1}
+
+def monsterCaught():
+    write_to_csv(monster_inventory_csv, {}) # Menunggu fungsi dibuat
 
 def battle():
     # Monster musuh dipilih melalui RNG. (Atribut dari monster.csv: id;type;atk_power;def_power;hp)
@@ -31,7 +37,8 @@ def battle():
             print("┌─ Pilihan Aksi")
             print("├ 1. Attack")
             print("├ 2. Use Potion")
-            print("└ 3. Quit")
+            print("├ 3. Monsterball")
+            print("└ 4. Quit")
             action = input("Apa yang akan kamu lakukan? (Ketik pilihanmu!) ") 
             
             match action:
@@ -39,9 +46,12 @@ def battle():
                     enemyMonster["hp"] = attack(yourMonster, enemyMonster)
                     break
                 case "2":
-                    usePotion
+                    usePotion()
                     break
-                case "3": 
+                case "3":
+                    monsterball()
+                    break
+                case "4": 
                     isBattle == False
                     print("Kamu berhasil kabur ...")
                     break
@@ -58,7 +68,6 @@ def battle():
             isBattle = False
         else: 
             print(f"Pertarungan terus berlangsung! \n HP Monster-mu: {yourMonster["hp"]} \n HP Monster Musuh: {enemyMonster["hp"]}")
-
 
 """
 DESKRIPSI
