@@ -3,38 +3,38 @@ F07 - Inventory
 19623296 Muhammad Ra'if Alkautsar
 """
 from x01 import *
-from x02 import *
+from f14 import *
 
 current_user = 3 # sampel
 
 def getMonster(i): # mengambil data monster 
-    monsterList = csv_parser("data/monster.csv", "id")
-    return(f"Type: {monsterList["type"][i]} | ATK Power: {monsterList["atk_power"][i]} | DEF Power: {monsterList["def_power"][i]} | HP: {monsterList["hp"][i]} ")
+    monsterList = load("data/monster.csv")
+    return(f"{monsterList["type"][i]} (ATK Power: {monsterList["atk_power"][i]} | DEF Power: {monsterList["def_power"][i]} | HP: {monsterList["hp"][i]})")
 
 def showItems():
-    itemList = csv_parser_noid("data/item_inventory.csv")
+    itemList = load("data/item_inventory.csv")
     i = 0
-    if i < len(itemList):
-        while itemList[i]['user_id'] != current_user:
+    if i < len(itemList['user_id']):
+        while itemList['user_id'][i] != current_user:
             i += 1
             pass
-        while itemList[i]['user_id'] == current_user:
+        while itemList['user_id'][i] == current_user:
             i += 1
-            print(f"{itemList[i]["type"]} (Quantity: {itemList[i]["quantity"]})")
+            print(f"{(itemList["type"][i]).title()} (Quantity: {itemList["quantity"][i]})")
 
 def showMonsters():
-    monsterInvList = csv_parser_noid("data/monster_inventory.csv")
+    monsterInvList = load("data/monster_inventory.csv")
     i = 0
-    if i < len(monsterInvList):
-        while monsterInvList[i]['user_id'] != current_user:
+    if i < len(monsterInvList['user_id']):
+        while monsterInvList['user_id'][i] != current_user:
             i += 1
             pass
-        while monsterInvList[i]['user_id'] == current_user:
+        while monsterInvList['user_id'][i] == current_user:
             i += 1
-            print(f"{getMonster(monsterInvList[i]['monster_id'])}")
+            print(f"{getMonster(monsterInvList['monster_id'][i])}")
 
 def showInventory():
-    print("Potion yang kamu miliki:")
+    print("Potion yang kamu miliki: ")
     showItems()
     print("Monster yang kamu miliki:")
     showMonsters()
