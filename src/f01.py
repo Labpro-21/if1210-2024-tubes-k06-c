@@ -13,7 +13,7 @@ sys.path.append(data_path)
 from global_var import *
 
 # FUNGSI input_username()
-def input_username():
+def input_username_reg():
     global user_db
     valid_char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
     username = input("Username: ")
@@ -28,39 +28,19 @@ def input_username():
         if valid1:
             remove_nth_line(1)
     
-    valid2 = is_in(username, user_db["username"])
+    valid2 = not is_in(username, user_db["username"])
     while not valid2:
         remove_nth_line(1)
-        print("Username tidak terdaftar. ")
+        print("Username sudah terdaftar. ")
         username = input("Username: ")
-        valid2 = is_in(username, user_db["username"])
+        valid2 = not is_in(username, user_db["username"])
         remove_nth_line(1)
         if valid2:
             remove_nth_line(1)
     return username
 
-# FUNGSI input_password()
-def input_password(username: str):
-    global user_db
-    user_idx = get_idx(username, user_db["username"])
-
-    password = input("Password: ")
-    valid = user_db["password"][user_idx] == password
-    if valid:
-            return password
-    else:
-        while not valid:
-            remove_nth_line(1)
-            print("Password salah!")
-            password = input("Password: ")
-            valid = user_db["password"][user_idx] == password
-            remove_nth_line(1)
-            if valid:
-                remove_nth_line(1)
-
 # FUNGSI register()
 def register():
-
     # Ra'if ini ntar tolong dicakepin yah itunya
     print("<=============>")
     print("  O. W. C. A.  ")
@@ -68,11 +48,14 @@ def register():
     print("<=============>")
 
     # Bagian utama fungsi
-    username = input_username()
-    password = input_password(username)
-    
-    
-register()
+    username = input_username_reg()
+    password = input("Password: ")
+
+    # Menambahkan data pengguna ke dalam database
+    user_db["username"].append(username)
+    user_db["password"].append(password)
+    user_db["role"].append('agent')
+    user_db["oc"].append(0)
 
 """
 DESKRIPSI
