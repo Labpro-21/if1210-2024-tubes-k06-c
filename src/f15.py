@@ -2,6 +2,8 @@
 F15 - Save
 19623116 Nayaka
 """
+import os, sys
+
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
 data_path = os.path.join(os.path.dirname(__file__), 'data')
