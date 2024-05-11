@@ -2,12 +2,8 @@
 F15 - Save
 19623116 Nayaka
 """
-<<<<<<< HEAD
-import os,sys
-=======
-import os, sys
 
->>>>>>> 63925392b7327e1e413a73f5fe04275cd2ab22f6
+import os, sys
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
 data_path = os.path.join(os.path.dirname(__file__), 'data')
