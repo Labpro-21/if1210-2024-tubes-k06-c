@@ -14,7 +14,6 @@ from global_var import *
 
 # FUNGSI input_username()
 def input_username():
-    global user_db
     valid_char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
     username = input("Username: ")
     remove_nth_line(1)
@@ -36,7 +35,6 @@ def input_username():
 
 # FUNGSI input_password()
 def input_password(username: str):
-    global user_db
     user_idx = get_idx(username, user_db["username"])
 
     password = input("Password: ")
@@ -64,8 +62,7 @@ def login():
     # Bagian utama fungsi
     username = input_username()
     password = input_password(username)
-
-login()
+    logged_in = True
     
 
 """
