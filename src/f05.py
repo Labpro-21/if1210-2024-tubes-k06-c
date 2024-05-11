@@ -4,32 +4,42 @@ F05 - Monster
 """
 
 # Kode di sini
-from f00 import rng
+
+from f00 import *
+from x01 import *
 import sys, os
 parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 data_path = os.path.join(parent_path, 'data')
 sys.path.append(parent_path)
 sys.path.append(data_path)
 # Memuat file .csv yang diperlukan
-from global_var import monster_db
+from global_var import *
+def attribute_monster(id: int, monster_level: int, monster_db):
+    monster = monster_db['id'].index(id)
+    monster_db['atk_power'][monster] = int(monster_db['atk_power'][monster] + (monster_level - 1) * 0.1 * monster_db['atk_power'][monster])
+    monster_db['def_power'][monster] = int(monster_db['def_power'][monster] + (monster_level - 1) * 0.1 * monster_db['def_power'][monster])
+    monster_db['hp'][monster] = int(monster_db['hp'][monster] + (monster_level - 1) * 0.1 * monster_db['hp'][monster])
+    return monster_db
 
-def attribute_monster(monster_level: int):
-    a = {'atk_power': int(int(monster_db['atk_power'])+[monster_level-1]*0.1)+int(monster_db['atk_power'])}
-    a = {'def_power':int(int(monster_db['def_power'])+[monster_level-1]*0.1)+int(monster_db['def_power'])}
-    a = {'hp': int(int(monster_db['hp'])+[monster_level-1]*0.1)+int(monster_db['hp'])}
-    return a
+def atk_power(id: int, monster_db):
+    monster_index = monster_db['id'].index(id)
+    atk = int(monster_db['atk_power'][monster_index] + ((rng(-30, 30, 2 ) / 100) * monster_db['atk_power'][monster_index]))
+    return atk
 
-def atk_power (id: int, monster_level: int):
-    b = attribute_monster(monster_level)
-    b = int(b[id]['atk_power']) + ((rng(-30,30, 2)/100)*b[id]['atk_power'])
-
-    return b
-def atk_result (select_monster, atk_select_monster, defend_monster, def_defend_monster):
-    x = atk_power(select_monster,atk_select_monster) * (100-int((monster_db['def_power'])/100))
-    if x <0:
-        x=0
-    return x
-print(attribute_monster)
+def atk_result(attacker_id: int, defender_id: int, monster_db):
+    attacker_index = monster_db['id'].index(attacker_id)
+    defender_index = monster_db['id'].index(defender_id)
+    
+    attacker_atk = atk_power(attacker_id, monster_db)
+    defender_def = monster_db['def_power'][defender_index]
+    
+    damage = attacker_atk * (1 - int(defender_def) / 100)
+    
+    if damage < 0:
+        damage = 0
+    
+    return damage
+print(atk_result(1,2,monster_db))
 
 
 """
