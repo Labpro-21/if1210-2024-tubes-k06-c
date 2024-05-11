@@ -13,7 +13,8 @@ from x01 import *
 def read_header(path: str) -> str:
     file = open(path, 'r')
     for line in file:
-        return line.strip()
+        return strip_str(line)
+    return ""
 
 def load(path: str) -> dict:
     file = open(path, 'r')
