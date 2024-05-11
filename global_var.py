@@ -9,3 +9,5 @@ monster_shop_db = load('data/monster_shop.csv')
 monster_inv_db = load('data/monster_inventory.csv')
 item_shop_db = load('data/item_shop.csv')
 item_inv_db = load('data/item_inventory.csv')
+
+logged_in = False
