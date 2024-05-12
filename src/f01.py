@@ -3,13 +3,15 @@ F01 - Register
 19623116 Nayaka
 """
 
-# Membuka path ke folder 'data'
-import sys, os
+import os, sys
+# Membuka database yang sudah di-load dan disimpan di global_var
 parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 data_path = os.path.join(parent_path, 'data')
 sys.path.append(parent_path)
 sys.path.append(data_path)
+
 # Memuat database yang sudah disimpan di dictionary `user_db` dalam module global_var
+
 from global_var import *
 
 # FUNGSI register()
@@ -21,15 +23,22 @@ def register(user_db: dict) -> dict:
     print("<=============>")
 
     # Bagian utama fungsi
+    isExist=False
     username = input_username_reg()
-    password = input("Password: ")
+    for i in user_db["username"]:
+        if i == username:
+            isExist=True
+            print(f"Username sudah ada, login dengan username '{username}' atau gunakan username lain !")
+    if isExist == False:
+        password = input("Password: ")
 
-    # Menambahkan data pengguna ke dalam database
-    user_db["id"].append(last(user_db["id"]) + 1)
-    user_db["username"].append(username)
-    user_db["password"].append(password)
-    user_db["role"].append('agent')
-    user_db["oc"].append(0)
+        # Menambahkan data pengguna ke dalam database
+        user_db["id"].append(last(user_db["id"]) + 1)
+        user_db["username"].append(username)
+        user_db["password"].append(password)
+        user_db["role"].append('agent')
+        user_db["oc"].append(0)
+    return isExist
 
     return user_db
 
