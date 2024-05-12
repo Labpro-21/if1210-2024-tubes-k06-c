@@ -1,9 +1,21 @@
 """
 F09 - Arena
-NIM NAMA
+19623076 Daniel A. M. Sipayung
 """
 
 # Kode di sini
+
+
+
+
+
+
+
+
+
+
+
+
 
 """
 DESKRIPSI
