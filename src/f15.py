@@ -25,6 +25,7 @@ def save(db: dict, path: str):
             headers_row = f"{headers_row}{header}"
 
         i += 1
+    csv.write(headers_row + "\n")
 
     db_length = len(db[headers[0]])
     for i in range(db_length):
