@@ -13,7 +13,7 @@ def exit():
         print("Menyimpan database ke dalam csv... [user.csv]")
         save(user_db, "data/user.csv")
         print("Menyimpan database ke dalam csv... [monster.csv]")
-        save(a, "data/monster.csv")
+        save(monster_db, "data/monster.csv")
         print("Menyimpan database ke dalam csv... [monster_shop.csv]")
         save(monster_shop_db, "data/monster_shop.csv")
         print("Menyimpan database ke dalam csv... [monster_inventory.csv]")
