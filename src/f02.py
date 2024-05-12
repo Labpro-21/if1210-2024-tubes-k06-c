@@ -25,6 +25,8 @@ def login():
     username = input_username()
     password = input_password(username)
     logged_in = True
+    return username
+
 
 # FUNGSI input_username()
 def input_username():
