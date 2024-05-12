@@ -23,32 +23,42 @@ from src.f15 import *
 from src.f16 import *
 from global_var import *
 
-print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
-time.sleep(3)
-for i in range(5):
-    remove_nth_line(1)
-    print(f"Memulai program dalam {5-i} detik...")
-    time.sleep(1)
-remove_nth_line(1)
-print("Selesai!")
-time.sleep(2)
-remove_nth_line(1)
-remove_nth_line(1)
+# print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
+# time.sleep(3)
+# for i in range(5):
+#     remove_nth_line(1)
+#     print(f"Memulai program dalam {5-i} detik...")
+#     time.sleep(1)
+# remove_nth_line(1)
+# print("Selesai!")
+# time.sleep(2)
+# remove_nth_line(1)
+# remove_nth_line(1)
 
 while True:
-    action = input()
+    action = input(">>> ")
     remove_nth_line(1)
     match lower(action):
         case "login":
-            login()
-            print("Berhasil login!")
+            if logged_in:
+                os.system('cls')
+                print("Anda sudah login!")
+            else:
+                login()
+                os.system('cls')
+                logged_in = True
+                
+                print("Berhasil login!")
         case "register":
+            os.system('cls')
             register()
             print("Berhasil register!")
         case "save":
+            os.system('cls')
             save(user_db, "data/user.csv")
             print("Berhasil menyimpan!")
         case "exit":
+            os.system('cls')
             exit()
             break
         case _:
