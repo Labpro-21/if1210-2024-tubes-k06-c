@@ -12,6 +12,7 @@ sys.path.append(data_path)
 # Memuat database yang sudah disimpan di dictionary `user_db` dalam module global_var
 from global_var import *
 
+
 # FUNGSI login()
 def login(db: dict = user_db):
     # Ra'if ini ntar tolong dicakepin yah itunya
@@ -22,7 +23,7 @@ def login(db: dict = user_db):
 
     # Bagian utama fungsi
     username = input_username(db)
-    input_password(username)
+    input_password(username, db)
 
 # FUNGSI input_username()
 def input_username(db: dict = user_db):
