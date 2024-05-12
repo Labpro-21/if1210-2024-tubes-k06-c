@@ -10,7 +10,7 @@ data_path = os.path.join(os.path.dirname(__file__), 'data')
 sys.path.append(data_path)
 
 def save(db: dict, path: str):
-    csv = open(path, "a")
+    csv = open(path, "w")
     db_width = len(db)
     headers = []
     headers_row = ""
@@ -35,7 +35,8 @@ def save(db: dict, path: str):
             else:
                 row = f"{row}{db[headers[j]][i]}"
         csv.write(row)
-        csv.write("\n")
+        if i != db_length - 1:
+            csv.write("\n")
     csv.close()
 
 
