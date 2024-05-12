@@ -2,16 +2,20 @@
 F01 - Register
 19623116 Nayaka
 """
+
 import os, sys
 # Membuka database yang sudah di-load dan disimpan di global_var
 parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 data_path = os.path.join(parent_path, 'data')
 sys.path.append(parent_path)
 sys.path.append(data_path)
+
+# Memuat database yang sudah disimpan di dictionary `user_db` dalam module global_var
+
 from global_var import *
 
 # FUNGSI register()
-def register():
+def register(user_db: dict) -> dict:
     # Ra'if ini ntar tolong dicakepin yah itunya
     print("<=============>")
     print("  O. W. C. A.  ")
@@ -35,6 +39,8 @@ def register():
         user_db["role"].append('agent')
         user_db["oc"].append(0)
     return isExist
+
+    return user_db
 
 # FUNGSI input_username_reg()
 def input_username_reg():
