@@ -20,11 +20,12 @@ def attribute_monster(id: int, monster_level: int, monster_db):
     monster_db['def_power'][monster] = int(monster_db['def_power'][monster] + (monster_level - 1) * 0.1 * monster_db['def_power'][monster])
     monster_db['hp'][monster] = int(monster_db['hp'][monster] + (monster_level - 1) * 0.1 * monster_db['hp'][monster])
     return monster_db
-
+print(attribute_monster(3,2,monster_db))
 def atk_power(id: int, monster_db):
     monster_index = monster_db['id'].index(id)
     atk = int(monster_db['atk_power'][monster_index] + ((rng(-30, 30, 2 ) / 100) * monster_db['atk_power'][monster_index]))
     return atk
+
 
 def atk_result(attacker_id: int, defender_id: int, monster_db):
     attacker_index = monster_db['id'].index(attacker_id)
@@ -39,7 +40,7 @@ def atk_result(attacker_id: int, defender_id: int, monster_db):
         damage = 0
     
     return damage
-print(atk_result(1,2,monster_db))
+
 
 
 """

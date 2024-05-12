@@ -1,7 +1,7 @@
 import time
 start = time.time()
 
-from src.f14 import *
+from f14 import *
 
 user_db = load('data/user.csv')
 monster_db = load('data/monster.csv')
