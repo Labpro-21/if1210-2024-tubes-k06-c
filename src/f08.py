@@ -10,27 +10,54 @@ from f00 import *
 from f14 import *
 from colorama import *
 from b03 import *
+from f05 import *
+from f06 import *
+from f07 import *
+from global_var import *
 
-def attack(attacker : int, defender : int) -> int:
-    defender["hp"] -= attacker["atk_power"]
-    return(defender["hp"])
+enemy_level = 3 # SAMPEL
+user = 3
 
-enemyMonster = {"lv" : 1}
-
-def monsterCaught():
-    write_to_csv(monster_inventory_csv, {}) # Menunggu fungsi dibuat
+def use_potion():
+    print("Ramuan-ramuan yang kamu miliki saat ini: ")
+    show_items()
+    pot_index = int(input("Ramuan apa yang ingin kamu pilih? (Pilih dengan angka)")) - 1 + get_start_index(item_inv_db, user)
+    if item_inv_db["quantity"][pot_index] == 0:
+        print("Ramuan habis!")
+    else: 
+        if item_inv_db["type"][pot_index] == "strength":
+            your_atk = strength_potion(your_atk)
+        elif item_inv_db["type"][pot_index] == "resilience":
+            your_def = resilience_potion(your_def)
+        else: # item_inv_db["type"][pot_index] == ""
+            your_hp = healing_potion(your_hp, your_monster[3])
 
 def battle():
-    # Monster musuh dipilih melalui RNG. (Atribut dari monster.csv: id;type;atk_power;def_power;hp)
-    enemyList = csv_parser("data/monster.csv")
-    enemyMonster = enemyList[rng(0, len(enemyList))]
-    print(f"Monster {enemyMonster["type"]} mendekat!")
-    
-    # Kita memilih monster melalui pilihan. (user_id;monster_id;level)
-    # Fungsi untuk pemilihan monster masih dipertimbangkan, jadi akan digunakan sampel terlebih dahulu.
-    yourList = [{'id':1, 'type':'Pikachow', 'atk_power':125, 'def_power':10, 'hp':600}] # SAMPEL
-    yourMonster = yourList[0] # SAMPEL
+    random_index = int(rng(0, len(monster_db['id']), time.time())) # Meminta index untuk monster random
 
+    # Inisialisasi Monster Musuh
+    enemy_monster = attribute_monster(random_index + 1, enemy_level, monster_db)
+    enemy_type = enemy_monster[0]
+    enemy_atk = enemy_monster[1]
+    enemy_def = enemy_monster[2]
+    enemy_hp = enemy_monster[3]
+    print(f"{enemy_type} mendekat!")
+    print(f"HP: {enemy_hp}. DEF: {enemy_def}. ATK: {enemy_atk}.")
+
+    # Inisialisasi Monster Pemain
+    print("Monster-monster yang kamu miliki saat ini: ")
+    show_monsters()
+    your_index = int(input("Monster apa yang ingin kamu pilih? ")) - 1 + get_start_index(monster_inv_db, user)
+    your_monster_idx = monster_inv_db["monster_id"][your_index]
+    your_monster = attribute_monster(your_monster_idx, monster_inv_db["level"][your_index], monster_db)
+    your_type = your_monster[0]
+    your_atk = your_monster[1]
+    your_def = your_monster[2]
+    your_hp = your_monster[3]
+    print(f"Kamu memilih {your_type}.")
+    print(f"HP: {your_hp}. DEF: {your_def}. ATK: {your_atk}.")
+
+    # Memasuki loop utama battle
     isBattle = True
     while isBattle == True:
         while True:
@@ -43,10 +70,10 @@ def battle():
             
             match action:
                 case "1":
-                    enemyMonster["hp"] = attack(yourMonster, enemyMonster)
+                    enemy_hp = enemy_hp - atk_result(your_atk, enemy_def)
                     break
                 case "2":
-                    usePotion()
+                    use_potion()
                     break
                 case "3":
                     monsterball()
@@ -58,17 +85,20 @@ def battle():
                 case _:
                     print("Pilihan tidak valid! \n")
         
-        yourMonster["hp"] = attack(enemyMonster, yourMonster)
+        your_hp = your_hp - atk_result(enemy_atk, your_def)
 
-        if enemyMonster["hp"] <= 0:
+        if enemy_hp <= 0:
             print("Selamat, kamu menang!")
             isBattle = False
-        elif yourMonster["hp"] <= 0: 
+        elif your_hp <= 0: 
             print("Monstermu habis. Kamu kalah.")
             isBattle = False
         else: 
-            print(f"Pertarungan terus berlangsung! \n HP Monster-mu: {yourMonster["hp"]} \n HP Monster Musuh: {enemyMonster["hp"]}")
+            print(f"Pertarungan terus berlangsung! \n HP Monster-mu: {your_hp} \n HP Monster Musuh: {enemy_hp}")
 
+
+
+battle()
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
