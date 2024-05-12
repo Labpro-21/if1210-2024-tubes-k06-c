@@ -62,7 +62,6 @@ def input_password(username: str):
             remove_nth_line(1)
             valid = user_db["password"][user_idx] == password
             remove_nth_line(1)
-        logged_in = True
     
 
 """
