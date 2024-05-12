@@ -61,7 +61,7 @@ while True:
                 login(user_db)
                 os.system('cls')
                 logged_in = True
-                
+
                 print("Berhasil login!")
         case "register":
             os.system('cls')
@@ -69,11 +69,12 @@ while True:
             print("Berhasil register!")
         case "save":
             os.system('cls')
-            save(user_db, "data/user.csv")
+            print('data' + csv_dir + 'user.csv')
+            save(user_db, 'data/' + csv_dir + '/user.csv')
             print("Berhasil menyimpan!")
         case "exit":
             os.system('cls')
-            exit()
+            exit(csv_dir)
             break
         case _:
             continue
