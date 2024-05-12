@@ -14,14 +14,21 @@ INSTITUT TEKNOLOGI BANDUNG
 """
 
 # Mengimpor library yang dibutuhkan
-import os, sys, math, time, argparse, datetime
+import os, argparse
 
 # Mengimpor fungsi-fungsi yang sudah dibuat dengan penuh jerih payah
 from src.f01 import *
 from src.f02 import *
 from src.f15 import *
 from src.f16 import *
-from global_var import *
+
+# argparse
+parser = argparse.ArgumentParser(description="Menjalankan program dan memuat database csv")
+parser.add_argument("dir", help="Direktori penyimpanan database CSV")
+args = parser.parse_args()
+csv_dir = args.dir
+if validate_dir(csv_dir):
+    from global_var import *
 
 # print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
 # time.sleep(3)
