@@ -1,9 +1,9 @@
 """
-X01 - Fungsi-fungsi Pembantu 1
+X01 - Fungsi-fungsi Pembantu
 19623116 Nayaka
 19623296 Ra'if
 """
-import sys
+import sys, os
 def maxi(a: int, b: int) -> int:
     if a >= b:
         return a
@@ -121,3 +121,11 @@ def print_text(file_path: str):
     with open(file_path, 'r') as file:
         for line in file:
             print(line, end='')
+
+def validate_dir(dir):
+    if os.path.exists(dir) and os.path.isdir(dir):
+            return True
+    return False
+
+# Usage
+validate_dir("example_directory")
