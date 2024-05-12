@@ -14,6 +14,9 @@ def mini(a: int, b: int) -> int:
         return b
     return a
 
+def last(arr):
+    return(arr[len(arr)-1])
+
 def is_in(e, arr) -> bool:
     # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str, 
     # serta arr untuk array of integer, string, ataupun sebuah dictionary
@@ -34,6 +37,20 @@ def get_idx(e, arr) -> int:
             return idx
         idx += 1
     return -1
+
+def lower(text: str) -> str:
+    text_len = len(text)
+    text_arr = [text[i] for i in range(text_len)]
+    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    lowercase = "abcdefghijklmnopqrstuvwxyz"
+    for i in range(text_len):
+        if is_in(text_arr[i], uppercase):
+            text_arr[i] = lowercase[get_idx(text_arr[i], uppercase)]
+    text = ""
+    for i in range(text_len):
+        text = f"{text}{text_arr[i]}"
+    return text
+
 
 def subset(arr1, arr2) -> bool:
     # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str

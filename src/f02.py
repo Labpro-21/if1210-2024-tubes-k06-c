@@ -12,20 +12,32 @@ sys.path.append(data_path)
 # Memuat file .csv yang diperlukan
 from global_var import *
 
+# FUNGSI login()
+def login():
+
+    # Ra'if ini ntar tolong dicakepin yah itunya
+    print("<=============>")
+    print("  O. W. C. A.  ")
+    print("   We serve.   ")
+    print("<=============>")
+
+    # Bagian utama fungsi
+    username = input_username()
+    password = input_password(username)
+    logged_in = True
+
 # FUNGSI input_username()
 def input_username():
-    global user_db
     valid_char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
     username = input("Username: ")
     remove_nth_line(1)
     valid1 = subset(username, valid_char)
     valid2 = is_in(username, user_db["username"])
 
-
     while not valid1 or not valid2:
         if not valid1:
             print("Username hanya boleh berisi alfabet, angka, tanda hubung bawah (_), dan tanda strip (-)!")
-        elif not valid2:
+        else: # not valid2
             print("Username tidak terdaftar. ")
         username = input("Username: ")
         remove_nth_line(1)
@@ -36,7 +48,6 @@ def input_username():
 
 # FUNGSI input_password()
 def input_password(username: str):
-    global user_db
     user_idx = get_idx(username, user_db["username"])
 
     password = input("Password: ")
@@ -51,26 +62,15 @@ def input_password(username: str):
             remove_nth_line(1)
             valid = user_db["password"][user_idx] == password
             remove_nth_line(1)
-    
-# FUNGSI login()
-def login():
-
-    # Ra'if ini ntar tolong dicakepin yah itunya
-    print("<=============>")
-    print("  O. W. C. A.  ")
-    print("   We serve.   ")
-    print("<=============>")
-
-    # Bagian utama fungsi
-    username = input_username()
-    password = input_password(username)
-
-login()
+        logged_in = True
     
 
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
-
+Fungsi login() akan menerima username dan password dari pengguna dan mengecek validitasnya.
+Fungsi akan terus menerima input hingga username atau password sesuai. Selanjutnya, variabel
+logged_in pada global_var.py akan diubah nilainya menjadi True, mengindikasikan pengguna telah
+berhasil login ke dalam program.
 
 """

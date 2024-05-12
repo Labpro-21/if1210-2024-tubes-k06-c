@@ -2,12 +2,8 @@
 F15 - Save
 19623116 Nayaka
 """
-<<<<<<< HEAD
-import os,sys
-=======
-import os, sys
 
->>>>>>> 63925392b7327e1e413a73f5fe04275cd2ab22f6
+import os, sys
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
 data_path = os.path.join(os.path.dirname(__file__), 'data')
@@ -29,6 +25,7 @@ def save(db: dict, path: str):
             headers_row = f"{headers_row}{header}"
 
         i += 1
+    csv.write(headers_row + "\n")
 
     db_length = len(db[headers[0]])
     for i in range(db_length):
@@ -39,7 +36,9 @@ def save(db: dict, path: str):
             else:
                 row = f"{row}{db[headers[j]][i]}"
         csv.write(row)
-        csv.write("\n")
+        if i != db_length - 1:
+            csv.write("\n")
+    csv.close()
 
 
 """
