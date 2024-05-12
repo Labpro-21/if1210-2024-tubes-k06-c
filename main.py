@@ -17,21 +17,39 @@ INSTITUT TEKNOLOGI BANDUNG
 import os, sys, math, time, argparse, datetime
 
 # Mengimpor fungsi-fungsi yang sudah dibuat dengan penuh jerih payah
-src_path = os.path.join(os.path.dirname(__file__), 'src')
-data_path = os.path.join(os.path.dirname(__file__), 'data')
-sys.path.append(src_path)
-sys.path.append(data_path)
+from src.f01 import *
+from src.f02 import *
+from src.f15 import *
+from src.f16 import *
+from global_var import *
 
-from x01 import *
-from f14 import *
+# print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
+# time.sleep(3)
+# for i in range(5):
+#     remove_nth_line(1)
+#     print(f"Memulai program dalam {5-i} detik...")
+#     time.sleep(1)
+# remove_nth_line(1)
+# print("Selesai!")
+# time.sleep(2)
+# remove_nth_line(1)
+# remove_nth_line(1)
 
-print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
-time.sleep(3)
-for i in range(5):
+while True:
+    action = input()
     remove_nth_line(1)
-    print(f"Memulai program dalam {5-i} detik...")
-    time.sleep(1)
-remove_nth_line(1)
-print("Selesai!")
-time.sleep(2)
-remove_nth_line(1)
+    match lower(action):
+        case "login":
+            login()
+            print("Berhasil login!")
+        case "register":
+            register()
+            print("Berhasil register!")
+        case "save":
+            save(user_db, "data/user.csv")
+            print("Berhasil menyimpan!")
+        case "exit":
+            exit()
+            break
+        case _:
+            continue
