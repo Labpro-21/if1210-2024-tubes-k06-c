@@ -10,7 +10,7 @@ data_path = os.path.join(os.path.dirname(__file__), 'data')
 sys.path.append(data_path)
 
 def save(db: dict, path: str):
-    csv = open(path, "w")
+    csv = open(path, "a")
     db_width = len(db)
     headers = []
     headers_row = ""
