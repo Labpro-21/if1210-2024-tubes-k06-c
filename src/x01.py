@@ -14,6 +14,9 @@ def mini(a: int, b: int) -> int:
         return b
     return a
 
+def last(arr):
+    return(arr[len(arr)-1])
+
 def is_in(e, arr) -> bool:
     # Type tidak dideklarasikan secara jelas agar dapat digunakan untuk e dengan type int maupun str, 
     # serta arr untuk array of integer, string, ataupun sebuah dictionary
