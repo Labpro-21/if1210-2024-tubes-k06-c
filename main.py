@@ -26,10 +26,17 @@ from src.f16 import *
 parser = argparse.ArgumentParser(description="Menjalankan program dan memuat database csv")
 parser.add_argument("dir", help="Direktori penyimpanan database CSV")
 args = parser.parse_args()
-csv_dir = args.dir
-if validate_dir(csv_dir):
+csv_dir = str(args.dir)
+if validate_dir("data/" + csv_dir):
     from global_var import *
+    user_db = load('data/sample/user.csv')
+    monster_db = load('data/' + csv_dir + '/monster.csv')
+    monster_shop_db = load('data/' + csv_dir + '/monster_shop.csv')
+    monster_inv_db = load('data/' + csv_dir + '/monster_inventory.csv')
+    item_shop_db = load('data/' + csv_dir + '/item_shop.csv')
+    item_inv_db = load('data/' + csv_dir + '/item_inventory.csv')
 
+# Loading Screen
 print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
 time.sleep(3)
 for i in range(5):
@@ -51,14 +58,14 @@ while True:
                 os.system('cls')
                 print("Anda sudah login!")
             else:
-                login()
+                login(user_db)
                 os.system('cls')
                 logged_in = True
                 
                 print("Berhasil login!")
         case "register":
             os.system('cls')
-            register()
+            register(user_db)
             print("Berhasil register!")
         case "save":
             os.system('cls')
