@@ -19,6 +19,7 @@ def register():
     password = input("Password: ")
 
     # Menambahkan data pengguna ke dalam database
+    user_db["id"].append(last(user_db["id"]) + 1)
     user_db["username"].append(username)
     user_db["password"].append(password)
     user_db["role"].append('agent')
