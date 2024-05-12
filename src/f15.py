@@ -36,6 +36,7 @@ def save(db: dict, path: str):
                 row = f"{row}{db[headers[j]][i]}"
         csv.write(row)
         csv.write("\n")
+    csv.close()
 
 
 """
