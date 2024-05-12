@@ -4,42 +4,49 @@ F07 - Inventory
 """
 from x01 import *
 from f14 import *
+from f05 import *
 
 current_user = 3 # sampel
 
-def getMonster(i): # mengambil data monster 
-    monsterList = load("data/monster.csv")
-    return(f"{monsterList["type"][i]} (ATK Power: {monsterList["atk_power"][i]} | DEF Power: {monsterList["def_power"][i]} | HP: {monsterList["hp"][i]})")
+from global_var import *
+def get_monster(i, lv): # mengambil data monster 
+    monster_to_get = attribute_monster(i, lv, monster_db)
+    return(f"{monster_to_get[0]} (ATK Power: {monster_to_get[1]} | DEF Power: {monster_to_get[2]} | HP: {monster_to_get[3]})")
 
-def showItems():
-    itemList = load("data/item_inventory.csv")
+def show_items():
     i = 0
-    if i < len(itemList['user_id']):
-        while itemList['user_id'][i] != current_user:
-            i += 1
-            pass
-        while itemList['user_id'][i] == current_user:
-            i += 1
-            print(f"{(itemList["type"][i]).title()} (Quantity: {itemList["quantity"][i]})")
+    j = 1
+    while item_inv_db['user_id'][i] != current_user:
+        i += 1
+        pass
+    while item_inv_db['user_id'][i] == current_user:
+        print(f"{j}. {(item_inv_db["type"][i]).title()} (Quantity: {item_inv_db["quantity"][i]})")
+        i += 1
+        j += 1
 
-def showMonsters():
-    monsterInvList = load("data/monster_inventory.csv")
+def show_monsters():
     i = 0
-    if i < len(monsterInvList['user_id']):
-        while monsterInvList['user_id'][i] != current_user:
-            i += 1
-            pass
-        while monsterInvList['user_id'][i] == current_user:
-            i += 1
-            print(f"{getMonster(monsterInvList['monster_id'][i])}")
+    j = 1
+    while monster_inv_db['user_id'][i] != current_user:
+        i += 1
+        pass
+    while monster_inv_db['user_id'][i] == current_user:
+        print(f"{j}. {get_monster(monster_inv_db['monster_id'][i], monster_inv_db['level'][i])}")
+        i += 1
+        j += 1
 
-def showInventory():
+def get_start_index(db, current_user) -> int: # Fungsi ini dibuat untuk mendapatkan indeks pertama dari barang pengguna, digunakan pada monster inventory dan item inventory.
+    i = 0
+    while db['user_id'][i] != current_user:
+        i += 1
+    j = i
+    return(j)
+
+def show_inventory():
     print("Potion yang kamu miliki: ")
-    showItems()
+    show_items()
     print("Monster yang kamu miliki:")
-    showMonsters()
-
-showInventory()
+    show_monsters()
 
 """
 DESKRIPSI
