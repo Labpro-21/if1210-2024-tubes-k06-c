@@ -50,6 +50,7 @@ def battle():
     your_index = int(input("Monster apa yang ingin kamu pilih? ")) - 1 + get_start_index(monster_inv_db, user)
     your_monster_idx = monster_inv_db["monster_id"][your_index]
     your_monster = attribute_monster(your_monster_idx, monster_inv_db["level"][your_index], monster_db)
+    your_level = monster_inv_db["level"][your_index]
     your_type = your_monster[0]
     your_atk = your_monster[1]
     your_def = your_monster[2]
@@ -76,8 +77,14 @@ def battle():
                     use_potion()
                     break
                 case "3":
-                    monsterball()
+                    if monsterball(your_level):
+                        print("Monster berhasil tertangkap!")
+                        monster_caught()
+                        enemy_hp = 0
+                    else: 
+                        print("Monster lepas!")
                     break
+
                 case "4": 
                     isBattle == False
                     print("Kamu berhasil kabur ...")
