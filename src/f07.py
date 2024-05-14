@@ -2,9 +2,9 @@
 F07 - Inventory
 19623296 Muhammad Ra'if Alkautsar
 """
-from x01 import *
-from f14 import *
-from f05 import *
+from src.x01 import *
+from src.f14 import *
+from src.f05 import *
 
 current_user = 3 # sampel
 

@@ -5,18 +5,20 @@ F08 - Battle
 
 # ALPHA STATE / BELUM BERFUNGSI SEPENUHNYA / BELUM RAPI / BELUM EFISIEN
 
-from x01 import *
-from f00 import *
-from f14 import *
+from src.x01 import *
+from src.f00 import *
+from src.f14 import *
 from colorama import *
-from b03 import *
-from f05 import *
-from f06 import *
-from f07 import *
+from src.b03 import *
+from src.f05 import *
+from src.f06 import *
+from src.f07 import *
 from global_var import *
 
+# I am calling a function from within a function. For some reasoon, once I try to change a global variable from within that function, the function doesn't recognize the global variable. Why is that?
+
 enemy_level = 3 # SAMPEL
-user = 3
+user = 3 # SAMPEL
 
 def use_potion():
     print("Ramuan-ramuan yang kamu miliki saat ini: ")
@@ -79,7 +81,7 @@ def battle():
                 case "3":
                     if monsterball(your_level):
                         print("Monster berhasil tertangkap!")
-                        monster_caught()
+                        monster_caught
                         enemy_hp = 0
                     else: 
                         print("Monster lepas!")
@@ -105,7 +107,6 @@ def battle():
 
 
 
-battle()
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.

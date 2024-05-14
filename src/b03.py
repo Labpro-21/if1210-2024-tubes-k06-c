@@ -2,7 +2,9 @@
 FB03 - Monster Ball
 19623296 / Muhammad Ra'if Alkautsar
 """
-from f00 import *
+# As long as it works. T_T
+
+from src.f00 import *
 from global_var import *
 
 def monsterball(level: int) -> bool:
@@ -33,24 +35,23 @@ def monsterball(level: int) -> bool:
         else:
             return(False)
 
-""" def monster_caught(): # KODE RUSAK
+def monster_caught(): # KODE RUSAK
     i = 0
     temp_db = {"user_id":[], "monster_id":[], "level":[]}
-    while temp_db["user_id"][i] <= user:
+    while monster_inv_db["user_id"][i] <= user:
         temp_db["user_id"].append(monster_inv_db["user_id"][i])
         temp_db["monster_id"].append(monster_inv_db["monster_id"][i])
         temp_db["level"].append(monster_inv_db["level"][i])
         i += 1
-    temp_db["user_id"].append(monster_inv_db["user_id"][i])
-    temp_db["monster_id"].append(monster_inv_db["monster_id"][i])
-    temp_db["level"].append(monster_inv_db["level"][i])
+    temp_db["user_id"].append(user)
+    temp_db["monster_id"].append(random_index + 1)
+    temp_db["level"].append(enemy_level)
     i += 1 
-    while i <= (len(monster_inv_db["user_id"]) + 1):
-        temp_db["user_id"].append(user)
-        temp_db["monster_id"].append(random_index + 1)
-        temp_db["level"].append(enemy_level)
+    while i < (len(monster_inv_db["user_id"]) + 1):
+        temp_db["user_id"].append(monster_inv_db["user_id"][i])
+        temp_db["monster_id"].append(monster_inv_db["monster_id"][i])
+        temp_db["level"].append(monster_inv_db["level"][i])
         i += 1
-    monster_inv_db = temp_db """
 
 """
 DESKRIPSI

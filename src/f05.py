@@ -6,8 +6,8 @@ F05 - Monster
 
 # Kode di sini
 
-from f00 import *
-from x01 import *
+from src.f00 import *
+from src.x01 import *
 import sys, os
 parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 data_path = os.path.join(parent_path, 'data')
