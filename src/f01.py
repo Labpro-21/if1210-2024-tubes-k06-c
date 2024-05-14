@@ -24,16 +24,11 @@ def register(user_db: dict) -> dict:
     print("<=============>")
 
     # Bagian utama fungsi
-    isExist=False
     username = input_username_reg()
-    # Pengecekan apakah username sudah digunakan
-    for i in user_db["username"]:
-        if i == username:
-            isExist=True
+    if is_in(username, user_db["username"]):
             print(f"Username sudah ada, login dengan username '{username}' atau gunakan username lain !")
-    if isExist == False:
+    else:
         password = input("Password: ")
-
         # Menambahkan data pengguna ke dalam database
         user_db["id"].append(last(user_db["id"]) + 1)
         user_db["username"].append(username)
@@ -52,15 +47,11 @@ def register(user_db: dict) -> dict:
             id_num+=1
             print(f"{id_num}. {i}")
         idSelectedMon = int(input("Monster pilihanmu : "))
-        print(user_db["password"][0])
+        print(user_db["password"])
+        print(monster_db["type"])
         agent = user_db["password"][0]
-        monster = monster_db["type"][idSelectedMon]
+        monster = monster_db["type"][idSelectedMon-1]
         print(f"Selamat datang Agent {agent}. Mari kita mengalahkan Dr. Asep Spakbor dengan {monster}!")
-
-
-            
-
-    return isExist
 
     return user_db
 
