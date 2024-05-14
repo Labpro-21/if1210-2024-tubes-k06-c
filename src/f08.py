@@ -8,14 +8,12 @@ F08 - Battle
 from src.x01 import *
 from src.f00 import *
 from src.f14 import *
-from colorama import *
 from src.b03 import *
 from src.f05 import *
 from src.f06 import *
 from src.f07 import *
+from colorama import *
 from global_var import *
-
-# I am calling a function from within a function. For some reasoon, once I try to change a global variable from within that function, the function doesn't recognize the global variable. Why is that?
 
 enemy_level = 3 # SAMPEL
 user = 3 # SAMPEL
@@ -35,8 +33,8 @@ def use_potion():
             your_hp = healing_potion(your_hp, your_monster[3])
 
 def battle():
+    from global_var import monster_inv_db
     random_index = int(rng(0, len(monster_db['id']), time.time())) # Meminta index untuk monster random
-
     # Inisialisasi Monster Musuh
     enemy_monster = attribute_monster(random_index + 1, enemy_level, monster_db)
     enemy_type = enemy_monster[0]
@@ -61,6 +59,7 @@ def battle():
     print(f"HP: {your_hp}. DEF: {your_def}. ATK: {your_atk}.")
 
     # Memasuki loop utama battle
+    print(monster_inv_db)
     isBattle = True
     while isBattle == True:
         while True:
@@ -81,7 +80,8 @@ def battle():
                 case "3":
                     if monsterball(your_level):
                         print("Monster berhasil tertangkap!")
-                        monster_caught
+                        monster_inv_db = monster_caught(user, random_index, enemy_level, monster_inv_db)
+                        print(monster_inv_db)
                         enemy_hp = 0
                     else: 
                         print("Monster lepas!")
@@ -104,8 +104,6 @@ def battle():
             isBattle = False
         else: 
             print(f"Pertarungan terus berlangsung! \n HP Monster-mu: {your_hp} \n HP Monster Musuh: {enemy_hp}")
-
-
 
 """
 DESKRIPSI

@@ -35,27 +35,29 @@ def monsterball(level: int) -> bool:
         else:
             return(False)
 
-def monster_caught(): # KODE RUSAK
+def monster_caught(user, random_index, enemy_level, monster_inv_db): # KODE RUSAK
     i = 0
-    temp_db = {"user_id":[], "monster_id":[], "level":[]}
+    temp_user = int(user)
+    temp_index = int(random_index + 1)
+    temp_level = int(enemy_level)
     while monster_inv_db["user_id"][i] <= user:
-        temp_db["user_id"].append(monster_inv_db["user_id"][i])
-        temp_db["monster_id"].append(monster_inv_db["monster_id"][i])
-        temp_db["level"].append(monster_inv_db["level"][i])
         i += 1
-    temp_db["user_id"].append(user)
-    temp_db["monster_id"].append(random_index + 1)
-    temp_db["level"].append(enemy_level)
+    (monster_inv_db["user_id"][i], temp_user) = (temp_user, monster_inv_db["user_id"][i])
+    (monster_inv_db["monster_id"][i], temp_index) = (temp_index, monster_inv_db["monster_id"][i])
+    (monster_inv_db["level"][i], temp_level) = (temp_level, monster_inv_db["level"][i])
     i += 1 
-    while i < (len(monster_inv_db["user_id"]) + 1):
-        temp_db["user_id"].append(monster_inv_db["user_id"][i])
-        temp_db["monster_id"].append(monster_inv_db["monster_id"][i])
-        temp_db["level"].append(monster_inv_db["level"][i])
+    while i < (len(monster_inv_db["user_id"])):
+        (monster_inv_db["user_id"][i], temp_user) = (temp_user, monster_inv_db["user_id"][i])
+        (monster_inv_db["monster_id"][i], temp_index) = (temp_index, monster_inv_db["monster_id"][i])
+        (monster_inv_db["level"][i], temp_level) = (temp_level, monster_inv_db["level"][i])
         i += 1
+    monster_inv_db["user_id"].append(temp_user)
+    monster_inv_db["monster_id"].append(temp_index)
+    monster_inv_db["level"].append(temp_level)
+    return(monster_inv_db)
+
 
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
-
-
 """
