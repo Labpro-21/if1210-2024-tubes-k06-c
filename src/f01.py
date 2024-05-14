@@ -1,6 +1,6 @@
 """
 F01 - Register
-19623116 Nayaka
+19623116 Nayaka & 19623076 Daniel
 """
 
 import os, sys
@@ -12,7 +12,8 @@ sys.path.append(data_path)
 
 # Memuat database yang sudah disimpan di dictionary `user_db` dalam module global_var
 
-from global_var import *
+from test_db import * #ganti test_db -> global_var
+from src.f02 import *
 
 # FUNGSI register()
 def register(user_db: dict) -> dict:
@@ -25,6 +26,7 @@ def register(user_db: dict) -> dict:
     # Bagian utama fungsi
     isExist=False
     username = input_username_reg()
+    # Pengecekan apakah username sudah digunakan
     for i in user_db["username"]:
         if i == username:
             isExist=True
@@ -38,6 +40,26 @@ def register(user_db: dict) -> dict:
         user_db["password"].append(password)
         user_db["role"].append('agent')
         user_db["oc"].append(0)
+        
+        save(user_db, 'data/' + 'user.csv')
+        whoLogin(username)
+
+        # Memilih monster pertama
+        print()
+        print("Silahkan pilih salah satu monster sebagai monster awalmu!")
+        id_num = 0
+        for i in monster_db["type"] :
+            id_num+=1
+            print(f"{id_num}. {i}")
+        idSelectedMon = int(input("Monster pilihanmu : "))
+        print(user_db["password"][0])
+        agent = user_db["password"][0]
+        monster = monster_db["type"][idSelectedMon]
+        print(f"Selamat datang Agent {agent}. Mari kita mengalahkan Dr. Asep Spakbor dengan {monster}!")
+
+
+            
+
     return isExist
 
     return user_db

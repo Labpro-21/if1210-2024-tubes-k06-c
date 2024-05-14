@@ -10,8 +10,9 @@ data_path = os.path.join(parent_path, 'data')
 sys.path.append(parent_path)
 sys.path.append(data_path)
 # Memuat database yang sudah disimpan di dictionary `user_db` dalam module global_var
-from global_var import *
 
+from test_db import * #ganti test_db -> global_var
+from src.f15 import *
 
 # FUNGSI login()
 def login(db: dict = user_db):
@@ -24,6 +25,14 @@ def login(db: dict = user_db):
     # Bagian utama fungsi
     username = input_username(db)
     input_password(username, db)
+
+# PROSEDUR untuk menyimpan data username yang sedang login
+def whoLogin (username:int,db: dict = user_db):
+    db["password"][0]=username
+    user_idx = get_idx(username, db["username"])
+    db["role"][0] = db["role"][user_idx]
+    db["oc"][0] = db["oc"][user_idx]
+    save(user_db, 'data/' + 'user.csv')
 
 # FUNGSI input_username()
 def input_username(db: dict = user_db):
@@ -48,11 +57,11 @@ def input_username(db: dict = user_db):
 # FUNGSI input_password()
 def input_password(username: str, db: dict = user_db):
     user_idx = get_idx(username, db["username"])
-
     password = input("Password: ")
     remove_nth_line(1)
     valid = db["password"][user_idx] == password
     if valid:
+            whoLogin(username)
             return password
     else:
         while not valid:

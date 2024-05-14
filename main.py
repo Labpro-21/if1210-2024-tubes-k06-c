@@ -29,7 +29,7 @@ args = parser.parse_args()
 csv_dir = str(args.dir)
 if validate_dir("data/" + csv_dir):
     from global_var import *
-    user_db = load('data/sample/user.csv')
+    user_db = load('data/' + csv_dir + '/user.csv')
     monster_db = load('data/' + csv_dir + '/monster.csv')
     monster_shop_db = load('data/' + csv_dir + '/monster_shop.csv')
     monster_inv_db = load('data/' + csv_dir + '/monster_inventory.csv')
@@ -37,17 +37,17 @@ if validate_dir("data/" + csv_dir):
     item_inv_db = load('data/' + csv_dir + '/item_inventory.csv')
 
 # Loading Screen
-print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
-time.sleep(3)
-for i in range(5):
-    remove_nth_line(1)
-    print(f"Memulai program dalam {5-i} detik...")
-    time.sleep(1)
-remove_nth_line(1)
-print("Selesai!")
-time.sleep(2)
-remove_nth_line(1)
-remove_nth_line(1)
+# print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
+# time.sleep(3)
+# for i in range(5):
+#     remove_nth_line(1)
+#     print(f"Memulai program dalam {5-i} detik...")
+#     time.sleep(1)
+# remove_nth_line(1)
+# print("Selesai!")
+# time.sleep(2)
+# remove_nth_line(1)
+# remove_nth_line(1)
 
 while True:
     action = input(">>> ")
@@ -70,7 +70,7 @@ while True:
         case "save":
             os.system('cls')
             print('data' + csv_dir + 'user.csv')
-            save(user_db, 'data/' + csv_dir + '/user.csv')
+            save(user_db, 'data/' + 'user.csv')
             print("Berhasil menyimpan!")
         case "exit":
             os.system('cls')
