@@ -36,7 +36,8 @@ def monsterball(level: int) -> bool:
             return(False)
 
 def add_monster(user, index, enemy_level, monster_inv_db):
-    
+    # NB: JIKA AKAN MENGGUNAKAN FUNGSI INI DI DALAM SEBUAH PROSEDUR, TOLONG TULIS from global_var import monster_inv_db TERLEBIH DAHULU 
+
     # Pada fungsi ini, akan dilakukan insertion ke database monster inventory.
     # Fungsi dibuat seperti di bawah supaya tidak terjadi kesalahan pada fungsi saat mencoba mengakses variabel global.
 
@@ -59,6 +60,7 @@ def add_monster(user, index, enemy_level, monster_inv_db):
 
     # Setelah itu, kita "mundurkan" semua elemen yang ada setelahnya dengan cara menukar-nukar.
     while i < (len(monster_inv_db["user_id"])):
+        
         (monster_inv_db["user_id"][i], temp_user) = (temp_user, monster_inv_db["user_id"][i])
         (monster_inv_db["monster_id"][i], temp_index) = (temp_index, monster_inv_db["monster_id"][i])
         (monster_inv_db["level"][i], temp_level) = (temp_level, monster_inv_db["level"][i])

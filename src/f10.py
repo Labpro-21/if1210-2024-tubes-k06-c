@@ -10,6 +10,8 @@ currency = 1000 # SAMPEL. PLACEHOLDER VALUE
 user = 2
 
 def add_item(user, item, item_inv_db):
+    # NB: JIKA AKAN MENGGUNAKAN FUNGSI INI DI DALAM SEBUAH PROSEDUR, TOLONG TULIS from global_var import item_inv_db TERLEBIH DAHULU 
+    
     # Pada fungsi ini, akan dilakukan insertion ke database item inventory.
     # Fungsi dibuat seperti di bawah supaya tidak terjadi kesalahan pada fungsi saat mencoba mengakses variabel global.
     # Iterator dan tiga variabel untuk menyetor nilai diinisialisasi terlebih dahulu.
@@ -62,6 +64,7 @@ def item_shop_list():
         print(f"{item_shop_db["type"][i].capitalize():<12} | {item_shop_db["stock"][i]:<5} | {item_shop_db["price"][i]:<5}")
 
 def monster_shop():
+    from global_var import monster_inv_db
     monster_shop_list()
     while True:
         choice = int(input("Ketik ID monster yang ingin kamu beli. (Ketik 'exit' untuk kembali): "))
@@ -76,10 +79,11 @@ def monster_shop():
             print("Uang kamu tidak mencukupi untuk membeli monster tersebut!")
         else: 
             print(f"Kamu membeli monster {monster_db["type"][choice-1]}.")
-            add_monster(user, choice-1, 1, monster_inv_db)
+            monster_inv_db = add_monster(user, choice-1, 1, monster_inv_db)
 
 
 def item_shop():
+    from global_var import item_inv_db
     item_shop_list()
     while True:
         choice = input("Ketik nama item yang ingin kamu beli. (Ketik 'exit' untuk kembali): ").lower()
@@ -93,13 +97,11 @@ def item_shop():
         elif currency < item_shop_db["price"][get_idx(choice, item_shop_db["type"])]:
             print("Uang kamu tidak mencukup untuk membeli monster tersebut!")
         else:
-            print(item_inv_db) 
             if choice != "monsterball":
                 print(f"Kamu membeli potion {choice}.")
             else: 
                 print("Kamu membeli monster ball.")    
-            add_item(user, choice, item_inv_db)
-            print(item_inv_db)
+            item_inv_db = add_item(user, choice, item_inv_db)
 
 def shop():
     print("Selamat datang di Warkom (Warung Komplit) Pak Yanto!")
