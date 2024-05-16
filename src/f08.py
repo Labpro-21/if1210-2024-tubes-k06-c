@@ -80,7 +80,7 @@ def battle():
                 case "3":
                     if monsterball(your_level):
                         print("Monster berhasil tertangkap!")
-                        monster_inv_db = monster_caught(user, random_index, enemy_level, monster_inv_db)
+                        monster_inv_db = add_monster(user, random_index, enemy_level, monster_inv_db)
                         print(monster_inv_db)
                         enemy_hp = 0
                     else: 
