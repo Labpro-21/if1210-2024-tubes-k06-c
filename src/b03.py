@@ -35,22 +35,36 @@ def monsterball(level: int) -> bool:
         else:
             return(False)
 
-def monster_caught(user, random_index, enemy_level, monster_inv_db): # KODE RUSAK
+def add_monster(user, index, enemy_level, monster_inv_db):
+    
+    # Pada fungsi ini, akan dilakukan insertion ke database monster inventory.
+    # Fungsi dibuat seperti di bawah supaya tidak terjadi kesalahan pada fungsi saat mencoba mengakses variabel global.
+
+    # Iterator dan tiga variabel untuk menyetor nilai sementara diinisialisasi terlebih dahulu.
     i = 0
     temp_user = int(user)
-    temp_index = int(random_index + 1)
+    temp_index = int(index + 1)
     temp_level = int(enemy_level)
+    
+    # Indeks terakhir monster pemain dicari terlebih dahulu supaya monster dapat ditambahkan setelahnya.
     while monster_inv_db["user_id"][i] <= user:
         i += 1
+
+    # Setelah ketemu, monster ditambahkan ke indeks setelah indeks terakhir monster pemain.
+    # Monster yang tadinya berada di posisi tersebut akan disimpan terlebih dahulu di variabel sementara.
     (monster_inv_db["user_id"][i], temp_user) = (temp_user, monster_inv_db["user_id"][i])
     (monster_inv_db["monster_id"][i], temp_index) = (temp_index, monster_inv_db["monster_id"][i])
     (monster_inv_db["level"][i], temp_level) = (temp_level, monster_inv_db["level"][i])
     i += 1 
+
+    # Setelah itu, kita "mundurkan" semua elemen yang ada setelahnya dengan cara menukar-nukar.
     while i < (len(monster_inv_db["user_id"])):
         (monster_inv_db["user_id"][i], temp_user) = (temp_user, monster_inv_db["user_id"][i])
         (monster_inv_db["monster_id"][i], temp_index) = (temp_index, monster_inv_db["monster_id"][i])
         (monster_inv_db["level"][i], temp_level) = (temp_level, monster_inv_db["level"][i])
         i += 1
+
+    # Setelah sampai di indeks terakhir, gunakan append supaya tidak out-of-range.
     monster_inv_db["user_id"].append(temp_user)
     monster_inv_db["monster_id"].append(temp_index)
     monster_inv_db["level"].append(temp_level)
