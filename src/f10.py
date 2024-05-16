@@ -4,7 +4,6 @@ F10 - Shop & Currency
 """
 
 from global_var import *
-from src.b03 import add_monster
 
 currency = 1000 # SAMPEL. PLACEHOLDER VALUE
 user = 2
