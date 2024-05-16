@@ -1,13 +1,122 @@
 """
 F10 - Shop & Currency
-NIM NAMA
+19623296 / Muhammad Ra'if Alkautsar
 """
 
-# Kode di sini
+from global_var import *
+from src.b03 import add_monster
+
+currency = 1000 # SAMPEL. PLACEHOLDER VALUE
+user = 2
+
+def add_item(user, item, item_inv_db):
+    # Pada fungsi ini, akan dilakukan insertion ke database item inventory.
+    # Fungsi dibuat seperti di bawah supaya tidak terjadi kesalahan pada fungsi saat mencoba mengakses variabel global.
+    # Iterator dan tiga variabel untuk menyetor nilai diinisialisasi terlebih dahulu.
+    i = 0
+    temp_user = int(user)
+    temp_type = str(item)
+    temp_quantity = 1
+    found = False # Variabel untuk menentukan apakah pemain memiliki item yang dimaksud atau tidak?
+    
+    # Indeks item pemain dicari terlebih dahulu.
+    while item_inv_db["user_id"][i] != user and item_inv_db["user_id"][i] <= user:
+        i += 1
+
+    # Setelah ketemu, dicari item yang dimaksud.
+    while item_inv_db["user_id"][i] == user and found != True: 
+        if item_inv_db["type"][i] == item:
+            item_inv_db["quantity"][i] += 1
+            found = True
+        i += 1
+
+    if found != True:
+        (item_inv_db["user_id"][i], temp_user) = (temp_user, item_inv_db["user_id"][i])
+        (item_inv_db["type"][i], temp_type) = (temp_type, item_inv_db["type"][i])
+        (item_inv_db["quantity"][i], temp_quantity) = (temp_quantity, item_inv_db["quantity"][i])
+        i += 1
+
+        while i < (len(item_inv_db["user_id"])):
+            (item_inv_db["user_id"][i], temp_user) = (temp_user, item_inv_db["user_id"][i])
+            (item_inv_db["type"][i], temp_type) = (temp_type, item_inv_db["type"][i])
+            (item_inv_db["quantity"][i], temp_quantity) = (temp_quantity, item_inv_db["quantity"][i])
+            i += 1
+            
+        # Setelah itu, kita "mundurkan" semua elemen yang ada setelahnya dengan cara menukar-nukar.
+        # Setelah sampai di indeks terakhir, gunakan append supaya tidak out-of-range.
+        item_inv_db["user_id"].append(temp_user)
+        item_inv_db["type"].append(temp_type)
+        item_inv_db["quantity"].append(temp_quantity)
+    
+    return(item_inv_db)
+
+
+def monster_shop_list():
+    print(f"{"ID":<2} | {"Monster":<10} | {"ATK":<5} | {"DEF":<5} | {"HP":<5}")
+    for i in range(len(monster_db["id"])):
+        print(f"{monster_db["id"][i]:<2} | {monster_db["type"][i]:<10} | {monster_db["atk_power"][i]:<5} | {monster_db["def_power"][i]:<5} | {monster_db["hp"][i]:<5}")
+
+def item_shop_list():
+    print(f"{"Type":<12} | {"Stock":<4} | {"Price":<4}")
+    for i in range(len(item_shop_db["type"])):
+        print(f"{item_shop_db["type"][i].capitalize():<12} | {item_shop_db["stock"][i]:<5} | {item_shop_db["price"][i]:<5}")
+
+def monster_shop():
+    monster_shop_list()
+    while True:
+        choice = int(input("Ketik ID monster yang ingin kamu beli. (Ketik 'exit' untuk kembali): "))
+        if choice == "exit":
+            print("Kamu kembali ke menu ...")
+            break
+        #elif is_numerical(choice) == False:
+        #    print("Pilihan bukanlah angka!")
+        elif choice > (len(monster_shop_db) + 1) or choice < 1:
+            print("ID yang kamu pilih tidak ada!")
+        elif currency < monster_shop_db["price"][choice - 1]:
+            print("Uang kamu tidak mencukupi untuk membeli monster tersebut!")
+        else: 
+            print(f"Kamu membeli monster {monster_db["type"][choice-1]}.")
+            add_monster(user, choice-1, 1, monster_inv_db)
+
+
+def item_shop():
+    item_shop_list()
+    while True:
+        choice = input("Ketik nama item yang ingin kamu beli. (Ketik 'exit' untuk kembali): ").lower()
+        if choice == "exit":
+            print("Kamu kembali ke menu ...")
+            break
+        elif is_numerical(choice) == True:
+            print("Tulis pilihan anda dalam bentuk teks!")
+        elif choice != "strength" and choice != "resilience" and choice != "healing" and choice != "monsterball":
+            print("Pilihan tidak tersedia!")
+        elif currency < item_shop_db["price"][get_idx(choice, item_shop_db["type"])]:
+            print("Uang kamu tidak mencukup untuk membeli monster tersebut!")
+        else:
+            print(item_inv_db) 
+            if choice != "monsterball":
+                print(f"Kamu membeli potion {choice}.")
+            else: 
+                print("Kamu membeli monster ball.")    
+            add_item(user, choice, item_inv_db)
+            print(item_inv_db)
+
+def shop():
+    print("Selamat datang di Warkom (Warung Komplit) Pak Yanto!")
+    while True:
+        pilihan = input("Pak Yanto: 'Mau beli apa? (monster/item)' ")
+        if pilihan == "monster":
+            monster_shop()
+            break
+        elif pilihan == "item":
+            item_shop()
+            break
+        else: 
+            print("Pak Yanto: 'Yang itu mah gak ada, euy!'")
 
 """
+
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
 
-
-"""
+""" 
