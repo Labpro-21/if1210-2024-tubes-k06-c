@@ -9,7 +9,7 @@ from src.F10_ShopCurrency import *
 from global_var import *
 
 def monsterball(level: int) -> bool:
-    result = rng(0, 20, time.time())
+    result = rng(0, 20, int(time.time()))
     if level == 1:
         if 0 < result < 15:
             return(True)
