@@ -17,10 +17,11 @@ INSTITUT TEKNOLOGI BANDUNG
 import os, argparse
 
 # Mengimpor fungsi-fungsi yang sudah dibuat dengan penuh jerih payah
-from src.f01 import *
-from src.f02 import *
-from src.f15 import *
-from src.f16 import *
+from src.x01 import *
+from src.F01_Register import *
+from src.F02_Login import *
+from src.F15_Save import *
+from src.F16_Exit import *
 
 # argparse
 parser = argparse.ArgumentParser(description="Menjalankan program dan memuat database csv")
