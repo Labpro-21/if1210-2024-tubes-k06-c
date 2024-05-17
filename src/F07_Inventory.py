@@ -3,8 +3,8 @@ F07 - Inventory
 19623296 Muhammad Ra'if Alkautsar
 """
 from src.x01 import *
-from src.f14 import *
-from src.f05 import *
+from src.F14_Load import *
+from src.F05_Monster import *
 
 current_user = 3 # sampel
 
