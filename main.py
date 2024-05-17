@@ -30,7 +30,7 @@ args = parser.parse_args()
 csv_dir = str(args.dir)
 if validate_dir("data/" + csv_dir):
     from global_var import *
-    user_db = load('data' + csv_dir + 'user.csv')
+    user_db = load('data/' + csv_dir + '/user.csv')
     monster_db = load('data/' + csv_dir + '/monster.csv')
     monster_shop_db = load('data/' + csv_dir + '/monster_shop.csv')
     monster_inv_db = load('data/' + csv_dir + '/monster_inventory.csv')
