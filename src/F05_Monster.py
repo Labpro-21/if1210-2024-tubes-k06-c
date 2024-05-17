@@ -6,7 +6,7 @@ F05 - Monster
 
 # Kode di sini
 
-from src.f00 import *
+from src.F00_RandomNumberGenerator import *
 from src.x01 import *
 import sys, os
 parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
