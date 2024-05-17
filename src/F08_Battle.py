@@ -6,12 +6,12 @@ F08 - Battle
 # ALPHA STATE / BELUM BERFUNGSI SEPENUHNYA / BELUM RAPI / BELUM EFISIEN
 
 from src.x01 import *
-from src.f00 import *
-from src.f14 import *
-from src.b03 import *
-from src.f05 import *
-from src.f06 import *
-from src.f07 import *
+from src.F00_RandomNumberGenerator import *
+from src.F14_Load import *
+from src.B03_MonsterBall import *
+from src.F05_Monster import *
+from src.F06_Potion import *
+from src.F07_Inventory import *
 from colorama import *
 from global_var import *
 
