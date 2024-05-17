@@ -18,6 +18,11 @@ from global_var import *
 enemy_level = 3 # SAMPEL
 user = 3 # SAMPEL
 
+def show_state(type1, hp1, atk1, def1, type2, hp2, atk2, def2):
+    print(f"{type1:<17} | {type2:>17}")
+    print(f"HP    / ATK / DEF | HP   / ATK / DEF")
+    print(f"{hp1:<5} / {atk1:<3} / {def1:<3} | {hp2:>5} / {atk2:>3} / {def2:>3}")
+
 def use_potion():
     print("Ramuan-ramuan yang kamu miliki saat ini: ")
     show_items()
