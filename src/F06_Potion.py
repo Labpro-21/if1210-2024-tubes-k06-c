@@ -4,7 +4,7 @@ F06 - Potion
 """
 
 # Kode di sini
-from src.f05 import *
+from src.F05_Monster import *
 import sys, os
 parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 data_path = os.path.join(parent_path, 'data')
