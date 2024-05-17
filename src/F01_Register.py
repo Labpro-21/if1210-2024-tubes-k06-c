@@ -38,8 +38,6 @@ def register(user_db: dict) -> dict:
         user_db["password"].append(password)
         user_db["role"].append('agent')
         user_db["oc"].append(0)
-    return isExist
-
     return user_db
 
 # FUNGSI input_username_reg()
