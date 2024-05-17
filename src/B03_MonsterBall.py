@@ -4,8 +4,8 @@ FB03 - Monster Ball
 """
 # As long as it works. T_T
 
-from src.f00 import *
-from src.f10 import *
+from src.F00_RandomNumberGenerator import *
+from src.F10_ShopCurrency import *
 from global_var import *
 
 def monsterball(level: int) -> bool:
