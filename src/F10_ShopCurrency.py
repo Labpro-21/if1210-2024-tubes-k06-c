@@ -4,6 +4,7 @@ F10 - Shop & Currency
 """
 
 from global_var import *
+from src.x01 import *
 
 #currency = 1000 # SAMPEL. PLACEHOLDER VALUE
 #user = 2
@@ -87,18 +88,19 @@ def add_item(user_id, item, item_inv_db):
     return(item_inv_db)
 
 
-def monster_shop_list(monster_shop_db):
+def monster_shop_list(monster_shop_db, monster_db):
     print(f"{"ID":<2} | {"Monster":<10} | {"ATK":<5} | {"DEF":<5} | {"HP":<5}")
-    for i in range(len(monster_db["id"])):
-        print(f"{monster_shop_db["id"][i]:<2} | {monster_shop_db["type"][i]:<10} | {monster_shop_db["atk_power"][i]:<5} | {monster_shop_db["def_power"][i]:<5} | {monster_shop_db["hp"][i]:<5}")
+    for i in range(len(monster_shop_db["monster_id"])):
+        monster_idx = get_idx(monster_shop_db["monster_id"][i], monster_db["id"])
+        print(f"{monster_db["id"][monster_idx]} | {monster_db["type"][monster_idx]:<10} | {monster_db["atk_power"][monster_idx]:<5} | {monster_db["def_power"][monster_idx]:<5} | {monster_db["hp"][monster_idx]:<5}")
 
 def item_shop_list(item_shop_db):
     print(f"{"Type":<12} | {"Stock":<4} | {"Price":<4}")
     for i in range(len(item_shop_db["type"])):
         print(f"{item_shop_db["type"][i].capitalize():<12} | {item_shop_db["stock"][i]:<5} | {item_shop_db["price"][i]:<5}")
 
-def monster_shop(monster_inv_db, monster_shop_db, oc, user_id):
-    monster_shop_list(monster_shop_db)
+def monster_shop(monster_inv_db, monster_shop_db, monster_db, oc, user_id):
+    monster_shop_list(monster_shop_db, monster_db)
     while True:
         choice = input("Ketik ID monster yang ingin kamu beli. (Ketik 'exit' untuk kembali): ")
         if choice == "exit":
@@ -115,7 +117,7 @@ def monster_shop(monster_inv_db, monster_shop_db, oc, user_id):
             else: 
                 print(f"Kamu membeli monster {monster_db["type"][choice-1]}.")
                 monster_inv_db = add_monster(user_id, choice-1, 1, monster_inv_db)
-
+    return monster_inv_db, monster_shop_db, monster_db, oc
 
 def item_shop(item_inv_db, item_shop_db, oc, user_id):
     item_shop_list(item_shop_db)
@@ -136,20 +138,21 @@ def item_shop(item_inv_db, item_shop_db, oc, user_id):
             else: 
                 print("Kamu membeli monster ball.")    
             item_inv_db = add_item(user_id, choice, item_inv_db)
+    return item_inv_db, item_shop_db, oc
 
-def shop(monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc, user_id):
+def shop(monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, monster_db, oc, user_id):
     print("Selamat datang di Warkom (Warung Komplit) Pak Yanto!")
     while True:
         pilihan = input("Pak Yanto: 'Mau beli apa? (monster/item)' ")
         if pilihan == "monster":
-            monster_shop(monster_inv_db, monster_shop_db, oc, user_id)
+            monster_inv_db, monster_shop_db, monster_db, oc = monster_shop(monster_inv_db, monster_shop_db, monster_db, oc, user_id)
             break
         elif pilihan == "item":
-            item_shop(item_inv_db, item_shop_db, oc, user_id)
+            item_inv_db, item_shop_db, oc = item_shop(item_inv_db, item_shop_db, oc, user_id)
             break
         else: 
             print("Pak Yanto: 'Yang itu mah gak ada, euy!'")
-        return (monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc)
+    return (monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc)
 
 """
 
