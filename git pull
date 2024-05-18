@@ -1,0 +1,59 @@
+[33mcommit 1ea68227d8de6e89ba24981a11ad1f761f7074b8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: DanielSIUU <164762006+DanielSIUU@users.noreply.github.com>
+Date:   Fri Apr 26 21:43:59 2024 +0700
+
+    Update README.md
+
+[33mcommit 8c71be117c3f2024f537a82e17609c4de4206d5d[m
+Author: DanielSIUU <164762006+DanielSIUU@users.noreply.github.com>
+Date:   Fri Apr 26 21:43:36 2024 +0700
+
+    Update README.md
+
+[33mcommit 0a41ed7de2ab22175dc5c39b76cf7efec7a72111[m
+Author: Nayaka <97321138+NayakaZNA@users.noreply.github.com>
+Date:   Fri Apr 26 17:39:49 2024 +0700
+
+    Update README.md
+
+[33mcommit 73339524942121299d27c6d11bd781f1ead9791a[m
+Author: Nayaka <97321138+NayakaZNA@users.noreply.github.com>
+Date:   Fri Apr 26 17:39:00 2024 +0700
+
+    Update README.md
+
+[33mcommit 6199d55d5d1d9d9faa760445af3b60f31c7ec8f3[m
+Author: NayakaZNA <19623116@std.stei.itb.ac.id>
+Date:   Fri Apr 26 15:45:03 2024 +0700
+
+    Minor fix
+
+[33mcommit 426f833545495525eac2385f528d24418897aec0[m
+Author: NayakaZNA <19623116@std.stei.itb.ac.id>
+Date:   Fri Apr 26 15:36:24 2024 +0700
+
+    Create function rng(start, stop, seed) for F00
+
+[33mcommit 043ba1b59f78cef3dfb03bb79bc815b8c2a486ce[m
+Author: NayakaZNA <19623116@std.stei.itb.ac.id>
+Date:   Fri Apr 26 14:17:45 2024 +0700
+
+    Add functions
+
+[33mcommit a9adbdaffd65ad61e0268da181445de2041b0695[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Fri Apr 26 06:19:42 2024 +0000
+
+    Setting up GitHub Classroom Feedback
+
+[33mcommit 2e4faa3a3f9cb4de1b14ddb1edc654b35131dc4f[m[33m ([m[1;31morigin/feedback[m[33m)[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Fri Apr 26 06:19:39 2024 +0000
+
+    GitHub Classroom Feedback
+
+[33mcommit 5301c63cf4b566f555f120745eedac36053cd218[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Fri Apr 26 06:19:24 2024 +0000
+
+    Initial commit
