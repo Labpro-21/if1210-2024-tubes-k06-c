@@ -30,6 +30,7 @@ def load_csv(path: str) -> dict:
             for i in range(len(headers)):
                 header, entry = headers[i], entries[i]
                 data[header].append(entry)
+    file.close()
     return data
 
 def load_data(csv_dir: str):
