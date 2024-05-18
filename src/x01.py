@@ -118,7 +118,7 @@ def remove_ele(index: int, arr: list) -> list:
     return new_arr
 
 def print_text(file_path: str):
-    with open(file_path, 'r') as file:
+    with open(file_path, 'r', encoding='utf-8') as file:
         for line in file:
             print(line, end='')
 
@@ -126,3 +126,9 @@ def validate_dir(dir):
     if os.path.exists(dir) and os.path.isdir(dir):
             return True
     return False
+<<<<<<< Updated upstream
+=======
+
+# Usage
+# validate_dir("example_directory")
+>>>>>>> Stashed changes
