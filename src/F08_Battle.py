@@ -13,7 +13,7 @@ from src.F05_Monster import *
 from src.F06_Potion import *
 from src.F07_Inventory import *
 from colorama import *
-from src.global_var import *
+from global_var import *
 
 # enemy_level = 3 # SAMPEL
 # user = 3 # SAMPEL
