@@ -8,7 +8,7 @@ from src.F05_Monster import *
 
 # user_idx = 3 # sampel
 
-from src.global_var import *
+from global_var import *
 def get_monster(i, lv, monster_db): # mengambil data monster 
     monster_to_get = attribute_monster(i, lv, monster_db)
     return(f"{monster_to_get[0]} (ATK Power: {monster_to_get[1]} | DEF Power: {monster_to_get[2]} | HP: {monster_to_get[3]})")
@@ -16,36 +16,35 @@ def get_monster(i, lv, monster_db): # mengambil data monster
 def show_items(item_inv_db, user_id):
     i = 0
     j = 1
-    while item_inv_db['user_id'][i] != user_id:
+    while i < len(item_inv_db['user_id']) and item_inv_db['user_id'][i] != user_id:
         i += 1
-        pass
-    while item_inv_db['user_id'][i] == user_id:
-        print(f"{j}. {(item_inv_db["type"][i]).title()} (Quantity: {item_inv_db["quantity"][i]})")
+    while i < len(item_inv_db['user_id']) and item_inv_db['user_id'][i] == user_id:
+        print(f"{j}. {(item_inv_db['type'][i]).title()} (Quantity: {item_inv_db['quantity'][i]})")
         i += 1
         j += 1
 
-def show_monsters(monster_inv_db, user_id):
+
+def show_monsters(monster_inv_db, monster_db, user_id):
     i = 0
     j = 1
-    while monster_inv_db['user_id'][i] != user_id:
+    while i < len(monster_inv_db['user_id']) and monster_inv_db['user_id'][i] != user_id:
         i += 1
-        pass
-    while monster_inv_db['user_id'][i] == user_id:
-        print(f"{j}. {get_monster(monster_inv_db['monster_id'][i], monster_inv_db['level'][i])}")
+    while i < len(monster_inv_db['user_id']) and monster_inv_db['user_id'][i] == user_id:
+        print(f"{j}. {get_monster(monster_inv_db['monster_id'][i], monster_inv_db['level'][i], monster_db)}")
         i += 1
         j += 1
 
 def get_start_index(db, user_id) -> int: # Fungsi ini dibuat untuk mendapatkan indeks pertama dari barang pengguna, digunakan pada monster inventory dan item inventory.
     i = 0
-    while db['user_id'][i] != user_id:
+    while i < len(db['user_id']) and db['user_id'][i] != user_id:
         i += 1
     return(i)
 
-def show_inventory(item_inv_db, monster_inv_db, user_id):
+def show_inventory(item_inv_db, monster_inv_db, monster_db, user_id):
     print("Potion yang kamu miliki: ")
     show_items(item_inv_db, user_id)
     print("Monster yang kamu miliki:")
-    show_monsters(monster_inv_db, user_id)
+    show_monsters(monster_inv_db, monster_db, user_id)
 
 """
 DESKRIPSI
