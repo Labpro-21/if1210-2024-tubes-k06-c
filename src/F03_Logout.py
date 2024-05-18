@@ -6,7 +6,6 @@ F03 - Logout
 def logout(logged_in: bool):
     if logged_in:
         print("Berhasil logout!")
-        return 1
     else: # not logged_in
         print("Logout gagal karena Anda belum login!")
 
