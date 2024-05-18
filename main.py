@@ -14,6 +14,7 @@ INSTITUT TEKNOLOGI BANDUNG
 """
 
 # Mengimpor library yang dibutuhkan
+from nt import error
 import os, argparse
 
 # Mengimpor fungsi-fungsi yang sudah dibuat dengan penuh jerih payah
@@ -25,17 +26,24 @@ from src.F16_Exit import *
 
 # argparse
 parser = argparse.ArgumentParser(description="Menjalankan program dan memuat database csv")
-parser.add_argument("dir", help="Direktori penyimpanan database CSV")
+parser.add_argument("dir", help="Direktori penyimpanan database CSV", nargs='?')
 args = parser.parse_args()
-csv_dir = str(args.dir)
-if validate_dir("data/" + csv_dir):
-    from global_var import *
-    user_db = load('data/' + csv_dir + '/user.csv')
-    monster_db = load('data/' + csv_dir + '/monster.csv')
-    monster_shop_db = load('data/' + csv_dir + '/monster_shop.csv')
-    monster_inv_db = load('data/' + csv_dir + '/monster_inventory.csv')
-    item_shop_db = load('data/' + csv_dir + '/item_shop.csv')
-    item_inv_db = load('data/' + csv_dir + '/item_inventory.csv')
+
+if args.dir is None:
+    os.system('cls')
+    print("Tidak ada nama folder yang diberikan!")
+    print("Penggunaan: python main.py <nama_folder>")
+    sys.exit(1)
+else:
+    os.system('cls')
+    csv_dir = str(args.dir)
+    while not validate_dir("data/" + csv_dir):
+        if validate_dir("data/" + csv_dir):
+            load_data(csv_dir)
+        else:
+            print(f"Folder {csv_dir} tidak ditemukan! Mohon masukkan nama folder yang valid dalam direktori 'data'.")
+            sys.exit(1)
+
 
 # Loading Screen
 print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
@@ -50,6 +58,10 @@ time.sleep(2)
 remove_nth_line(1)
 remove_nth_line(1)
 
+# Title Screen
+print("data/title_screen.txt")
+
+# Input Prompt
 while True:
     action = input(">>> ")
     remove_nth_line(1)
