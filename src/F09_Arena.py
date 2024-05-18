@@ -11,7 +11,7 @@ data_path = os.path.join(parent_path, 'data')
 sys.path.append(parent_path)
 sys.path.append(data_path)
 # Memuat file .csv yang diperlukan
-from tes_db import *
+from global_var import *
 from x01 import *
 # from F08_Battle import *
 from F00_RandomNumberGenerator import *
@@ -108,8 +108,6 @@ GAME OVER! Sesi latihan berakhir pada stage {count}!
             print("uang tambah 150")
 
         menang = False
-arena()
-
 
 
 
