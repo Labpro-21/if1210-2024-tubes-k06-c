@@ -21,6 +21,7 @@ import os, argparse
 from src.x01 import *
 from src.F01_Register import *
 from src.F02_Login import *
+from src.F03_Logout import *
 from src.F15_Save import *
 from src.F16_Exit import *
 
@@ -39,11 +40,17 @@ else:
     csv_dir = str(args.dir)
     while not validate_dir("data/" + csv_dir):
         if validate_dir("data/" + csv_dir):
-            load_data(csv_dir)
+            break
         else:
             print(f"Folder {csv_dir} tidak ditemukan! Mohon masukkan nama folder yang valid dalam direktori 'data'.")
             sys.exit(1)
-
+    database        = load_data(csv_dir)
+    user_db         = database[0]
+    monster_db      = database[1]
+    monster_shop_db = database[2]
+    monster_inv_db  = database[3]
+    item_shop_db    = database[4]
+    item_inv_db     = database[5]
 
 # Loading Screen
 print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
@@ -62,6 +69,7 @@ remove_nth_line(1)
 print_text("data/title_screen.txt")
 
 # Input Prompt
+username = ""
 while True:
     action = input(">>> ")
     remove_nth_line(1)
@@ -71,11 +79,13 @@ while True:
                 os.system('cls')
                 print("Anda sudah login!")
             else:
-                login(user_db)
+                username = login(user_db)
                 os.system('cls')
                 logged_in = True
-
-                print("Berhasil login!")
+                print(f"Berhasil login sebagai {username}!")
+        case "logout":
+            os.system('cls')
+            logged_in = False if logout(logged_in) else False
         case "register":
             os.system('cls')
             register(user_db)
