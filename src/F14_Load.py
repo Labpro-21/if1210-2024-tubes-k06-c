@@ -10,6 +10,7 @@ def read_header(path: str) -> str:
     file = open(path, 'r')
     for line in file:
         return strip_str(line)
+    file.close()
     return ""
 
 
