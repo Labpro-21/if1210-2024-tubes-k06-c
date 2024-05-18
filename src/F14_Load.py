@@ -33,7 +33,7 @@ def load_csv(path: str) -> dict:
     file.close()
     return data
 
-def load_data(csv_dir: str):
+def load_data(csv_dir: str) -> list[dict]:
     user_db         = load_csv('data/' + csv_dir + '/user.csv')
     monster_db      = load_csv('data/' + csv_dir + '/monster.csv')
     monster_shop_db = load_csv('data/' + csv_dir + '/monster_shop.csv')
