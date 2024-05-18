@@ -34,13 +34,13 @@ def load_csv(path: str) -> dict:
     return data
 
 def load_data(csv_dir: str):
-    user_db = load_csv('data/' + csv_dir + '/user.csv')
-    monster_db = load_csv('data/' + csv_dir + '/monster.csv')
+    user_db         = load_csv('data/' + csv_dir + '/user.csv')
+    monster_db      = load_csv('data/' + csv_dir + '/monster.csv')
     monster_shop_db = load_csv('data/' + csv_dir + '/monster_shop.csv')
-    monster_inv_db = load_csv('data/' + csv_dir + '/monster_inventory.csv')
-    item_shop_db = load_csv('data/' + csv_dir + '/item_shop.csv')
-    item_inv_db = load_csv('data/' + csv_dir + '/item_inventory.csv')
-
+    monster_inv_db  = load_csv('data/' + csv_dir + '/monster_inventory.csv')
+    item_shop_db    = load_csv('data/' + csv_dir + '/item_shop.csv')
+    item_inv_db     = load_csv('data/' + csv_dir + '/item_inventory.csv')
+    return [user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db]
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
