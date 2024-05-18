@@ -44,6 +44,9 @@ def load_data(csv_dir: str) -> list[dict]:
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
-
+Skema load untuk memuat data dari csv ke dalam dictionary of lists sebagai database
+temporer dalam game terdiri atas beberapa langkah. Pertama-tama, header yang memuat
+parameter-parameter (kolom) dalam database akan dimuat. Selanjutnya, barulah baris-
+baris yang tersisa dimuat dan dipasangkan sesuai dengan parameter/kolomnya.
 
 """
