@@ -3,7 +3,7 @@ F10 - Shop & Currency
 19623296 / Muhammad Ra'if Alkautsar
 """
 
-from src.global_var import *
+from global_var import *
 
 #currency = 1000 # SAMPEL. PLACEHOLDER VALUE
 #user = 2
@@ -100,19 +100,21 @@ def item_shop_list(item_shop_db):
 def monster_shop(monster_inv_db, monster_shop_db, oc, user_id):
     monster_shop_list(monster_shop_db)
     while True:
-        choice = int(input("Ketik ID monster yang ingin kamu beli. (Ketik 'exit' untuk kembali): "))
+        choice = input("Ketik ID monster yang ingin kamu beli. (Ketik 'exit' untuk kembali): ")
         if choice == "exit":
             print("Kamu kembali ke menu ...")
             break
         elif is_numerical(choice) == False:
             print("Pilihan bukanlah angka!")
-        elif choice > (len(monster_shop_db) + 1) or choice < 1:
-            print("ID yang kamu pilih tidak ada!")
-        elif oc < monster_shop_db["price"][choice - 1]:
-            print("Uang kamu tidak mencukupi untuk membeli monster tersebut!")
-        else: 
-            print(f"Kamu membeli monster {monster_db["type"][choice-1]}.")
-            monster_inv_db = add_monster(user_id, choice-1, 1, monster_inv_db)
+        else:
+            choice = int(choice)
+            if choice > (len(monster_shop_db) + 1) or choice < 1:
+                print("ID yang kamu pilih tidak ada!")
+            elif oc < monster_shop_db["price"][choice - 1]:
+                print("Uang kamu tidak mencukupi untuk membeli monster tersebut!")
+            else: 
+                print(f"Kamu membeli monster {monster_db["type"][choice-1]}.")
+                monster_inv_db = add_monster(user_id, choice-1, 1, monster_inv_db)
 
 
 def item_shop(item_inv_db, item_shop_db, oc, user_id):
