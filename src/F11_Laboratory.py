@@ -73,11 +73,11 @@ def showMonsters():
             return(f"{getMonster(monster_inv_db['monster_id'][i])}")
 
 # coba2
-current_user = get_idx('B4ngk1dd0ssss', user_db["username"])
+""" current_user = get_idx('B4ngk1dd0ssss', user_db["username"])
 user_id = user_db["id"][current_user]
 monsters = showMonsters()
 owca_coins = user_db["oc"][current_user]
-laboratory(monsters,owca_coins)
+laboratory(monsters,owca_coins) """
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.

@@ -4,7 +4,7 @@ F04 - Menu & Help
 """
 from global_var import *
 # Contoh dan belum dismabungkan dengan login
-current_user = get_idx("Asep_Spakbor",user_db["username"])
+# current_user = get_idx("Asep_Spakbor",user_db["username"])
 
 # Kode di sini
 def help(username):

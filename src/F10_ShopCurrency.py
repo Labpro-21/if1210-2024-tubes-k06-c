@@ -5,8 +5,9 @@ F10 - Shop & Currency
 
 from global_var import *
 
-currency = 1000 # SAMPEL. PLACEHOLDER VALUE
-user = 2
+#currency = 1000 # SAMPEL. PLACEHOLDER VALUE
+#user = 2
+
 def add_monster(user, index, enemy_level, monster_inv_db):
     # NB: JIKA AKAN MENGGUNAKAN FUNGSI INI DI DALAM SEBUAH PROSEDUR, TOLONG TULIS from global_var import monster_inv_db TERLEBIH DAHULU 
 

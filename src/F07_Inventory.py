@@ -6,7 +6,7 @@ from src.x01 import *
 from src.F14_Load import *
 from src.F05_Monster import *
 
-current_user = 3 # sampel
+# current_user = 3 # sampel
 
 from global_var import *
 def get_monster(i, lv): # mengambil data monster 
