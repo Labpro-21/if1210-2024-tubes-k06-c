@@ -8,7 +8,6 @@ from global_var import *
 def logout(logged_in: bool) -> int:
     if logged_in:
         print("Berhasil logout!")
-        logged_in = False
         return 1
     else: # not logged_in
         print("Logout gagal karena Anda belum login!")
