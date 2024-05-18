@@ -11,7 +11,7 @@ data_path = os.path.join(parent_path, 'data')
 sys.path.append(parent_path)
 sys.path.append(data_path)
 # Memuat file .csv yang diperlukan
-from global_var import *
+from src.global_var import *
 
 def strength_potion(atk_power: int):
     increase = int(atk_power * 0.05)

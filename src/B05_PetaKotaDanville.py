@@ -3,10 +3,8 @@ FB05 - Peta Kota Danville
 19623296 / Muhammad Ra'if Alkautsar
 """
 
-def read_map(N : int, M : int, fn : str):
-    arr = [["" for j in range(M+2)] for i in range(N+2)] # Array diinisialisasi 
-                                                         # dengan ruang 
-                                                         # tambahan untuk garis pembatas tepian map.
+def read_map(N : int, M : int, fn : str, posx : int, posy : int): # FUNGSI
+    arr = [["" for j in range(M+2)] for i in range(N+2)] # Array diinisialisasi dengan ruang tambahan untuk garis pembatas tepian map.
     with open(fn, 'r') as map:
         for p in range(M+2):
             arr[0][p] = "*"
@@ -21,104 +19,71 @@ def read_map(N : int, M : int, fn : str):
             i += 1
         for p in range(M+2):
             arr[N+1][p] = "*"
+    arr[posx][posy] = "P" # Posisi pemain diinisialisasi
     return(arr)
 
-
-# DATA SAMPEL UNTUK KEBUTUHAN TESTING !!! TIDAK TERMASUK PROSEDUR/FUNGSI
-N = 10
-M = 10
-posx = 1
-posy = 1
-map = read_map(N, M, "data/map.txt")
-
-def print_map(map):
+def print_map(arr, M, N): 
     for i in range(M+2):
         for j in range(N+2):
-            obj = map[i][j]
+            obj = arr[i][j]
             if obj == "#":
                 print("  ", end="")
             else:
-                print(f"{map[i][j]} ", end="")
+                print(f"{arr[i][j]} ", end="")
         print()
 
-def moveUp():
-    global posy
-    if (map[posy-1][posx]) != '#':
+def moveUp(worldmap, posx, posy): # PROSEDUR
+    if (worldmap[posy-1][posx]) != '#':
         print("Ada penghalang!")
-        move()
     else:
-        map[posy][posx] = "#" 
+        worldmap[posy][posx] = "#" 
         posy -= 1
-        map[posy][posx] = "P"
+        worldmap[posy][posx] = "P"
+    return(worldmap, posx, posy)
 
-def moveDown():
-    global posy
-    if (map[posy+1][posx]) != '#':
+def moveDown(worldmap, posx, posy): # PROSEDUR
+    if (worldmap[posy+1][posx]) != '#':
         print("Ada penghalang!")
-        move()
     else:
-        map[posy][posx] = "#"  
+        worldmap[posy][posx] = "#"  
         posy += 1
-        map[posy][posx] = "P"
+        worldmap[posy][posx] = "P"
+    return(worldmap, posx, posy)
     
-def moveLeft():
-    global posx
-    if (map[posy][posx-1]) != '#':
+def moveLeft(worldmap, posx, posy): # PROSEDUR
+    if (worldmap[posy][posx-1]) != '#':
         print("Ada penghalang!")
-        move()
     else:
-        map[posy][posx] = "#"   
+        worldmap[posy][posx] = "#"   
         posx -= 1
-        map[posy][posx] = "P"
+        worldmap[posy][posx] = "P"
+    return(worldmap, posx, posy)
 
-def moveRight():
-    global posx
-    if (map[posy][posx+1]) != '#':
+def moveRight(worldmap, posx, posy): # PROSEDUR
+    if (worldmap[posy][posx+1]) != '#':
         print("Ada penghalang!")
-        move()
     else:
-        map[posy][posx] = "#"  
+        worldmap[posy][posx] = "#"  
         posx += 1
-        map[posy][posx] = "P"
+        worldmap[posy][posx] = "P"
+    return(worldmap, posx, posy)
 
-def checkProximity(action):
+
+def checkProximity(action, posx, posy, worldmap): # PROSEDUR
     # Memeriksa apakah aksi adalah sesuatu yang bisa dilakukan terlepas dari posisi terlebih dahulu.
-    if action == "logout" or action == "laboratory" or action == "help": 
+    symbol = action.title()[0]
+    # Aksi dan objek dicocokkan dengan mengambil huruf pertama di aksi, karena pada data map, objek disimpan sebagai huruf awal
+    for i in range(-1, 2):
+        if worldmap[posy-1][posx+i] == symbol:
+            return(True)
+    if worldmap[posy][posx-1] == symbol:
         return(True)
-    else: # Jika tidak, lantas memeriksa apakah objek aksi tersedia di sekitar posisi pemain
-        symbol = chr(action.title()[0])
-        # Aksi dan objek dicocokkan dengan mengambil huruf pertama di aksi, karena pada data map, objek disimpan sebagai huruf awal
-        for i in range(-1, 2):
-            if map[posy-1][posx+i] == symbol:
-                return(True)
-        if map[posy][posx-1] == symbol:
+    if worldmap[posy][posx+1] == symbol:
+        return(True)
+    for i in range(-1, 2):
+        if worldmap[posy+1][posx+i] == symbol:
             return(True)
-        if map[posy][posx+1] == symbol:
-            return(True)
-        for i in range(-1, 2):
-            if map[posy+1][posx+i] == symbol:
-                return(True)
-
-actionList = ["logout", "inventory", "shop", "battle", "arena", "laboratory", "help"]
-
-def move():
-    print_map(map)
-    gerak = input("Ke arah mana Anda ingin berpindah?").lower()
-    if gerak == "up" or gerak == "u":
-        moveUp()
-    elif gerak == "right" or gerak == "r":
-        moveRight()
-    elif gerak == "left" or gerak == "l":
-        moveLeft()
-    elif gerak == "down" or gerak == "d":
-        moveDown()
-    elif gerak in actionList:
-        if checkProximity():
-            gerak() # Jika di sekitar pemain ditemukan objek untuk aksi, maka fungsi/prosedur untuk aksi akan dijalankan.
-        else: 
-            print("Pergerakan tidak valid!")
-    else: 
-        print("Pergerakan tidak valid!")
+    return(False)
 
 """
 DESKRIPSI

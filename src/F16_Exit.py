@@ -4,7 +4,7 @@ F16 - Exit
 """
 from src.F15_Save import *
 from src.x01 import *
-from global_var import *
+from src.global_var import *
 
 def exit(dir: str):
     global user_db, a, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db

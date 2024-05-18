@@ -13,7 +13,7 @@ from src.F05_Monster import *
 from src.F06_Potion import *
 from src.F07_Inventory import *
 from colorama import *
-from global_var import *
+from src.global_var import *
 
 # enemy_level = 3 # SAMPEL
 # user = 3 # SAMPEL
@@ -23,22 +23,28 @@ def show_state(type1, hp1, atk1, def1, type2, hp2, atk2, def2):
     print(f"HP    / ATK / DEF | HP   / ATK / DEF")
     print(f"{hp1:<5} / {atk1:<3} / {def1:<3} | {hp2:>5} / {atk2:>3} / {def2:>3}")
 
-def use_potion():
+def use_potion(item_inv_db, user_id, user_idx, your_monster, your_atk, your_def, your_hp):
     print("Ramuan-ramuan yang kamu miliki saat ini: ")
-    show_items()
-    pot_index = int(input("Ramuan apa yang ingin kamu pilih? (Pilih dengan angka)")) - 1 + get_start_index(item_inv_db, user)
-    if item_inv_db["quantity"][pot_index] == 0:
-        print("Ramuan habis!")
-    else: 
-        if item_inv_db["type"][pot_index] == "strength":
-            your_atk = strength_potion(your_atk)
-        elif item_inv_db["type"][pot_index] == "resilience":
-            your_def = resilience_potion(your_def)
-        else: # item_inv_db["type"][pot_index] == ""
-            your_hp = healing_potion(your_hp, your_monster[3])
+    show_items(item_inv_db, user_id)
+    while True:
+        pot_index = int(input("Ramuan apa yang ingin kamu pilih? (Pilih dengan angka)")) - 1 + get_start_index(item_inv_db, user_id)
+        if item_inv_db["quantity"][pot_index] == 0:
+            print("Ramuan habis!")
+        else: 
+            if item_inv_db["type"][pot_index] == "strength":
+                your_atk = strength_potion(your_atk)
+                break
+            elif item_inv_db["type"][pot_index] == "resilience":
+                your_def = resilience_potion(your_def)
+                break
+            elif item_inv_db["type"][pot_index] == "healing":
+                your_hp = healing_potion(your_hp, your_monster[3])
+                break
+            else:
+                print("Ramuan tidak valid!")
+            return(item_inv_db, your_atk, your_def, your_hp)
 
-def battle():
-    from global_var import monster_inv_db
+def battle(monster_db, monster_inv_db, user_id, enemy_level, item_inv_db, oc):
     random_index = int(rng(0, len(monster_db['id']), time.time())) # Meminta index untuk monster random
     # Inisialisasi Monster Musuh
     enemy_monster = attribute_monster(random_index + 1, enemy_level, monster_db)
@@ -52,7 +58,7 @@ def battle():
     # Inisialisasi Monster Pemain
     print("Monster-monster yang kamu miliki saat ini: ")
     show_monsters()
-    your_index = int(input("Monster apa yang ingin kamu pilih? ")) - 1 + get_start_index(monster_inv_db, user)
+    your_index = int(input("Monster apa yang ingin kamu pilih? ")) - 1 + get_start_index(monster_inv_db, user_id)
     your_monster_idx = monster_inv_db["monster_id"][your_index]
     your_monster = attribute_monster(your_monster_idx, monster_inv_db["level"][your_index], monster_db)
     your_level = monster_inv_db["level"][your_index]
@@ -64,7 +70,6 @@ def battle():
     print(f"HP: {your_hp}. DEF: {your_def}. ATK: {your_atk}.")
 
     # Memasuki loop utama battle
-    print(monster_inv_db)
     isBattle = True
     while isBattle == True:
         while True:
@@ -80,13 +85,12 @@ def battle():
                     enemy_hp = enemy_hp - atk_result(your_atk, enemy_def)
                     break
                 case "2":
-                    use_potion()
+                    item_inv_db, your_atk, your_def, your_hp = use_potion(item_inv_db, user_id, your_monster, your_atk, your_def, your_hp)
                     break
                 case "3":
                     if monsterball(your_level):
                         print("Monster berhasil tertangkap!")
-                        monster_inv_db = add_monster(user, random_index, enemy_level, monster_inv_db)
-                        print(monster_inv_db)
+                        monster_inv_db = add_monster(user_id, random_index, enemy_level, monster_inv_db)
                         enemy_hp = 0
                     else: 
                         print("Monster lepas!")
@@ -109,6 +113,7 @@ def battle():
             isBattle = False
         else: 
             print(f"Pertarungan terus berlangsung! \n HP Monster-mu: {your_hp} \n HP Monster Musuh: {enemy_hp}")
+        return(monster_inv_db, item_inv_db, oc)
 
 """
 DESKRIPSI
