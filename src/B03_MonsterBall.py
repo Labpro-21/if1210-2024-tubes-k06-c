@@ -6,7 +6,7 @@ FB03 - Monster Ball
 
 from src.F00_RandomNumberGenerator import *
 from src.F10_ShopCurrency import *
-from global_var import *
+from src.global_var import *
 
 def monsterball(level: int) -> bool:
     result = rng(0, 20, int(time.time()))
