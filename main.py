@@ -70,38 +70,6 @@ remove_nth_line(1)
 print("Selesai!")
 time.sleep(2)
 remove_nth_line(1)
-<<<<<<< Updated upstream
-remove_nth_line(1)
-
-# Title Screen
-print_text("data/title_screen.txt")
-
-# Input Prompt
-username = ""
-while True:
-    action = input(">>> ")
-    remove_nth_line(1)
-    match lower(action):
-        case "login":
-            if logged_in:
-                os.system('cls')
-                print("Anda sudah login!")
-            else:
-                username = login(user_db)
-                os.system('cls')
-                logged_in = True
-                print(f"Berhasil login sebagai {username}!")
-        case "logout":
-            os.system('cls')
-            logged_in = False if logout(logged_in) else False
-        case "register":
-            os.system('cls')
-            register(user_db)
-            print("Berhasil register!")
-        case "save":
-            os.system('cls')
-            print('data' + csv_dir + 'user.csv')
-=======
 remove_nth_line(1) """
 
 def title_screen():
@@ -166,7 +134,6 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
             title_screen()
             break
         elif action == "save":
->>>>>>> Stashed changes
             save(user_db, 'data/' + csv_dir + '/user.csv')
             print("Berhasil menyimpan!")
         elif action == "help":
@@ -190,3 +157,34 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
             print("Pergerakan tidak valid!")    
 
 title_screen()
+
+""" remove_nth_line(1)
+
+# Title Screen
+print_text("data/title_screen.txt")
+
+# Input Prompt
+username = ""
+while True:
+    action = input(">>> ")
+    remove_nth_line(1)
+    match lower(action):
+        case "login":
+            if logged_in:
+                os.system('cls')
+                print("Anda sudah login!")
+            else:
+                username = login(user_db)
+                os.system('cls')
+                logged_in = True
+                print(f"Berhasil login sebagai {username}!")
+        case "logout":
+            os.system('cls')
+            logged_in = False if logout(logged_in) else False
+        case "register":
+            os.system('cls')
+            register(user_db)
+            print("Berhasil register!")
+        case "save":
+            os.system('cls')
+            print('data' + csv_dir + 'user.csv') """
