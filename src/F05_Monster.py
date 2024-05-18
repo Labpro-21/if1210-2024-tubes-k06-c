@@ -15,7 +15,7 @@ sys.path.append(parent_path)
 sys.path.append(data_path)
 
 # Memuat file .csv yang diperlukan
-from global_var import *
+from src.global_var import *
 def attribute_monster(id: int, monster_level: int, monster_db): 
     monster = monster_db['id'].index(id)
     monster_type = monster_db['type'][monster]
