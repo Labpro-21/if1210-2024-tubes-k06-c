@@ -8,7 +8,7 @@ from src.F05_Monster import *
 
 # user_idx = 3 # sampel
 
-from src.global_var import *
+from global_var import *
 def get_monster(i, lv, monster_db): # mengambil data monster 
     monster_to_get = attribute_monster(i, lv, monster_db)
     return(f"{monster_to_get[0]} (ATK Power: {monster_to_get[1]} | DEF Power: {monster_to_get[2]} | HP: {monster_to_get[3]})")
