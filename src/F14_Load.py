@@ -34,16 +34,6 @@ def load_csv(path: str) -> dict:
     file.close()
     return data
 
-<<<<<<< HEAD
-def load_data(csv_dir: str):
-    user_db = load_csv('data/' + 'tes' + '/user.csv')
-    monster_db = load_csv('data/' + 'tes' + '/monster.csv')
-    monster_shop_db = load_csv('data/' + 'tes' + '/monster_shop.csv')
-    monster_inv_db = load_csv('data/' + 'tes' + '/monster_inventory.csv')
-    item_shop_db = load_csv('data/' + 'tes' + '/item_shop.csv')
-    item_inv_db = load_csv('data/' + 'tes' + '/item_inventory.csv')
-
-=======
 def load_data(csv_dir: str) -> list[dict]:
     user_db         = load_csv('data/' + csv_dir + '/user.csv')
     monster_db      = load_csv('data/' + csv_dir + '/monster.csv')
@@ -52,7 +42,6 @@ def load_data(csv_dir: str) -> list[dict]:
     item_shop_db    = load_csv('data/' + csv_dir + '/item_shop.csv')
     item_inv_db     = load_csv('data/' + csv_dir + '/item_inventory.csv')
     return [user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db]
->>>>>>> 61b4a05e6374f33abd0ef90af0f5261cefd568dd
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
