@@ -59,20 +59,6 @@ else:
     item_inv_db     = database[5]
 
 
-<<<<<<< HEAD
-# # Loading Screen
-# print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
-# time.sleep(3)
-# for i in range(5):
-#     remove_nth_line(1)
-#     print(f"Memulai program dalam {5-i} detik...")
-#     time.sleep(1)
-# remove_nth_line(1)
-# print("Selesai!")
-# time.sleep(2)
-# remove_nth_line(1)
-# remove_nth_line(1)
-=======
 """ # Loading Screen
 print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
 time.sleep(3)
@@ -173,7 +159,6 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
 title_screen()
 
 """ remove_nth_line(1)
->>>>>>> 61b4a05e6374f33abd0ef90af0f5261cefd568dd
 
 # # Title Screen
 # print_text("data/title_screen.txt")
