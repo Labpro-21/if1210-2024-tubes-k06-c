@@ -4,6 +4,7 @@ F14 - Load
 """
 
 from src.x01 import *
+from global_var import *
 
 def read_header(path: str) -> str:
     file = open(path, 'r')
@@ -11,7 +12,8 @@ def read_header(path: str) -> str:
         return strip_str(line)
     return ""
 
-def load(path: str) -> dict:
+
+def load_csv(path: str) -> dict:
     file = open(path, 'r')
     headers = split_str(read_header(path))
     data = {header : [] for header in headers}
@@ -29,6 +31,14 @@ def load(path: str) -> dict:
                 header, entry = headers[i], entries[i]
                 data[header].append(entry)
     return data
+
+def load_data(csv_dir: str):
+    user_db = load_csv('data/' + csv_dir + '/user.csv')
+    monster_db = load_csv('data/' + csv_dir + '/monster.csv')
+    monster_shop_db = load_csv('data/' + csv_dir + '/monster_shop.csv')
+    monster_inv_db = load_csv('data/' + csv_dir + '/monster_inventory.csv')
+    item_shop_db = load_csv('data/' + csv_dir + '/item_shop.csv')
+    item_inv_db = load_csv('data/' + csv_dir + '/item_inventory.csv')
 
 """
 DESKRIPSI
