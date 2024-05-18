@@ -3,7 +3,7 @@ F04 - Menu & Help
 16523146 Sacca Kovida Kasmaji
 19623116 Nayaka
 """
-from src.global_var import *
+from global_var import *
 # Contoh dan belum dismabungkan dengan login
 # user_idx = get_idx("Asep_Spakbor",user_db["username"])
 

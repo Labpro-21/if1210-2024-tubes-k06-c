@@ -12,7 +12,7 @@ sys.path.append(data_path)
 
 # Memuat database yang sudah disimpan di dictionary `user_db` dalam module global_var
 
-from src.global_var import *
+from global_var import *
 
 # FUNGSI register()
 def register(user_db: dict) -> dict:
