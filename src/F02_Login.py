@@ -10,16 +10,11 @@ data_path = os.path.join(parent_path, 'data')
 sys.path.append(parent_path)
 sys.path.append(data_path)
 # Memuat database yang sudah disimpan di dictionary `user_db` dalam module global_var
-from src.global_var import *
+from global_var import *
 
 
 # FUNGSI login()
-<<<<<<< Updated upstream
 def login(db: dict = user_db) -> str:
-=======
-def login(db: dict = user_db):
-    global username
->>>>>>> Stashed changes
     # Ra'if ini ntar tolong dicakepin yah itunya
     print("<=============>")
     print("  O. W. C. A.  ")
