@@ -59,7 +59,7 @@ remove_nth_line(1)
 remove_nth_line(1)
 
 # Title Screen
-print("data/title_screen.txt")
+print_text("data/title_screen.txt")
 
 # Input Prompt
 while True:
