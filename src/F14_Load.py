@@ -33,12 +33,12 @@ def load_csv(path: str) -> dict:
     return data
 
 def load_data(csv_dir: str):
-    user_db = load_csv('data/' + csv_dir + '/user.csv')
-    monster_db = load_csv('data/' + csv_dir + '/monster.csv')
-    monster_shop_db = load_csv('data/' + csv_dir + '/monster_shop.csv')
-    monster_inv_db = load_csv('data/' + csv_dir + '/monster_inventory.csv')
-    item_shop_db = load_csv('data/' + csv_dir + '/item_shop.csv')
-    item_inv_db = load_csv('data/' + csv_dir + '/item_inventory.csv')
+    user_db = load_csv('data/' + 'tes' + '/user.csv')
+    monster_db = load_csv('data/' + 'tes' + '/monster.csv')
+    monster_shop_db = load_csv('data/' + 'tes' + '/monster_shop.csv')
+    monster_inv_db = load_csv('data/' + 'tes' + '/monster_inventory.csv')
+    item_shop_db = load_csv('data/' + 'tes' + '/item_shop.csv')
+    item_inv_db = load_csv('data/' + 'tes' + '/item_inventory.csv')
 
 """
 DESKRIPSI

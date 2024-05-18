@@ -6,8 +6,8 @@ F05 - Monster
 
 # Kode di sini
 
-from src.F00_RandomNumberGenerator import *
-from src.x01 import *
+from F00_RandomNumberGenerator import *
+from x01 import *
 import sys, os
 parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 data_path = os.path.join(parent_path, 'data')

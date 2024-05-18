@@ -45,21 +45,21 @@ else:
             sys.exit(1)
 
 
-# Loading Screen
-print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
-time.sleep(3)
-for i in range(5):
-    remove_nth_line(1)
-    print(f"Memulai program dalam {5-i} detik...")
-    time.sleep(1)
-remove_nth_line(1)
-print("Selesai!")
-time.sleep(2)
-remove_nth_line(1)
-remove_nth_line(1)
+# # Loading Screen
+# print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
+# time.sleep(3)
+# for i in range(5):
+#     remove_nth_line(1)
+#     print(f"Memulai program dalam {5-i} detik...")
+#     time.sleep(1)
+# remove_nth_line(1)
+# print("Selesai!")
+# time.sleep(2)
+# remove_nth_line(1)
+# remove_nth_line(1)
 
-# Title Screen
-print_text("data/title_screen.txt")
+# # Title Screen
+# print_text("data/title_screen.txt")
 
 # Input Prompt
 while True:
