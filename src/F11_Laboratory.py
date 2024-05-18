@@ -2,7 +2,7 @@
 F11 - Laboratory
 16523146 Sacca 
 """
-from global_var import *
+from src.global_var import *
 
 # Kode di sini
 def upgrade_monster(monsters, i, owca_coins):

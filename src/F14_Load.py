@@ -10,6 +10,7 @@ def read_header(path: str) -> str:
     file = open(path, 'r')
     for line in file:
         return strip_str(line)
+    file.close()
     return ""
 
 
@@ -30,8 +31,10 @@ def load_csv(path: str) -> dict:
             for i in range(len(headers)):
                 header, entry = headers[i], entries[i]
                 data[header].append(entry)
+    file.close()
     return data
 
+<<<<<<< HEAD
 def load_data(csv_dir: str):
     user_db = load_csv('data/' + 'tes' + '/user.csv')
     monster_db = load_csv('data/' + 'tes' + '/monster.csv')
@@ -40,9 +43,22 @@ def load_data(csv_dir: str):
     item_shop_db = load_csv('data/' + 'tes' + '/item_shop.csv')
     item_inv_db = load_csv('data/' + 'tes' + '/item_inventory.csv')
 
+=======
+def load_data(csv_dir: str) -> list[dict]:
+    user_db         = load_csv('data/' + csv_dir + '/user.csv')
+    monster_db      = load_csv('data/' + csv_dir + '/monster.csv')
+    monster_shop_db = load_csv('data/' + csv_dir + '/monster_shop.csv')
+    monster_inv_db  = load_csv('data/' + csv_dir + '/monster_inventory.csv')
+    item_shop_db    = load_csv('data/' + csv_dir + '/item_shop.csv')
+    item_inv_db     = load_csv('data/' + csv_dir + '/item_inventory.csv')
+    return [user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db]
+>>>>>>> 61b4a05e6374f33abd0ef90af0f5261cefd568dd
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
-
+Skema load untuk memuat data dari csv ke dalam dictionary of lists sebagai database
+temporer dalam game terdiri atas beberapa langkah. Pertama-tama, header yang memuat
+parameter-parameter (kolom) dalam database akan dimuat. Selanjutnya, barulah baris-
+baris yang tersisa dimuat dan dipasangkan sesuai dengan parameter/kolomnya.
 
 """

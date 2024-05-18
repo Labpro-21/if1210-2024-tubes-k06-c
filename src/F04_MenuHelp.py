@@ -1,14 +1,15 @@
 """
 F04 - Menu & Help
 16523146 Sacca Kovida Kasmaji
+19623116 Nayaka
 """
 from global_var import *
 # Contoh dan belum dismabungkan dengan login
-# current_user = get_idx("Asep_Spakbor",user_db["username"])
+# user_idx = get_idx("Asep_Spakbor",user_db["username"])
 
 # Kode di sini
 def help(username):
-    if user_db["role"][current_user] == "admin":
+    if user_db["role"][user_idx] == "admin":
         print("""
 ============================================ HELP ============================================
                                                                                 
@@ -22,11 +23,11 @@ Footnote:
     1. Untuk menggunakan aplikasi, silahkan masukkan nama fungsi yang terdaftar.
     2. Jangan lupa untuk memasukkan input yang valid.
         """)
-    elif user_db["role"][current_user] == "agent":
+    elif user_db["role"][user_idx] == "agent":
         print(f"""
 ============================================ HELP ============================================
                                                                                     
-Halo Agent {user_db["username"][current_user]}.Kamu memanggil command HELP. Kamu memilih jalan yang benar, semoga kamu 
+Halo Agent {user_db["username"][user_idx]}.Kamu memanggil command HELP. Kamu memilih jalan yang benar, semoga kamu 
 tidak sesat kemudian. Berikut adalah hal-hal yang dapat kamu lakukan sekarang: 
                                                                                 
     1. Logout    : Keluar dari akun yang sedang digunakan.
@@ -53,8 +54,6 @@ Footnote:
     1. Untuk menggunakan aplikasi, silahkan masukkan nama fungsi yang terdaftar.
     2. Jangan lupa untuk memasukkan input yang valid.
         """)
-
-help(current_user)
 """""
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.

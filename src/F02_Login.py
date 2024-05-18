@@ -14,7 +14,7 @@ from global_var import *
 
 
 # FUNGSI login()
-def login(db: dict = user_db):
+def login(db: dict = user_db) -> str:
     # Ra'if ini ntar tolong dicakepin yah itunya
     print("<=============>")
     print("  O. W. C. A.  ")
@@ -24,6 +24,7 @@ def login(db: dict = user_db):
     # Bagian utama fungsi
     username = input_username(db)
     input_password(username, db)
+    return username
 
 # FUNGSI input_username()
 def input_username(db: dict = user_db):
