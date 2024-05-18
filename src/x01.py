@@ -126,9 +126,3 @@ def validate_dir(dir):
     if os.path.exists(dir) and os.path.isdir(dir):
             return True
     return False
-<<<<<<< Updated upstream
-=======
-
-# Usage
-# validate_dir("example_directory")
->>>>>>> Stashed changes
