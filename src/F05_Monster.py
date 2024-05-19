@@ -31,7 +31,6 @@ def atk_power(atk_value):
 def atk_result(attacker_atk_value, defender_def_value):
     attacker_atk = atk_power(attacker_atk_value)
     damage = attacker_atk * (1 - int(defender_def_value) / 100)
-    print(f"ATK Value: {attacker_atk_value}. DEF Value: {defender_def_value}.")
     
     if damage < 0:
         damage = 0
