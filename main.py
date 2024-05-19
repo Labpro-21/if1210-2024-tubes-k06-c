@@ -164,8 +164,8 @@ title_screen()
 
 """ remove_nth_line(1)
 
-# Title Screen
-print_text("data/title_screen.txt")
+# # Title Screen
+# print_text("data/title_screen.txt")
 
 # Input Prompt
 username = ""
