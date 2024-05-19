@@ -25,11 +25,12 @@ from src.F03_Logout import *
 from src.F15_Save import *
 from src.F16_Exit import *
 from src.F03_Logout import *
-from src.F07_Inventory import *
+from src.F04_MenuHelp import *
+# from src.F07_Inventory import *
 from src.B05_PetaKotaDanville import *
-from src.F12_ShopManagement import *
-from src.F08_Battle import *
-from src.global_var import *
+# from src.F12_ShopManagement import *
+# from src.F08_Battle import *
+from global_var import *
 
 # argparse
 parser = argparse.ArgumentParser(description="Menjalankan program dan memuat database csv")
@@ -73,6 +74,8 @@ remove_nth_line(1)
 remove_nth_line(1) """
 
 def title_screen():
+    username = ""
+    logged_in = False
     while True:
         print_text("data/title_screen.txt") 
         action = input(">>> ")
@@ -81,16 +84,21 @@ def title_screen():
             case "login":
                 # os.system('cls')
                 username = login(user_db)
+                logged_in = True
                 print("Berhasil login!")
-                main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db)
+                # main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db)
             case "register":
                 # os.system('cls')
                 register(user_db)
                 print("Berhasil register!")
+            case "menu":
+                menu(username, logged_in, user_db)
             case "save":
                 # os.system('cls')
-                print('data' + csv_dir + 'user.csv')
-                save(user_db, 'data/' + csv_dir + '/user.csv')
+                save_dir = input("Folder savegame: ")
+                if not validate_dir('data/' + save_dir):
+                    os.makedirs('data/' + save_dir)
+                save(user_db, 'data/' + save_dir + '/user.csv')
                 print("Berhasil menyimpan!")
             case "exit":
                 # os.system('cls')
