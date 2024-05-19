@@ -30,6 +30,8 @@ from src.F04_MenuHelp import *
 from src.B05_PetaKotaDanville import *
 from src.F12_ShopManagement import *
 from src.F08_Battle import *
+from src.F09_Arena import *
+from src.B04_JACKPOT import *
 from global_var import *
 
 # argparse
@@ -160,7 +162,19 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
                 laboratory()
         elif action == "arena":
             if checkProximity(action, posx, posy, worldmap):
-                arena()
+                arena(monster_db, monster_inv_db, user_id, item_inv_db, oc)
+        elif action == "jackpot":
+            if checkProximity(action, posx, posy, worldmap):
+                oc, monster_inv_db = jackpot(oc, user_id, monster_db, monster_inv_db)
+        elif action == "debug":
+            print("Username:", username) 
+            print("user_db:", user_db)
+            print("monster_db:", monster_db) 
+            print("monster_shop_db:", monster_shop_db) 
+            print("monster_inv_db:", monster_inv_db)
+            print("item_shop_db:", item_shop_db)
+            print("item_inv_db:", item_inv_db)
+            print("OC:", oc)
         else: 
             print("Pergerakan tidak valid!")    
 

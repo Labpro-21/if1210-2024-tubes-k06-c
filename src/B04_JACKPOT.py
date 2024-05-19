@@ -2,23 +2,18 @@
 FB03 - JACKPOT!
 16523146 SACCA 
 """
-from F00_RandomNumberGenerator import *
-from  F14_Load import *
+from src.F00_RandomNumberGenerator import *
+from src.F14_Load import *
+from src.F10_ShopCurrency import add_monster
 from global_var import *
-from F10_ShopCurrency import add_monster
 
-def jackpot(username: str) -> None:
-    # Cek OC penguna
-    user = username
-    current_user = get_idx(user, user_db["username"])
-    owca_coins = user_db["oc"][current_user]
-
+def jackpot(oc, user_id, monster_db, monster_inv_db):
     # Cek jika oc cukup untuk main
-    if owca_coins < 1000:
+    if oc < 200:
         print("Maaf, anda tidak memiliki cukup OC untuk bermain JACKPOT.")
-        return
+        return(oc, monster_inv_db)
     # Kurangi OC untuk main
-    user_db["oc"][current_user] -= 1000
+    oc -= 200
 
     # Harga item yang ada dan namanya
     items = ["Topi", "Pedang", "Koin", "Potion", "Monster"]
@@ -40,11 +35,12 @@ def jackpot(username: str) -> None:
     # Check jika pengguna mnedapat jackpot
     if item1 == item2 == item3:
         # Dapatakan nama monster
-        monster = monster_db["type"][item2_idx]
+        random_monster_index = int(rng(0, len(monster_db["type"]), int(working_time)))
+        monster = monster_db["type"][random_monster_index]
         # Buat jadi level 1
-        enemy_level = 1
+        monster_level = 1
         #  Tambahkan monster ke user inventory
-        add_monster (current_user, item2_idx, enemy_level, monster_inv_db)
+        monster_inv_db = add_monster(user_id, random_monster_index, monster_level, monster_inv_db)
         # Print ouput
         print(f"JACKPOT!!! Selamat, Anda mendapatkan monster {monster}.")
     else:
@@ -54,10 +50,11 @@ def jackpot(username: str) -> None:
         item3_value = item_values[item3_idx]
         total_oc = item1_value + item2_value + item3_value
         # Tambhakan oc ke oc pengguna
-        user_db["oc"][current_user] += total_oc
+        oc += total_oc
         # Print output
         print(f"Didapat {total_oc} OC.")
-
+    
+    return(oc, monster_inv_db)
 """
 DESKRIPSI
 Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
