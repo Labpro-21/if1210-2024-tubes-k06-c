@@ -55,11 +55,11 @@ def use_potion(item_inv_db, user_id, your_monster, your_atk, your_def, your_hp):
     return(item_inv_db, your_atk, your_def, your_hp)
 
 
-def battle(monster_db, monster_inv_db, user_id, level, item_inv_db, oc):
+def battle(monster_db, monster_inv_db, user_id, enemy_level, item_inv_db, oc):
     random_index = int(rng(0, len(monster_db['id']), time.time())) # Meminta index untuk monster random
 
     # Inisialisasi Monster Musuh
-    enemy_monster = attribute_monster(random_index + 1, level, monster_db)
+    enemy_monster = attribute_monster(random_index + 1, enemy_level, monster_db)
     enemy_type = enemy_monster[0]
     enemy_atk = enemy_monster[1]
     enemy_def = enemy_monster[2]
@@ -101,9 +101,9 @@ def battle(monster_db, monster_inv_db, user_id, level, item_inv_db, oc):
                 case "3":
                     if check_monsterball(item_inv_db, user_id):
                         item_inv_db = use_monsterball(item_inv_db, user_id)
-                        if monsterball_success(level):
+                        if monsterball_success(enemy_level):
                             print("Monster berhasil tertangkap!")
-                            monster_inv_db = add_monster(user_id, random_index, level, monster_inv_db)
+                            monster_inv_db = add_monster(user_id, random_index, enemy_level, monster_inv_db)
                             enemy_hp = 0
                         else: 
                             print("Monster lepas!")
