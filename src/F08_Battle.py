@@ -27,22 +27,33 @@ def use_potion(item_inv_db, user_id, your_monster, your_atk, your_def, your_hp):
     print("Ramuan-ramuan yang kamu miliki saat ini: ")
     show_items(item_inv_db, user_id)
     while True:
-        pot_index = int(input("Ramuan apa yang ingin kamu pilih? (Pilih dengan angka)")) - 1 + get_start_index(item_inv_db, user_id)
-        if item_inv_db["quantity"][pot_index] == 0:
-            print("Ramuan habis!")
+        pot_choice = str(input("Ramuan apa yang ingin kamu pilih? Pilih dengan angka. Ketik 'cancel' untuk batal: ")).lower()
+        if pot_choice == "cancel":
+            print("Kamu kembali ke pertarungan!")
+            break
+        elif is_numerical(pot_choice):
+            print("Pilihan bukan angka!")
         else: 
-            if item_inv_db["type"][pot_index] == "strength":
-                your_atk = strength_potion(your_atk)
-                break
-            elif item_inv_db["type"][pot_index] == "resilience":
-                your_def = resilience_potion(your_def)
-                break
-            elif item_inv_db["type"][pot_index] == "healing":
-                your_hp = healing_potion(your_hp, your_monster[3])
-                break
+            pot_index = int(pot_choice) - 1 + get_start_index(item_inv_db, user_id)
+            if item_inv_db["user_id"][pot_index] != user_id:
+                print("Pilihan di luar jangkauan!")
             else:
-                print("Ramuan tidak valid!")
-            return(item_inv_db, your_atk, your_def, your_hp)
+                if item_inv_db["type"][pot_index] == "strength":
+                    your_atk = strength_potion(your_atk)
+                    item_inv_db["quantity"][pot_index] -= 1
+                    break
+                elif item_inv_db["type"][pot_index] == "resilience":
+                    your_def = resilience_potion(your_def)
+                    item_inv_db["quantity"][pot_index] -= 1
+                    break
+                elif item_inv_db["type"][pot_index] == "healing":
+                    your_hp = healing_potion(your_hp, your_monster[3])
+                    item_inv_db["quantity"][pot_index] -= 1
+                    break
+                else:
+                    print("Ramuan tidak valid!")
+    return(item_inv_db, your_atk, your_def, your_hp)
+
 
 def battle(monster_db, monster_inv_db, user_id, level, item_inv_db, oc):
     random_index = int(rng(0, len(monster_db['id']), time.time())) # Meminta index untuk monster random
@@ -88,19 +99,21 @@ def battle(monster_db, monster_inv_db, user_id, level, item_inv_db, oc):
                     item_inv_db, your_atk, your_def, your_hp = use_potion(item_inv_db, user_id, your_monster, your_atk, your_def, your_hp)
                     break
                 case "3":
-                    
-                    
-                    if monsterball(level):
-                        print("Monster berhasil tertangkap!")
-                        monster_inv_db = add_monster(user_id, random_index, level, monster_inv_db)
-                        enemy_hp = 0
+                    if check_monsterball(item_inv_db, user_id):
+                        item_inv_db = use_monsterball(item_inv_db, user_id)
+                        if monsterball_success(level):
+                            print("Monster berhasil tertangkap!")
+                            monster_inv_db = add_monster(user_id, random_index, level, monster_inv_db)
+                            enemy_hp = 0
+                        else: 
+                            print("Monster lepas!")
                     else: 
-                        print("Monster lepas!")
+                        print("Kamu tidak memiliki monsterball!")
                     break
                 case "4": 
                     isBattle == False
                     print("Kamu berhasil kabur ...")
-                    break
+                    return(monster_inv_db, item_inv_db, oc)
                 case _:
                     print("Pilihan tidak valid! \n")
         
@@ -108,10 +121,11 @@ def battle(monster_db, monster_inv_db, user_id, level, item_inv_db, oc):
 
         if enemy_hp <= 0:
             print("Selamat, kamu menang!")
+            oc += rng(50, 100, int(time.time()))
             isBattle = False
             return(monster_inv_db, item_inv_db, oc)
         elif your_hp <= 0: 
-            print("Monstermu habis. Kamu kalah.")
+            print("Monstermu tumbang. Kamu kalah.")
             isBattle = False
             return(monster_inv_db, item_inv_db, oc)
         else: 
