@@ -38,7 +38,7 @@ def monsterball_success(level: int) -> bool:
 
 def check_monsterball(item_inv_db, user_id):
     i = 0
-    while i <= len(item_inv_db["type"]):
+    while i < len(item_inv_db["type"]):
         if item_inv_db["type"][i] == "monsterball" and item_inv_db["user_id"][i] == user_id:
             return(True)
         else:
@@ -47,7 +47,7 @@ def check_monsterball(item_inv_db, user_id):
 
 def use_monsterball(item_inv_db, user_id):
     i = 0
-    while i <= len(item_inv_db["type"]):
+    while i < len(item_inv_db["type"]):
         if item_inv_db["type"][i] == "monsterball" and item_inv_db["user_id"][i] == user_id:
             item_inv_db["quantity"][i] -= 1
             if item_inv_db["quantity"][i] == 0:
