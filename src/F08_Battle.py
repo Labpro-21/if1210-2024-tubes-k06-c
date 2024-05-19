@@ -119,9 +119,10 @@ def battle(monster_db, monster_inv_db, user_id, enemy_level, item_inv_db, oc):
         your_hp = your_hp - atk_result(enemy_atk, your_def)
 
         if enemy_hp <= 0:
-            print("Selamat, kamu menang!")
-            oc += rng(50, 100, int(time.time()))
+            reward = rng(50, 100, int(time.time()))
+            oc += reward
             isBattle = False
+            print(f"Selamat, kamu menang! Kamu memperoleh {reward} OWCA Coins.")
             return(monster_inv_db, item_inv_db, oc)
         elif your_hp <= 0: 
             print("Monstermu tumbang. Kamu kalah.")
