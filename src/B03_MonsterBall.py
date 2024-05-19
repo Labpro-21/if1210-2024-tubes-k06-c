@@ -8,7 +8,7 @@ from src.F00_RandomNumberGenerator import *
 from src.F10_ShopCurrency import *
 from global_var import *
 
-def monsterball(level: int) -> bool:
+def monsterball_success(level: int) -> bool:
     result = rng(0, 20, int(time.time()))
     if level == 1:
         if 0 < result < 15:
@@ -35,6 +35,27 @@ def monsterball(level: int) -> bool:
             return(True)
         else:
             return(False)
+
+def check_monsterball(item_inv_db, user_id):
+    i = 0
+    while i <= len(item_inv_db["type"]):
+        if item_inv_db["type"][i] == "monsterball" and item_inv_db["user_id"][i] == user_id:
+            return(True)
+        else:
+            i += 1
+    return(False)
+
+def use_monsterball(item_inv_db, user_id):
+    i = 0
+    while i <= len(item_inv_db["type"]):
+        if item_inv_db["type"][i] == "monsterball" and item_inv_db["user_id"][i] == user_id:
+            item_inv_db["quantity"][i] -= 1
+            if item_inv_db["quantity"][i] == 0:
+                item_inv_db = remove_item(i, item_inv_db)
+            break
+        else:
+            i += 1
+    return(item_inv_db)
 
 
 """
