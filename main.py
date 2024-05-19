@@ -28,8 +28,8 @@ from src.F03_Logout import *
 from src.F04_MenuHelp import *
 # from src.F07_Inventory import *
 from src.B05_PetaKotaDanville import *
-# from src.F12_ShopManagement import *
-# from src.F08_Battle import *
+from src.F12_ShopManagement import *
+from src.F08_Battle import *
 from global_var import *
 
 # argparse
