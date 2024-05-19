@@ -105,12 +105,6 @@ def title_screen():
 ## username adalah username dari user yang sedang login!
 
 def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db):
-    print(item_shop_db)
-    print(item_inv_db)
-    print(monster_shop_db)
-    print(monster_inv_db)
-    print(user_db)
-    print(monster_db)
     user_idx = get_idx(username, user_db["username"])
     user_id = user_db["id"][user_idx]
     posx, posy = user_db["posx"][user_idx], user_db["posy"][user_idx]
@@ -147,13 +141,22 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
                 monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc = shop(monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, monster_db, oc, user_id)
         elif action == "battle":
             if checkProximity(action, posx, posy, worldmap):
-                monster_inv_db, item_inv_db, oc = battle(monster_db, monster_inv_db, user_id, rng(0, 5, time.time()), item_inv_db, oc)
+                monster_inv_db, item_inv_db, oc = battle(monster_db, monster_inv_db, user_id, rng(1, 5, time.time()), item_inv_db, oc)
         elif action == "laboratory":
             if checkProximity(action, posx, posy, worldmap):
                 laboratory()
         elif action == "arena":
             if checkProximity(action, posx, posy, worldmap):
                 arena()
+        elif action == "debug":
+            print("Username:", username) 
+            print("user_db:", user_db)
+            print("monster_db:", monster_db) 
+            print("monster_shop_db", monster_shop_db) 
+            print("monster_inv_db", monster_inv_db)
+            print("item_shop_db", item_shop_db)
+            print("item_inv_db", item_inv_db)
+            print("OC:", oc)
         else: 
             print("Pergerakan tidak valid!")    
 
