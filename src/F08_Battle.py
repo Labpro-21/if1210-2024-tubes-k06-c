@@ -57,7 +57,6 @@ def use_potion(item_inv_db, user_id, your_monster, your_atk, your_def, your_hp):
 
 def battle(monster_db, monster_inv_db, user_id, enemy_level, item_inv_db, oc):
     random_index = int(rng(0, len(monster_db['id']), int(time.time()))) # Meminta index untuk monster random
-
     # Inisialisasi Monster Musuh
     enemy_monster = attribute_monster(random_index + 1, enemy_level, monster_db)
     enemy_type = enemy_monster[0]
