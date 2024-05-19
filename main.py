@@ -136,7 +136,7 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
         elif action == "down" or action == "d":
             worldmap, posx, posy = moveDown(worldmap, posx, posy)
         elif action == "inventory":
-            show_inventory(user_db, monster_db, monster_inv_db, item_inv_db, user_idx)
+            show_inventory(item_inv_db, monster_inv_db, monster_db, user_id)
         elif action == "logout":
             print("Berhasil logout!")
             title_screen()
