@@ -12,24 +12,20 @@ from src.x01 import *
 def add_monster(user_id, index, enemy_level, monster_inv_db):
     # Pada fungsi ini, akan dilakukan insertion ke database monster inventory.
     # Fungsi dibuat seperti di bawah supaya tidak terjadi kesalahan pada fungsi saat mencoba mengakses variabel global.
-
     # Iterator dan tiga variabel untuk menyetor nilai sementara diinisialisasi terlebih dahulu.
     i = 0
     temp_user = int(user_id)
     temp_index = int(index + 1)
     temp_level = int(enemy_level)
-    
     # Indeks terakhir monster pemain dicari terlebih dahulu supaya monster dapat ditambahkan setelahnya.
     while monster_inv_db["user_id"][i] <= user_id and i < len(monster_inv_db["user_id"]):
         i += 1
-
     # Setelah ketemu, monster ditambahkan ke indeks setelah indeks terakhir monster pemain.
     # Monster yang tadinya berada di posisi tersebut akan disimpan terlebih dahulu di variabel sementara.
     (monster_inv_db["user_id"][i], temp_user) = (temp_user, monster_inv_db["user_id"][i])
     (monster_inv_db["monster_id"][i], temp_index) = (temp_index, monster_inv_db["monster_id"][i])
     (monster_inv_db["level"][i], temp_level) = (temp_level, monster_inv_db["level"][i])
     i += 1 
-
     # Setelah itu, kita "mundurkan" semua elemen yang ada setelahnya dengan cara menukar-nukar.
     while i < (len(monster_inv_db["user_id"])):
         
@@ -37,7 +33,6 @@ def add_monster(user_id, index, enemy_level, monster_inv_db):
         (monster_inv_db["monster_id"][i], temp_index) = (temp_index, monster_inv_db["monster_id"][i])
         (monster_inv_db["level"][i], temp_level) = (temp_level, monster_inv_db["level"][i])
         i += 1
-
     # Setelah sampai di indeks terakhir, gunakan append supaya tidak out-of-range.
     monster_inv_db["user_id"].append(temp_user)
     monster_inv_db["monster_id"].append(temp_index)
@@ -46,7 +41,6 @@ def add_monster(user_id, index, enemy_level, monster_inv_db):
 
 def add_item(user_id, item, item_inv_db):
     # NB: JIKA AKAN MENGGUNAKAN FUNGSI INI DI DALAM SEBUAH PROSEDUR, TOLONG TULIS from global_var import item_inv_db TERLEBIH DAHULU 
-    
     # Pada fungsi ini, akan dilakukan insertion ke database item inventory.
     # Fungsi dibuat seperti di bawah supaya tidak terjadi kesalahan pada fungsi saat mencoba mengakses variabel global.
     # Iterator dan tiga variabel untuk menyetor nilai diinisialisasi terlebih dahulu.
@@ -55,38 +49,52 @@ def add_item(user_id, item, item_inv_db):
     temp_type = str(item)
     temp_quantity = 1
     found = False # Variabel untuk menentukan apakah pemain memiliki item yang dimaksud atau tidak?
-    
     # Indeks item pemain dicari terlebih dahulu.
     while item_inv_db["user_id"][i] != user_id and item_inv_db["user_id"][i] <= user_id and i < len(item_inv_db["user_id"]):
         i += 1
-
     # Setelah ketemu, dicari item yang dimaksud.
     while item_inv_db["user_id"][i] == user_id and found != True: 
         if item_inv_db["type"][i] == item:
             item_inv_db["quantity"][i] += 1
             found = True
         i += 1
-
     if found != True:
         (item_inv_db["user_id"][i], temp_user) = (temp_user, item_inv_db["user_id"][i])
         (item_inv_db["type"][i], temp_type) = (temp_type, item_inv_db["type"][i])
         (item_inv_db["quantity"][i], temp_quantity) = (temp_quantity, item_inv_db["quantity"][i])
         i += 1
-
         while i < (len(item_inv_db["user_id"])):
             (item_inv_db["user_id"][i], temp_user) = (temp_user, item_inv_db["user_id"][i])
             (item_inv_db["type"][i], temp_type) = (temp_type, item_inv_db["type"][i])
             (item_inv_db["quantity"][i], temp_quantity) = (temp_quantity, item_inv_db["quantity"][i])
             i += 1
-            
         # Setelah itu, kita "mundurkan" semua elemen yang ada setelahnya dengan cara menukar-nukar.
         # Setelah sampai di indeks terakhir, gunakan append supaya tidak out-of-range.
         item_inv_db["user_id"].append(temp_user)
         item_inv_db["type"].append(temp_type)
         item_inv_db["quantity"].append(temp_quantity)
-    
     return(item_inv_db)
 
+def remove_item(index, item_inv_db):
+    i = 0
+    temp_user = item_inv_db["user_id"][index]
+    temp_type = item_inv_db["type"][index]
+    temp_quantity = item_inv_db["quantity"][index]
+    while item_inv_db["user_id"][i] != item_inv_db["user_id"][index] and item_inv_db["user_id"][i] <= item_inv_db["user_id"][index] and i < len(item_inv_db["user_id"]):
+        i += 1
+    while item_inv_db["user_id"][i] == item_inv_db["user_id"][index]: 
+        if i == index:
+            break
+        i += 1
+    while i < (len(item_inv_db["user_id"])-1):
+        (item_inv_db["user_id"][i], temp_user) = (temp_user, item_inv_db["user_id"][i+1])
+        (item_inv_db["type"][i], temp_type) = (temp_type, item_inv_db["type"][i+1])
+        (item_inv_db["quantity"][i], temp_quantity) = (temp_quantity, item_inv_db["quantity"][i+1])
+        i += 1
+    item_inv_db["user_id"] = item_inv_db["user_id"][:-1]
+    item_inv_db["type"] = item_inv_db["type"][:-1]
+    item_inv_db["quantity"] = item_inv_db["quantity"][:-1]
+    return(item_inv_db)
 
 def monster_shop_list(monster_shop_db, monster_db):
     print(f"{"ID":<2} | {"Monster":<10} | {"ATK":<5} | {"DEF":<5} | {"HP":<5}")
