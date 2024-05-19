@@ -29,7 +29,7 @@ from src.F07_Inventory import *
 from src.B05_PetaKotaDanville import *
 from src.F12_ShopManagement import *
 from src.F08_Battle import *
-from src.global_var import *
+from global_var import *
 
 # argparse
 parser = argparse.ArgumentParser(description="Menjalankan program dan memuat database csv")
@@ -105,16 +105,11 @@ def title_screen():
 ## username adalah username dari user yang sedang login!
 
 def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db):
-    print(item_shop_db)
-    print(item_inv_db)
-    print(monster_shop_db)
-    print(monster_inv_db)
-    print(user_db)
-    print(monster_db)
     user_idx = get_idx(username, user_db["username"])
     user_id = user_db["id"][user_idx]
     posx, posy = user_db["posx"][user_idx], user_db["posy"][user_idx]
     worldmap = read_map(10, 10, "data/map.txt", posx, posy)
+    oc = user_db["oc"][user_idx]
     while True:
         print_map(worldmap, 10, 10)
         action = input(">>> ")
@@ -128,7 +123,7 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
         elif action == "down" or action == "d":
             worldmap, posx, posy = moveDown(worldmap, posx, posy)
         elif action == "inventory":
-            show_inventory(user_db, monster_db, monster_inv_db, item_inv_db, user_idx)
+            show_inventory(user_db, monster_db, monster_inv_db, item_inv_db, user_id)
         elif action == "logout":
             print("Berhasil logout!")
             title_screen()
@@ -143,16 +138,25 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
             break
         elif action == "shop":
             if checkProximity(action, posx, posy, worldmap):
-                monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc = shop(monster_shop_db, monster_inv_db, item_shop_db, item_inv_db, user_db, user_id)
+                monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc = shop(monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, monster_db, oc, user_id)
         elif action == "battle":
             if checkProximity(action, posx, posy, worldmap):
-                monster_inv_db, item_inv_db = battle(monster_db, monster_inv_db, user_idx, rng(0, 5, time.time()), item_inv_db, oc)
+                monster_inv_db, item_inv_db, oc = battle(monster_db, monster_inv_db, user_id, rng(1, 5, time.time()), item_inv_db, oc)
         elif action == "laboratory":
             if checkProximity(action, posx, posy, worldmap):
                 laboratory()
         elif action == "arena":
             if checkProximity(action, posx, posy, worldmap):
                 arena()
+        elif action == "debug":
+            print("Username:", username) 
+            print("user_db:", user_db)
+            print("monster_db:", monster_db) 
+            print("monster_shop_db", monster_shop_db) 
+            print("monster_inv_db", monster_inv_db)
+            print("item_shop_db", item_shop_db)
+            print("item_inv_db", item_inv_db)
+            print("OC:", oc)
         else: 
             print("Pergerakan tidak valid!")    
 

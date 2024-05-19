@@ -3,7 +3,7 @@ FB05 - Peta Kota Danville
 19623296 / Muhammad Ra'if Alkautsar
 """
 
-def read_map(N : int, M : int, fn : str, posx : int, posy : int): # FUNGSI
+def read_map(N : int, M : int, fn : str, posx : int, posy : int):
     arr = [["" for j in range(M+2)] for i in range(N+2)] # Array diinisialisasi dengan ruang tambahan untuk garis pembatas tepian map.
     with open(fn, 'r') as map:
         for p in range(M+2):
@@ -32,7 +32,7 @@ def print_map(arr, M, N):
                 print(f"{arr[i][j]} ", end="")
         print()
 
-def moveUp(worldmap, posx, posy): # PROSEDUR
+def moveUp(worldmap, posx, posy):
     if (worldmap[posy-1][posx]) != '#':
         print("Ada penghalang!")
     else:
@@ -41,7 +41,7 @@ def moveUp(worldmap, posx, posy): # PROSEDUR
         worldmap[posy][posx] = "P"
     return(worldmap, posx, posy)
 
-def moveDown(worldmap, posx, posy): # PROSEDUR
+def moveDown(worldmap, posx, posy):
     if (worldmap[posy+1][posx]) != '#':
         print("Ada penghalang!")
     else:
@@ -50,7 +50,7 @@ def moveDown(worldmap, posx, posy): # PROSEDUR
         worldmap[posy][posx] = "P"
     return(worldmap, posx, posy)
     
-def moveLeft(worldmap, posx, posy): # PROSEDUR
+def moveLeft(worldmap, posx, posy):
     if (worldmap[posy][posx-1]) != '#':
         print("Ada penghalang!")
     else:
@@ -59,7 +59,7 @@ def moveLeft(worldmap, posx, posy): # PROSEDUR
         worldmap[posy][posx] = "P"
     return(worldmap, posx, posy)
 
-def moveRight(worldmap, posx, posy): # PROSEDUR
+def moveRight(worldmap, posx, posy):
     if (worldmap[posy][posx+1]) != '#':
         print("Ada penghalang!")
     else:
@@ -69,8 +69,7 @@ def moveRight(worldmap, posx, posy): # PROSEDUR
     return(worldmap, posx, posy)
 
 
-def checkProximity(action, posx, posy, worldmap): # PROSEDUR
-    # Memeriksa apakah aksi adalah sesuatu yang bisa dilakukan terlepas dari posisi terlebih dahulu.
+def checkProximity(action, posx, posy, worldmap):
     symbol = action.title()[0]
     # Aksi dan objek dicocokkan dengan mengambil huruf pertama di aksi, karena pada data map, objek disimpan sebagai huruf awal
     for i in range(-1, 2):
