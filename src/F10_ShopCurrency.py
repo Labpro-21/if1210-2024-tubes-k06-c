@@ -9,13 +9,13 @@ from src.x01 import *
 #currency = 1000 # SAMPEL. PLACEHOLDER VALUE
 #user = 2
 
-def add_monster(user_id, index, enemy_level, monster_inv_db):
+def add_monster(user_id, monster_index, enemy_level, monster_inv_db):
     # Pada fungsi ini, akan dilakukan insertion ke database monster inventory.
     # Fungsi dibuat seperti di bawah supaya tidak terjadi kesalahan pada fungsi saat mencoba mengakses variabel global.
     # Iterator dan tiga variabel untuk menyetor nilai sementara diinisialisasi terlebih dahulu.
     i = 0
     temp_user = int(user_id)
-    temp_index = int(index + 1)
+    temp_index = int(monster_index + 1)
     temp_level = int(enemy_level)
     # Indeks terakhir monster pemain dicari terlebih dahulu supaya monster dapat ditambahkan setelahnya.
     while monster_inv_db["user_id"][i] <= user_id and i < len(monster_inv_db["user_id"]):
