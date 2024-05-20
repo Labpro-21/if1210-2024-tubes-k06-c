@@ -32,6 +32,7 @@ from src.F12_ShopManagement import *
 from src.F08_Battle import *
 from src.F09_Arena import *
 from src.F11_Laboratory import *
+from src.F13_MonsterManagement import *
 from src.B04_JACKPOT import *
 from global_var import *
 
@@ -89,7 +90,10 @@ def title_screen():
                 username = login(user_db)
                 logged_in = True
                 print("Berhasil login!")
-                main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db)
+                if user_db["role"][get_idx(username, user_db["username"])] == "admin":
+                    admin_gameplay(user_db, monster_db, monster_shop_db, item_shop_db)
+                else:
+                    main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db)
             case "register":
                 # os.system('cls')
                 register(user_db)
@@ -179,6 +183,35 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
             print("OC:", oc)
         else: 
             print("Pergerakan tidak valid!")    
+
+def admin_gameplay(user_db, monster_db, monster_shop_db, item_shop_db):
+    print("Selamat datang di kursi admin! ('Kursi ini sangat empuk!', pikirmu.)")
+    print("Pilihan opsi: monster (untuk monster management), shop (untuk shop management), logout, save, help, dan exit.")
+    while True:
+        action = str(input(">>>"))
+        remove_nth_line(1)
+        if action == "monster":
+            monster_management(monster_db)
+        elif action == "shop":
+            shop_management(monster_shop_db, item_shop_db)
+        elif action == "logout":
+            print("Berhasil logout!")
+            title_screen()
+            break
+        elif action == "save":
+            save(user_db, 'data/' + csv_dir + '/user.csv')
+            print("Berhasil menyimpan!")
+        elif action == "help":
+            print("Help:")
+        elif action == "exit":
+            exit(csv_dir)
+        elif action == "debug":
+            print("user_db:", user_db)
+            print("monster_db:", monster_db) 
+            print("monster_shop_db:", monster_shop_db) 
+            print("item_shop_db:", item_shop_db)
+        else:
+            print("Pilihan tidak valid!")
 
 title_screen()
 
