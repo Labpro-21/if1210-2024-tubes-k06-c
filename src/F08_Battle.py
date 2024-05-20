@@ -82,6 +82,7 @@ def battle(monster_db, monster_inv_db, user_id, enemy_level, item_inv_db, oc, ba
     # Memasuki loop utama battle
     isBattle = True
     while isBattle == True:
+        show_state()
         while True:
             print("┌─ Pilihan Aksi")
             print("├ 1. Attack")

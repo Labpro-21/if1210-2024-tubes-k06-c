@@ -120,12 +120,8 @@ def title_screen():
 ## username adalah username dari user yang sedang login!
 
 def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db):
-    print(item_shop_db)
-    print(item_inv_db)
-    print(monster_shop_db)
-    print(monster_inv_db)
-    print(user_db)
-    print(monster_db)
+    print("Selamat berpetualang!")
+    print("Ketik 'help' untuk menerima bantuan.")
     user_idx = get_idx(username, user_db["username"])
     user_id = user_db["id"][user_idx]
     posx, posy = user_db["posx"][user_idx], user_db["posy"][user_idx]
