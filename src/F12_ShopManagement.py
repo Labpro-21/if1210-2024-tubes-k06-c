@@ -62,7 +62,7 @@ def remove_item_shop(item_shop_db, item_type):
         print("Item tidak ditemukan.")
     return(item_shop_db)
 
-def change_item_shop(item_shop_db, item_type, price):
+def change_item_shop(item_shop_db, item_type, stock, price):
     if item_type in monster_shop_db['monster_id']:
         idx = get_idx(item_shop_db["type"][item_type])
         item_shop_db['stock'][idx] = stock
