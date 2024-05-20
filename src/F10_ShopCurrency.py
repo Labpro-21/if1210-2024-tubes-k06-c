@@ -5,6 +5,7 @@ F10 - Shop & Currency
 
 from global_var import *
 from src.x01 import *
+from src.F05_Monster import *
 
 #currency = 1000 # SAMPEL. PLACEHOLDER VALUE
 #user = 2
@@ -122,6 +123,8 @@ def monster_shop(monster_inv_db, monster_shop_db, monster_db, oc, user_id):
                 print("ID yang kamu pilih tidak ada!")
             elif oc < monster_shop_db["price"][choice - 1]:
                 print("Uang kamu tidak mencukupi untuk membeli monster tersebut!")
+            elif check_for_monster(choice, user_id, monster_inv_db):
+                            print("Kamu sudah punya monsternya!")
             else: 
                 print(f"Kamu membeli monster {monster_db["type"][choice-1]}.")
                 monster_inv_db = add_monster(user_id, choice-1, 1, monster_inv_db)

@@ -24,6 +24,16 @@ def attribute_monster(id: int, monster_level: int, monster_db):
     monster_hp = int(monster_db['hp'][monster] + (monster_level - 1) * 0.1 * monster_db['hp'][monster])
     return (monster_type, monster_atk, monster_def, monster_hp)
 
+def check_for_monster(monster_id, user_id, monster_inv_db):
+    i = 0
+    while i < len(monster_inv_db['monster_id']) and monster_inv_db["user_id"][i] != user_id:
+        i+=1
+    while i < len(monster_inv_db['monster_id']) and monster_inv_db["user_id"][i] == user_id:
+        if monster_inv_db['monster_id'][i] == monster_id:
+            return True
+        i+=1
+    return False
+
 def atk_power(atk_value):
     atk = int(atk_value + ((rng(-30, 30, 2 ) / 100) * atk_value))
     return atk

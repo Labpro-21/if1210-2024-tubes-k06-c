@@ -3,6 +3,7 @@ FB03 - JACKPOT!
 16523146 SACCA 
 """
 from src.F00_RandomNumberGenerator import *
+from src.F05_Monster import *
 from src.F14_Load import *
 from src.F10_ShopCurrency import add_monster
 from global_var import *
@@ -35,7 +36,11 @@ def jackpot(oc, user_id, monster_db, monster_inv_db):
     # Check jika pengguna mnedapat jackpot
     if item1 == item2 == item3:
         # Dapatakan nama monster
-        random_monster_index = int(rng(0, len(monster_db["type"]), int(working_time)))
+        while True:
+            random_monster_index = int(rng(0, len(monster_db["type"]), int(working_time)))
+            if not check_for_monster(random_monster_index + 1, user_id, monster_inv_db):
+                break        
+
         monster = monster_db["type"][random_monster_index]
         # Buat jadi level 1
         monster_level = 1
