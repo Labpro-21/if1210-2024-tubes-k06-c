@@ -1,19 +1,21 @@
 """
 F11 - Laboratory
 16523146 Sacca 
+19623296 Muhammad Ra'if Alkautsar
 """
 from global_var import *
+from src.F07_Inventory import *
 
 # Kode di sini
-def upgrade_monster(monster: str, oc, db = monster_db):
-    monster_idx = get_idx(monster, db["type"])
-    monster_name = db["type"][monster_idx]
-    if db['level'][monster_idx] >= 5:
+def upgrade_monster(monster_inv_db, monster_db, i, oc):
+    if monster_inv_db['level'][i] >= 5:
         print("Maaf, monster yang Anda pilih sudah memiliki level maksimum.")
         return oc
 
+    monster_index_in_monster_db = monster_inv_db["monster_id"][i] - 1
+    monster_name = monster_db['type'][monster_index_in_monster_db]
     upgrade_costs = [300, 500, 800, 1000]
-    current_level = db['level'][monster_idx]
+    current_level = monster_inv_db['level'][i]
     upgrade_cost = upgrade_costs[current_level - 1]
     print(f"\n{monster_name} akan di-upgrade ke level {current_level + 1}.")
     print(f"Harga untuk melakukan upgrade {monster_name} adalah {upgrade_cost} OC.")
@@ -21,24 +23,23 @@ def upgrade_monster(monster: str, oc, db = monster_db):
     if oc >= upgrade_cost:
         confirm = input(">>> Lanjutkan upgrade (Y/N): ")
         if confirm.lower() == 'y':
-            db['level'][monster_idx] += 1
+            monster_inv_db['level'][i] += 1
             oc -= upgrade_cost
-            current_level += 1
-            print(f"Selamat, {monster_name} berhasil di-upgrade ke level {current_level}!")
+            print(f"Selamat, {monster_name} berhasil di-upgrade ke level {current_level + 1}!")
         elif confirm.lower() == 'n':
             print("Upgrade dibatalkan.")
         else:
             print("Pilihan tidak valid. Silakan masukkan Y atau N.")
     else:
         print("Maaf, OC Anda tidak mencukupi untuk melakukan upgrade.")
-    return oc
+    return monster_inv_db, oc
 
-def laboratory(user_id, monsters, owca_coins):
+def laboratory(user_id, monster_db, monster_inv_db, oc):
     while True:
         print("\nSelamat datang di Lab Dokter Asep !!!\n")
         
         print("============ MONSTER LIST ============")
-        print(show_monster_inv(user_id))
+        print(show_monsters(monster_inv_db, monster_db, user_id))
 
         print("\n============ UPGRADE PRICE ============")
         print("1. Level 1 -> Level 2: 300 OC")
@@ -50,26 +51,31 @@ def laboratory(user_id, monsters, owca_coins):
         if user_input == 'exit':
             break
         elif user_input.isdigit():
-            i = int(user_input) - 1
-            if 1 <= i + 1 <= len(monsters):
-                owca_coins = upgrade_monster(monsters, i, owca_coins)
+            user_input = int(user_input)
+            i = int(user_input - 1 + get_start_index(monster_inv_db, user_id))
+            if 1 <= i + 1 <= len(monster_db["type"]):
+                monster_inv_db, oc = upgrade_monster(monster_inv_db, monster_db, i, oc)
             else:
                 print("Pilihan tidak valid, silakan pilih nomor monster yang valid.")
         else:
             print("Pilihan tidak valid, silakan pilih nomor monster yang valid.")
+        
+        return monster_inv_db, oc
 
 
-def get_monster(i, monsters = monster_db): # mengambil data monster dan level
-    return(monsters["type"][i], monsters["level"][i])
 
 
-def show_monster_inv(user_id, monsters_inv = monster_inv_db, monsters = monster_db):
-    count = 1
-    for i in range(len(monsters_inv['user_id'])):
-        if monsters_inv['user_id'][i] == user_id:
-            monster = get_monster(i)
-            print(f"{count}. {monster[0]} (Level: {monster[1]})")
-            count += 1
+# def get_monster(i, monsters = monster_db): # mengambil data monster dan level
+#     return(monsters["type"][i], monsters["level"][i])
+
+
+# def show_monster_inv(user_id, monsters_inv = monster_inv_db, monsters = monster_db):
+#     count = 1
+#     for i in range(len(monsters_inv['user_id'])):
+#         if monsters_inv['user_id'][i] == user_id:
+#             monster = get_monster(i)
+#             print(f"{count}. {monster[0]} (Level: {monster[1]})")
+#             count += 1
         
 
 # coba2
