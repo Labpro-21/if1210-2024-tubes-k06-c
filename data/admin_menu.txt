@@ -1,0 +1,5 @@
+Selamat datang, Admin! Berikut adalah hal-hal yang dapat kamu lakukan.
+1. Logout            : Keluar dari akun yang sedang digunakan.
+2. Shop              : Melakukan manajemen pada SHOP sebagai tempat jual beli peralatan Agent.
+3. Monster Management: Menambahkan monster baru ke dalam database. 
+
