@@ -48,13 +48,13 @@ def use_potion(item_inv_db, user_id, your_monster, your_atk, your_def, your_hp):
                     break
                 else:
                     print("Ramuan tidak valid!")
-    return(item_inv_db, your_atk, your_def, your_hp)
+    return item_inv_db, your_atk, your_def, your_hp
 
 
 def battle(monster_db, monster_inv_db, user_id, enemy_level, item_inv_db, oc, battle_type):
-    random_index = int(rng(0, len(monster_db['id']), int(time.time()))) # Meminta index untuk monster random
+    enemy_index = int(rng(0, len(monster_db['id']), int(time.time()))) # Meminta index untuk monster random
     # Inisialisasi Monster Musuh
-    enemy_monster = attribute_monster(random_index + 1, enemy_level, monster_db)
+    enemy_monster = attribute_monster(enemy_index + 1, enemy_level, monster_db)
     enemy_type = enemy_monster[0]
     enemy_atk = enemy_monster[1]
     enemy_def = enemy_monster[2]
@@ -88,7 +88,7 @@ def battle(monster_db, monster_inv_db, user_id, enemy_level, item_inv_db, oc, ba
             print("├ 2. Use Potion")
             print("├ 3. Monsterball")
             print("└ 4. Escape")
-            action = input("Apa yang akan kamu lakukan? (Ketik pilihanmu!) ") 
+            action = str(input("Apa yang akan kamu lakukan? (Ketik pilihanmu!) "))
             
             match action:
                 case "1":
@@ -100,25 +100,31 @@ def battle(monster_db, monster_inv_db, user_id, enemy_level, item_inv_db, oc, ba
                     item_inv_db, your_atk, your_def, your_hp = use_potion(item_inv_db, user_id, your_monster, your_atk, your_def, your_hp)
                     break
                 case "3":
-                    if check_monsterball(item_inv_db, user_id):
-                        item_inv_db = use_monsterball(item_inv_db, user_id)
-                        if monsterball_success(enemy_level):
-                            print("Monster berhasil tertangkap!")
-                            monster_inv_db = add_monster(user_id, random_index, enemy_level, monster_inv_db)
-                            enemy_hp = 0
-                        else: 
-                            print("Monster lepas!")
-                    else: 
-                        print("Kamu tidak memiliki monsterball!")
-                    break
+                    if battle_type == "wild":
+                        if check_for_monster(enemy_index + 1, user_id, monster_inv_db):
+                            print("Kamu sudah punya monsternya!")
+                        else:    
+                            if check_monsterball(item_inv_db, user_id):
+                                item_inv_db = use_monsterball(item_inv_db, user_id)
+                                if monsterball_success(enemy_level):
+                                    print("Monster berhasil tertangkap!")
+                                    monster_inv_db = add_monster(user_id, enemy_index, enemy_level, monster_inv_db)
+                                    enemy_hp = 0
+                                    break
+                                else: 
+                                    print("Monster lepas!")
+                                    break
+                            else: 
+                                print("Kamu tidak memiliki monsterball!")
+                    else: # battle_type == "arena"
+                        print("Tidak bisa menggunakan monsterball di arena. (Jangan culik monster orang!)")
                 case "4": 
                     if battle_type == "wild":
                         isBattle == False
                         print("Kamu berhasil kabur ...")
-                        return(monster_inv_db, item_inv_db, oc, damage_dealt, damage_received) 
+                        return monster_inv_db, item_inv_db, oc, damage_dealt, damage_received
                     else: # battle_type == "arena"
                         print("Tidak bisa kabur dari pertarungan di arena!")
-                        break
                 case _:
                     print("Pilihan tidak valid! \n")
         
@@ -133,16 +139,16 @@ def battle(monster_db, monster_inv_db, user_id, enemy_level, item_inv_db, oc, ba
             isBattle = False
             print(f"Selamat, kamu menang! Kamu memperoleh {reward} OWCA Coins.")
             if battle_type == "wild":
-                return(monster_inv_db, item_inv_db, oc, damage_dealt, damage_received)
+                return monster_inv_db, item_inv_db, oc, damage_dealt, damage_received
             else: # battle_type == "arena" 
-                return(monster_inv_db, item_inv_db, oc, True, damage_dealt, damage_received)
+                return monster_inv_db, item_inv_db, oc, True, damage_dealt, damage_received
         elif your_hp <= 0: 
             print("Monstermu tumbang. Kamu kalah.")
             isBattle = False
             if battle_type == "wild":
-                return(monster_inv_db, item_inv_db, oc, damage_dealt, damage_received)
+                return monster_inv_db, item_inv_db, oc, damage_dealt, damage_received
             else: # battle_type == "arena"
-                return(monster_inv_db, item_inv_db, oc, False, damage_dealt, damage_received)
+                return monster_inv_db, item_inv_db, oc, False, damage_dealt, damage_received
         else: 
             print(f"Pertarungan terus berlangsung! \n HP Monster-mu: {your_hp} \n HP Monster Musuh: {enemy_hp}")
 
