@@ -79,6 +79,9 @@ def is_numerical(text: str) -> bool:
         i += 1
     return True
 
+def is_string(text: str) -> bool: 
+    return not is_numerical(text)
+
 def split_str(line: str) -> list:
     row = []
     i = 0
