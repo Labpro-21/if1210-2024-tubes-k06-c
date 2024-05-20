@@ -159,7 +159,7 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
             break
         elif action == "shop":
             if checkProximity(action, posx, posy, worldmap):
-                monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc = shop(monster_shop_db, monster_inv_db, item_shop_db, item_inv_db, user_db, user_id)
+                monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc = shop(monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, monster_db, oc, user_id)
         elif action == "battle":
             if checkProximity(action, posx, posy, worldmap):
                 monster_inv_db, item_inv_db = battle(monster_db, monster_inv_db, user_idx, rng(0, 5, time.time()), item_inv_db, oc, "wild")
