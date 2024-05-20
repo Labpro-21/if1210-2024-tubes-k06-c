@@ -16,7 +16,6 @@ from global_var import *
 
 # FUNGSI register()
 def register(user_db: dict) -> dict:
-    # Ra'if ini ntar tolong dicakepin yah itunya
     print("<=============>")
     print("  O. W. C. A.  ")
     print("   We serve.   ")
