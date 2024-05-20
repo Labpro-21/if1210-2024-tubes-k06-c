@@ -1,6 +1,7 @@
 """
 F13 - Monster Management
 19623076 Daniel
+19723296 Muhammad Ra'if Alkautsar
 """
 
 # Kode di sini
