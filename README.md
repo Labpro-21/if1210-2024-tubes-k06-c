@@ -40,3 +40,5 @@ Program ini memuat beberapa _module_ yang terdiri atas banyak fungsi. Rincian _m
 | F16 | Exit |
 
 # How to Run
+1. Clone repositori ini di perangkat Anda.
+2. Jalankan `python main.py <nama-savegame>`. Savegame tersimpan di folder `data`.
