@@ -63,9 +63,8 @@ else:
     item_shop_db    = database[4]
     item_inv_db     = database[5]
 
-# monster_db, monster_shop_db, item_shop_db
 
-""" # Loading Screen
+# Loading Screen
 print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
 time.sleep(3)
 for i in range(5):
@@ -76,7 +75,7 @@ remove_nth_line(1)
 print("Selesai!")
 time.sleep(2)
 remove_nth_line(1)
-remove_nth_line(1) """
+remove_nth_line(1)
 
 def title_screen():
     username = ""
@@ -215,34 +214,3 @@ def admin_gameplay(user_db, monster_db, monster_shop_db, item_shop_db):
             print("Pilihan tidak valid!")
 
 title_screen()
-
-""" remove_nth_line(1)
-
-# # Title Screen
-# print_text("data/title_screen.txt")
-
-# Input Prompt
-username = ""
-while True:
-    action = input(">>> ")
-    remove_nth_line(1)
-    match lower(action):
-        case "login":
-            if logged_in:
-                os.system('cls')
-                print("Anda sudah login!")
-            else:
-                username = login(user_db)
-                os.system('cls')
-                logged_in = True
-                print(f"Berhasil login sebagai {username}!")
-        case "logout":
-            os.system('cls')
-            logged_in = False if logout(logged_in) else False
-        case "register":
-            os.system('cls')
-            register(user_db)
-            print("Berhasil register!")
-        case "save":
-            os.system('cls')
-            print('data' + csv_dir + 'user.csv') """

@@ -56,9 +56,3 @@ def use_monsterball(item_inv_db, user_id):
         else:
             i += 1
     return(item_inv_db)
-
-
-"""
-DESKRIPSI
-Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
-"""

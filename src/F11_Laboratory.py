@@ -61,32 +61,3 @@ def laboratory(user_id, monster_db, monster_inv_db, oc):
             print("Pilihan tidak valid, silakan pilih nomor monster yang valid.")
         
         return monster_inv_db, oc
-
-
-
-
-# def get_monster(i, monsters = monster_db): # mengambil data monster dan level
-#     return(monsters["type"][i], monsters["level"][i])
-
-
-# def show_monster_inv(user_id, monsters_inv = monster_inv_db, monsters = monster_db):
-#     count = 1
-#     for i in range(len(monsters_inv['user_id'])):
-#         if monsters_inv['user_id'][i] == user_id:
-#             monster = get_monster(i)
-#             print(f"{count}. {monster[0]} (Level: {monster[1]})")
-#             count += 1
-        
-
-# coba2
-""" current_user = get_idx('B4ngk1dd0ssss', user_db["username"])
-user_id = user_db["id"][current_user]
-monsters = showMonsters()
-owca_coins = user_db["oc"][current_user]
-laboratory(monsters,owca_coins) """
-"""
-DESKRIPSI
-Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
-
-
-"""

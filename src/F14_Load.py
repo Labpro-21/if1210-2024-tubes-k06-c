@@ -42,9 +42,10 @@ def load_data(csv_dir: str) -> list[dict]:
     item_shop_db    = load_csv('data/' + csv_dir + '/item_shop.csv')
     item_inv_db     = load_csv('data/' + csv_dir + '/item_inventory.csv')
     return [user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db]
+
 """
 DESKRIPSI
-Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
+
 Skema load untuk memuat data dari csv ke dalam dictionary of lists sebagai database
 temporer dalam game terdiri atas beberapa langkah. Pertama-tama, header yang memuat
 parameter-parameter (kolom) dalam database akan dimuat. Selanjutnya, barulah baris-

@@ -48,6 +48,7 @@ def get_start_index(db, user_id) -> int: # Fungsi ini dibuat untuk mendapatkan i
     return(i)
 
 def show_inventory(item_inv_db, monster_inv_db, monster_db, user_id):
+    os
     print("Potion yang kamu miliki: ")
     show_items(item_inv_db, user_id)
     print("Monster yang kamu miliki:")

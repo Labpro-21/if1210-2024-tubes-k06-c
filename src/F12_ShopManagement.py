@@ -3,12 +3,6 @@ F12 - Shop Management
 19623296 Muhammad Ra'if Alkautsar
 """
 
-# type;stock;price
-# strength;10;50
-# resilience;5;30
-# healing;3;20
-# monsterball;5;50
-
 from src.x01 import *
 from src.F10_ShopCurrency import *
 from src.F05_Monster import *
@@ -148,9 +142,3 @@ def shop_management(monster_shop_db, item_shop_db):
                 break
             else:
                 print("Input tidak valid!")
-"""
-DESKRIPSI
-Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
-
-
-"""

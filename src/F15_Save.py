@@ -39,11 +39,3 @@ def save(db: dict, path: str):
         if i != db_length - 1:
             csv.write("\n")
     csv.close()
-
-
-"""
-DESKRIPSI
-Penjelasan ini ditaruh sementara dan akan dihapus pada rilis versi final.
-
-
-"""
