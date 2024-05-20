@@ -25,11 +25,13 @@ from src.F03_Logout import *
 from src.F15_Save import *
 from src.F16_Exit import *
 from src.F03_Logout import *
-from src.F07_Inventory import *
+from src.F04_MenuHelp import *
+# from src.F07_Inventory import *
 from src.B05_PetaKotaDanville import *
 from src.F12_ShopManagement import *
 from src.F08_Battle import *
 from src.F09_Arena import *
+from src.F11_Laboratory import *
 from src.B04_JACKPOT import *
 from global_var import *
 
@@ -75,6 +77,8 @@ remove_nth_line(1)
 remove_nth_line(1) """
 
 def title_screen():
+    username = ""
+    logged_in = False
     while True:
         print_text("data/title_screen.txt") 
         action = input(">>> ")
@@ -83,16 +87,21 @@ def title_screen():
             case "login":
                 # os.system('cls')
                 username = login(user_db)
+                logged_in = True
                 print("Berhasil login!")
                 main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db)
             case "register":
                 # os.system('cls')
                 register(user_db)
                 print("Berhasil register!")
+            case "menu":
+                menu(username, logged_in, user_db)
             case "save":
                 # os.system('cls')
-                print('data' + csv_dir + 'user.csv')
-                save(user_db, 'data/' + csv_dir + '/user.csv')
+                save_dir = input("Folder savegame: ")
+                if not validate_dir('data/' + save_dir):
+                    os.makedirs('data/' + save_dir)
+                save(user_db, 'data/' + save_dir + '/user.csv')
                 print("Berhasil menyimpan!")
             case "exit":
                 # os.system('cls')
@@ -107,6 +116,12 @@ def title_screen():
 ## username adalah username dari user yang sedang login!
 
 def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db, item_shop_db, item_inv_db):
+    print(item_shop_db)
+    print(item_inv_db)
+    print(monster_shop_db)
+    print(monster_inv_db)
+    print(user_db)
+    print(monster_db)
     user_idx = get_idx(username, user_db["username"])
     user_id = user_db["id"][user_idx]
     posx, posy = user_db["posx"][user_idx], user_db["posy"][user_idx]
@@ -140,13 +155,13 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
             break
         elif action == "shop":
             if checkProximity(action, posx, posy, worldmap):
-                monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc = shop(monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, monster_db, oc, user_id)
+                monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc = shop(monster_shop_db, monster_inv_db, item_shop_db, item_inv_db, user_db, user_id)
         elif action == "battle":
             if checkProximity(action, posx, posy, worldmap):
-                monster_inv_db, item_inv_db, oc = battle(monster_db, monster_inv_db, user_id, rng(1, 5, time.time()), item_inv_db, oc)
+                monster_inv_db, item_inv_db = battle(monster_db, monster_inv_db, user_idx, rng(0, 5, time.time()), item_inv_db, oc, "wild")
         elif action == "laboratory":
             if checkProximity(action, posx, posy, worldmap):
-                laboratory()
+                monster_inv_db, oc = laboratory(user_id, monster_db, monster_inv_db, oc)
         elif action == "arena":
             if checkProximity(action, posx, posy, worldmap):
                 arena(monster_db, monster_inv_db, user_id, item_inv_db, oc)
