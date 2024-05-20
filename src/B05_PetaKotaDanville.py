@@ -1,6 +1,6 @@
 """
 FB05 - Peta Kota Danville
-19623296 / Muhammad Ra'if Alkautsar
+19623296 Muhammad Ra'if Alkautsar
 """
 
 def read_map(N : int, M : int, fn : str, posx : int, posy : int):

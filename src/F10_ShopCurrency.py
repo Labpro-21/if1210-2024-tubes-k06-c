@@ -98,10 +98,10 @@ def remove_item(index, item_inv_db):
     return(item_inv_db)
 
 def monster_shop_list(monster_shop_db, monster_db):
-    print(f"{"ID":<2} | {"Monster":<10} | {"ATK":<5} | {"DEF":<5} | {"HP":<5}")
+    print(f"{"ID":<2} | {"Monster":<10} | {"ATK":<5} | {"DEF":<5} | {"HP":<5} | Price | Stock")
     for i in range(len(monster_shop_db["monster_id"])):
         monster_idx = get_idx(monster_shop_db["monster_id"][i], monster_db["id"])
-        print(f"{monster_db["id"][monster_idx]} | {monster_db["type"][monster_idx]:<10} | {monster_db["atk_power"][monster_idx]:<5} | {monster_db["def_power"][monster_idx]:<5} | {monster_db["hp"][monster_idx]:<5}")
+        print(f"{monster_db["id"][monster_idx]} | {monster_db["type"][monster_idx]:<10} | {monster_db["atk_power"][monster_idx]:<5} | {monster_db["def_power"][monster_idx]:<5} | {monster_db["hp"][monster_idx]:<5} | {monster_shop_db["price"][i]:<5} | {monster_shop_db["stock"][i]:<5}")
 
 def item_shop_list(item_shop_db):
     print(f"{"Type":<12} | {"Stock":<4} | {"Price":<4}")
@@ -123,11 +123,14 @@ def monster_shop(monster_inv_db, monster_shop_db, monster_db, oc, user_id):
                 print("ID yang kamu pilih tidak ada!")
             elif oc < monster_shop_db["price"][choice - 1]:
                 print("Uang kamu tidak mencukupi untuk membeli monster tersebut!")
-            elif check_for_monster(choice, user_id, monster_inv_db):
-                            print("Kamu sudah punya monsternya!")
+            elif check_for_monster(monster_shop_db["monster_id"][choice - 1], user_id, monster_inv_db):
+                print("Kamu sudah punya monsternya!")
             else: 
-                print(f"Kamu membeli monster {monster_db["type"][choice-1]}.")
-                monster_inv_db = add_monster(user_id, choice-1, 1, monster_inv_db)
+                index_of_monster = get_idx(choice-1, monster_db["id"])
+                monster_type_to_buy = monster_db["type"][index_of_monster]
+                print(f"Kamu membeli monster {monster_db["type"][choice - 1]}.")
+                monster_inv_db = add_monster(user_id, choice - 1, 1, monster_inv_db)
+                oc -= monster_shop_db["price"][choice - 1]
     return monster_inv_db, monster_shop_db, monster_db, oc
 
 def item_shop(item_inv_db, item_shop_db, oc, user_id):
@@ -149,6 +152,7 @@ def item_shop(item_inv_db, item_shop_db, oc, user_id):
             else: 
                 print("Kamu membeli monster ball.")    
             item_inv_db = add_item(user_id, choice, item_inv_db)
+            oc -= item_shop_db["price"][get_idx(choice, item_shop_db["type"])]
     return item_inv_db, item_shop_db, oc
 
 def shop(monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, monster_db, oc, user_id):
