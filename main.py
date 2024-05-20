@@ -63,6 +63,7 @@ else:
     item_shop_db    = database[4]
     item_inv_db     = database[5]
 
+# monster_db, monster_shop_db, item_shop_db
 
 """ # Loading Screen
 print("Mohon maximize window command prompt Anda untuk pengalaman terbaik.")
@@ -153,7 +154,7 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
             save(user_db, 'data/' + csv_dir + '/user.csv')
             print("Berhasil menyimpan!")
         elif action == "help":
-            print("Help:")
+            menu("agent")
         elif action == "exit":
             exit(csv_dir)
             break
@@ -162,7 +163,7 @@ def main_gameplay(username, user_db, monster_db, monster_shop_db, monster_inv_db
                 monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, oc = shop(monster_inv_db, item_inv_db, monster_shop_db, item_shop_db, monster_db, oc, user_id)
         elif action == "battle":
             if checkProximity(action, posx, posy, worldmap):
-                monster_inv_db, item_inv_db = battle(monster_db, monster_inv_db, user_idx, rng(0, 5, time.time()), item_inv_db, oc, "wild")
+                monster_inv_db, item_inv_db, damage_dealt, damage_received = battle(monster_db, monster_inv_db, user_idx, rng(0, 5, time.time()), item_inv_db, oc, "wild")
         elif action == "laboratory":
             if checkProximity(action, posx, posy, worldmap):
                 monster_inv_db, oc = laboratory(user_id, monster_db, monster_inv_db, oc)
@@ -202,7 +203,7 @@ def admin_gameplay(user_db, monster_db, monster_shop_db, item_shop_db):
             save(user_db, 'data/' + csv_dir + '/user.csv')
             print("Berhasil menyimpan!")
         elif action == "help":
-            print("Help:")
+            menu("admin")
         elif action == "exit":
             exit(csv_dir)
         elif action == "debug":
