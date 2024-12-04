@@ -1,0 +1,21 @@
+Halo, Agen! Kamu memanggil command HELP. Kamu memilih jalan yang benar, semoga kamu tidak sesat kemudian. Berikut adalah hal-hal yang dapat kamu lakukan sekarang: 
+Untuk mengendalikan charctermu di map, kamu bisa mengetik:
+    - up/u
+    - left/l
+    - right/r
+    - down/d 
+    atau W, A, S, D
+    (Semuanya bisa lowercase atau uppercase!)
+
+Berikut adalah perintah yang bisa kamu lakukan di mana saja:
+1. Logout: Keluar dari akun yang sedang digunakan.
+2. Shop: Membeli agent, monster dan potion.
+3. Inventory: Menampilkan monster dan potion serta spesifikasi yang dimiliki.
+4. Help: Meminta bantuan dari sistem. 
+5. Save: Menyimpan data game.   
+
+Sementara itu, berikut adalah tempat-tempat yang bisa kamu kunjungi dan perintah untuk mengunjunginya:
+1. Battle: Melakukan pertarungan melawan monster. 
+2. Arena: Melatih monster dan mendapat koin oc saat menang . 
+3. Laboratory: Mengupgrade monster yang ada di invetory dengan koin oc.
+4. Jackpot: Mengetes keberuntungan Anda untuk mendapatkan imbalan yang gacor!

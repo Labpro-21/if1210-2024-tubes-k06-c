@@ -1,0 +1,22 @@
+
+    ___   _____________   ________   ____  __  ______  ______  __   _____         
+   /   | / ____/ ____/ | / /_  __/  / __ \/ / / / __ \/ __ \ \/ /  / /__ \        
+  / /| |/ / __/ __/ /  |/ / / /    / /_/ / / / / /_/ / /_/ /\  /  / / / _/_____   
+ / ___ / /_/ / /___/ /|  / / /    / ____/ /_/ / _, _/ _, _/ / /  /_/ /_//_____/   
+/_/ _|_\____/_____/_/_|_/ /_/    /_/   _\____/_/ |_/_/ |_| /_/  (_) (_)           
+   (_)___     /  |/  /___  ____  _____/ /____  ______   _____  _____________      
+  / / __ \   / /|_/ / __ \/ __ \/ ___/ __/ _ \/ ___/ | / / _ \/ ___/ ___/ _ \     
+ / / / / /  / /  / / /_/ / / / (__  ) /_/  __/ /   | |/ /  __/ /  (__  )  __/     
+/_/_/ /_/  /_/  /_/\____/_/ /_/____/\__/\___/_/    |___/\___/_/  /____/\___/      
+                                                                                  
+---- Selamat datang, agen! 
+---- Hentikan Asep Spakbor dan selamatkan negeri ini. 
+
+Gunakan keyboard anda untuk memainkan game ini. 
+
+┌─ Pilihan aksi yang tersedia: 
+├ Login - Masuk ke akun yang sudah ada.
+├ Register - Buat sebuah akun baru.
+├ Save - Simpan progress di sesi permainan kali ini.
+└ Exit - Keluar dari game.
+
